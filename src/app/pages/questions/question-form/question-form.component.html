@@ -1,0 +1,216 @@
+<nb-card>
+  <nb-card-header>Create a question</nb-card-header>
+  <nb-card-body>
+    <nb-checkbox status="primary" [(ngModel)]="hasQuestionMedia"
+      >Question with media</nb-checkbox
+    >
+    <nb-checkbox status="primary" [(ngModel)]="isMultipleChoice"
+      >Is multiple choice</nb-checkbox
+    >
+    <nb-checkbox status="primary" [(ngModel)]="hasAnswerWithMedia"
+      >Choice with media</nb-checkbox
+    >
+    <form [formGroup]="questionForm">
+      <input
+        formControlName="questionText"
+        type="text"
+        placeholder="Question Text"
+        nbInput
+        fullWidth
+        required
+      />
+      <input
+        *ngIf="hasQuestionMedia"
+        formControlName="questionMediaUrl"
+        type="url"
+        placeholder="Question Media URL"
+        nbInput
+        fullWidth
+      />
+      <nb-select
+        *ngIf="hasQuestionMedia"
+        selected="1"
+        formControlName="questionMediaType"
+      >
+        <nb-option value="1">Photo</nb-option>
+        <nb-option value="2">Video</nb-option>
+      </nb-select>
+
+      <input
+        *ngIf="isMultipleChoice"
+        formControlName="numberOfOptionsVisible"
+        type="number"
+        min="1"
+        max="6"
+        placeholder="Number of Options Visible"
+        nbInput
+        fullWidth
+      />
+      <input
+        formControlName="answerOption1Text"
+        type="text"
+        placeholder="Answer Option 1 Text"
+        nbInput
+        fullWidth
+        required
+      />
+      <input
+        *ngIf="isMultipleChoice && hasAnswerWithMedia"
+        formControlName="answerOption1MediaUrl"
+        type="url"
+        placeholder="Answer Option 1 Media URL"
+        nbInput
+        fullWidth
+      />
+      <nb-select
+        *ngIf="isMultipleChoice && hasAnswerWithMedia"
+        selected="1"
+        formControlName="answerOption1MediaType"
+      >
+        <nb-option value="1">Photo</nb-option>
+        <nb-option value="2">Video</nb-option>
+      </nb-select>
+      <nb-checkbox status="primary" formControlName="isAnswer1Correct"
+        >Correct Answer</nb-checkbox
+      >
+
+      <input
+        *ngIf="isMultipleChoice"
+        formControlName="answerOption2Text"
+        type="text"
+        placeholder="Answer Option 2 Text"
+        nbInput
+        fullWidth
+      />
+      <input
+        *ngIf="isMultipleChoice && hasAnswerWithMedia"
+        formControlName="answerOption2MediaUrl"
+        type="url"
+        placeholder="Answer Option 2 Media URL"
+        nbInput
+        fullWidth
+      />
+      <nb-select
+        *ngIf="isMultipleChoice && hasAnswerWithMedia"
+        selected="1"
+        formControlName="answerOption2MediaType"
+      >
+        <nb-option value="1">Photo</nb-option>
+        <nb-option value="2">Video</nb-option>
+      </nb-select>
+      <nb-checkbox status="primary" formControlName="isAnswer2Correct"
+        >Correct Answer</nb-checkbox
+      >
+
+      <input
+        *ngIf="isMultipleChoice"
+        formControlName="answerOption3Text"
+        type="text"
+        placeholder="Answer Option 3 Text"
+        nbInput
+        fullWidth
+      />
+      <input
+        *ngIf="isMultipleChoice && hasAnswerWithMedia"
+        formControlName="answerOption3MediaUrl"
+        type="url"
+        placeholder="Answer Option 3 Media URL"
+        nbInput
+        fullWidth
+      />
+      <nb-select
+        *ngIf="isMultipleChoice && hasAnswerWithMedia"
+        selected="1"
+        formControlName="answerOption3MediaType"
+      >
+        <nb-option value="1">Photo</nb-option>
+        <nb-option value="2">Video</nb-option>
+      </nb-select>
+      <nb-checkbox status="primary" formControlName="isAnswer3Correct"
+        >Correct Answer</nb-checkbox
+      >
+
+      <input
+        *ngIf="isMultipleChoice"
+        formControlName="answerOption4Text"
+        type="text"
+        placeholder="Answer Option 4 Text"
+        nbInput
+        fullWidth
+      />
+      <input
+        *ngIf="isMultipleChoice && hasAnswerWithMedia"
+        formControlName="answerOption4MediaUrl"
+        type="url"
+        placeholder="Answer Option 4 Media URL"
+        nbInput
+        fullWidth
+      />
+      <nb-select
+        *ngIf="isMultipleChoice && hasAnswerWithMedia"
+        selected="1"
+        formControlName="answerOption4MediaType"
+      >
+        <nb-option value="1">Photo</nb-option>
+        <nb-option value="2">Video</nb-option>
+      </nb-select>
+      <nb-checkbox status="primary" formControlName="isAnswer4Correct"
+        >Correct Answer</nb-checkbox
+      >
+
+      <input
+        *ngIf="isMultipleChoice"
+        formControlName="answerOption5Text"
+        type="text"
+        placeholder="Answer Option 5 Text"
+        nbInput
+        fullWidth
+      />
+      <input
+        *ngIf="isMultipleChoice && hasAnswerWithMedia"
+        formControlName="answerOption5MediaUrl"
+        type="url"
+        placeholder="Answer Option 5 Media URL"
+        nbInput
+        fullWidth
+      />
+      <nb-select
+        *ngIf="isMultipleChoice && hasAnswerWithMedia"
+        selected="1"
+        formControlName="answerOption5MediaType"
+      >
+        <nb-option value="1">Photo</nb-option>
+        <nb-option value="2">Video</nb-option>
+      </nb-select>
+      <nb-checkbox status="primary" formControlName="isAnswer4Correct"
+        >Correct Answer</nb-checkbox
+      >
+      <input
+        *ngIf="isMultipleChoice"
+        formControlName="answerOption6Text"
+        type="text"
+        placeholder="Answer Option 6 Text"
+        nbInput
+        fullWidth
+      />
+      <input
+        *ngIf="isMultipleChoice && hasAnswerWithMedia"
+        formControlName="answerOption6MediaUrl"
+        type="url"
+        placeholder="Answer Option 6 Media URL"
+        nbInput
+        fullWidth
+      />
+      <nb-select
+        *ngIf="isMultipleChoice && hasAnswerWithMedia"
+        selected="1"
+        formControlName="answerOption6MediaType"
+      >
+        <nb-option value="1">Photo</nb-option>
+        <nb-option value="2">Video</nb-option>
+      </nb-select>
+
+      <button type="submit" nbButton status="primary">Submit</button>
+    </form>
+  </nb-card-body>
+</nb-card>
