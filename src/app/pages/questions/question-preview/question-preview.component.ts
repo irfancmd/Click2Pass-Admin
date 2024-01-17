@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { QuestionService } from "../services/question.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "ngx-question-preview",
@@ -7,14 +8,23 @@ import { QuestionService } from "../services/question.service";
   styleUrls: ["./question-preview.component.scss"],
 })
 export class QuestionPreviewComponent implements OnInit {
-  questions = [];
+  public question: any;
 
-  constructor(private questionService: QuestionService) {}
+  constructor(
+    private questionService: QuestionService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.questionService.tempGetQuestions().subscribe((data) => {
-      this.questions = data.data;
-    });
+    const questionId = this.activatedRoute.snapshot.params["id"];
+
+    if (questionId) {
+      this.questionService
+        .getQuestionById(parseInt(questionId))
+        .subscribe((data: any) => {
+          this.question = data.data[0];
+        });
+    }
   }
 
   getQuestionType(question: any) {

@@ -30,11 +30,11 @@ export class QuestionSetFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.questionService.tempGetQuestions().subscribe((data) => {
+    this.questionService.getQuestions().subscribe((data: any) => {
       this.questions = data.data;
     });
 
-    this.categoryService.tempGetCategories().subscribe((data: any) => {
+    this.categoryService.getCategories().subscribe((data: any) => {
       if (data.data) {
         this.categorySelectItems = data.data.map((category: any) => {
           return {
@@ -86,11 +86,11 @@ export class QuestionSetFormComponent implements OnInit {
 
   onChangeCategorySelection(event: any) {
     if (event == "0") {
-      this.questionService.tempGetQuestions().subscribe((data) => {
+      this.questionService.getQuestions().subscribe((data: any) => {
         this.questions = data.data;
       });
     } else {
-      this.questionService.tempGetQuestions().subscribe((data) => {
+      this.questionService.getQuestions().subscribe((data: any) => {
         this.questions = data.data.filter((q) => q.categoryId == event);
       });
     }

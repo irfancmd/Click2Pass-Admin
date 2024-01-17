@@ -22,16 +22,19 @@ export class QuestionSetService {
   constructor(private httpClient: HttpClient) {}
 
   getQuestionSets() {
-    // return this.httpClient.get("http://localhost:3000/question-set");
+    return this.httpClient.get("http://localhost:3000/question-set");
 
-    return of({ data: this.tempData });
+    // return of({ data: this.tempData });
   }
 
   createQuestionSets(questionSet: any) {
-    // return this.httpClient.post("http://localhost:3000/question-set", questionSet);
+    return this.httpClient.post(
+      "http://localhost:3000/question-set",
+      questionSet
+    );
 
-    this.tempData.push(questionSet);
+    // this.tempData.push(questionSet);
 
-    return of({ data: this.tempData });
+    // return of({ data: this.tempData });
   }
 }

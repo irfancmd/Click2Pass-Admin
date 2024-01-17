@@ -22,7 +22,19 @@
           <tr *ngFor="let questionSet of questionSets">
             <td>{{ questionSet.name }}</td>
             <td>{{ questionSet.description ?? "N/A" }}</td>
-            <td>{{ questionSet.tempQuestionIds ?? "N/A" }}</td>
+            <!-- <td>{{ questionSet.tempQuestionIds ?? "N/A" }}</td> -->
+            <td>
+              <span
+                *ngFor="
+                  let questionId of questionSet.tempQuestionIds.split(',')
+                "
+              >
+                |<a routerLink="/pages/questions/{{ questionId }}">{{
+                  questionId
+                }}</a
+                >|
+              </span>
+            </td>
           </tr>
         </tbody>
       </table>

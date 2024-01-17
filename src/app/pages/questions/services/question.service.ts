@@ -1,13 +1,20 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { of } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class QuestionService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
+  getQuestions() {
+    return this.httpClient.get("http://localhost:3000/question");
+  }
+
+  getQuestionById(questionId: number) {
+    return this.httpClient.get(`http://localhost:3000/question/${questionId}`);
+  }
 
   tempGetQuestions() {
     return of({
@@ -19,7 +26,7 @@ export class QuestionService {
           categoryId: 1,
           categoryName: "Category A",
           correctAnswerText: "1",
-          answerOption1Text: "It's a thing."
+          answerOption1Text: "It's a thing.",
         },
         {
           id: 2,
@@ -28,7 +35,7 @@ export class QuestionService {
           categoryId: 2,
           categoryName: "Category B",
           correctAnswerText: "1",
-          answerOption1Text: "It's a thing."
+          answerOption1Text: "It's a thing.",
         },
         {
           id: 3,
@@ -37,9 +44,9 @@ export class QuestionService {
           categoryId: 3,
           categoryName: "Category C",
           correctAnswerText: "1",
-          answerOption1Text: "It's a thing."
+          answerOption1Text: "It's a thing.",
         },
-      ]
-    }); 
+      ],
+    });
   }
 }

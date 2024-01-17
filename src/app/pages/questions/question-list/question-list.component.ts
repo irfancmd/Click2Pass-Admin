@@ -1,5 +1,5 @@
-import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
+import { QuestionService } from "../services/question.service";
 
 @Component({
   selector: "ngx-question-list",
@@ -8,14 +8,13 @@ import { Component, OnInit } from "@angular/core";
 })
 export class QuestionListComponent implements OnInit {
   questions = [];
-  constructor(private httpClient: HttpClient) {}
+
+  constructor(private questionService: QuestionService) {}
 
   ngOnInit(): void {
-    this.httpClient
-      .get("http://localhost:3000/question")
-      .subscribe((data: any) => {
-        this.questions = data.data;
-      });
+    this.questionService.getQuestions().subscribe((data: any) => {
+      this.questions = data.data;
+    });
   }
 
   getQuestionType(question: any) {

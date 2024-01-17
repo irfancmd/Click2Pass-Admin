@@ -13,6 +13,7 @@ import { LessonListComponent } from "./lessons/lesson-list/lesson-list.component
 import { LessonFormComponent } from "./lessons/lesson-form/lesson-form.component";
 import { QuestionSetListComponent } from "./question-set/question-set-list/question-set-list.component";
 import { QuestionSetFormComponent } from "./question-set/question-set-form/question-set-form.component";
+import { QuestionPreviewComponent } from "./questions/question-preview/question-preview.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: "question-form",
         component: QuestionFormComponent,
+      },
+      {
+        path: "questions/:id",
+        component: QuestionPreviewComponent,
       },
       {
         path: "categories",

@@ -98,177 +98,318 @@
               />
             </div>
           </div>
-
-          <input
-            *ngIf="isMultipleChoice && hasAnswerWithMedia"
-            formControlName="answerOption1MediaUrl"
-            type="url"
-            placeholder="Answer Option 1 Media URL"
-            nbInput
-            fullWidth
-          />
-          <nb-select
-            *ngIf="isMultipleChoice && hasAnswerWithMedia"
-            selected="1"
-            formControlName="answerOption1MediaType"
-          >
-            <nb-option value="1">Photo</nb-option>
-            <nb-option value="2">Video</nb-option>
-          </nb-select>
-          <div *ngIf="isMultipleChoice">
-            <nb-checkbox status="primary" formControlName="isAnswer1Correct"
-              >Correct Answer</nb-checkbox
-            >
+          <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
+            <div class="form-group col-9">
+              <label for="answerOption1MediaUrl" class="label"
+                >Answer Option 1 Media URL</label
+              >
+              <input
+                formControlName="answerOption1MediaUrl"
+                id="answerOption1MediaUrl"
+                type="url"
+                placeholder="Answer Option 1 Media URL"
+                nbInput
+                fullWidth
+              />
+            </div>
+            <div class="form-group col-3 text-end">
+              <label for="answerOption1MediaType" class="label"
+                >Media Type</label
+              >
+              <nb-select
+                *ngIf="isMultipleChoice && hasAnswerWithMedia"
+                selected="1"
+                formControlName="answerOption1MediaType"
+                id="answerOption1MediaType"
+              >
+                <nb-option value="1">Photo</nb-option>
+                <nb-option value="2">Video</nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="row" *ngIf="isMultipleChoice">
+            <div class="col-12">
+              <div *ngIf="isMultipleChoice">
+                <nb-checkbox status="primary" formControlName="isAnswer1Correct"
+                  >Correct Answer</nb-checkbox
+                >
+              </div>
+            </div>
           </div>
 
-          <input
-            *ngIf="isMultipleChoice"
-            formControlName="answerOption2Text"
-            type="text"
-            placeholder="Answer Option 2 Text"
-            nbInput
-            fullWidth
-          />
-          <input
-            *ngIf="isMultipleChoice && hasAnswerWithMedia"
-            formControlName="answerOption2MediaUrl"
-            type="url"
-            placeholder="Answer Option 2 Media URL"
-            nbInput
-            fullWidth
-          />
-          <nb-select
-            *ngIf="isMultipleChoice && hasAnswerWithMedia"
-            selected="1"
-            formControlName="answerOption2MediaType"
-          >
-            <nb-option value="1">Photo</nb-option>
-            <nb-option value="2">Video</nb-option>
-          </nb-select>
-          <div *ngIf="isMultipleChoice">
-            <nb-checkbox status="primary" formControlName="isAnswer2Correct"
-              >Correct Answer</nb-checkbox
-            >
+          <div class="row" *ngIf="isMultipleChoice">
+            <div class="form-group col-12">
+              <label for="answerOption2Text" class="label">
+                Answer Option 2 Text
+              </label>
+              <input
+                formControlName="answerOption2Text"
+                id="answerOption2Text"
+                type="text"
+                placeholder="Answer Option 2 Text"
+                nbInput
+                fullWidth
+                required
+              />
+            </div>
+          </div>
+          <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
+            <div class="form-group col-9">
+              <label for="answerOption2MediaUrl" class="label"
+                >Answer Option 2 Media URL</label
+              >
+              <input
+                formControlName="answerOption2MediaUrl"
+                id="answerOption2MediaUrl"
+                type="url"
+                placeholder="Answer Option 2 Media URL"
+                nbInput
+                fullWidth
+              />
+            </div>
+            <div class="form-group col-3 text-end">
+              <label for="answerOption2MediaType" class="label"
+                >Media Type</label
+              >
+              <nb-select
+                *ngIf="isMultipleChoice && hasAnswerWithMedia"
+                selected="1"
+                formControlName="answerOption2MediaType"
+                id="answerOption2MediaType"
+              >
+                <nb-option value="1">Photo</nb-option>
+                <nb-option value="2">Video</nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="row" *ngIf="isMultipleChoice">
+            <div class="col-12">
+              <div *ngIf="isMultipleChoice">
+                <nb-checkbox status="primary" formControlName="isAnswer2Correct"
+                  >Correct Answer</nb-checkbox
+                >
+              </div>
+            </div>
           </div>
 
-          <input
-            *ngIf="isMultipleChoice"
-            formControlName="answerOption3Text"
-            type="text"
-            placeholder="Answer Option 3 Text"
-            nbInput
-            fullWidth
-          />
-          <input
-            *ngIf="isMultipleChoice && hasAnswerWithMedia"
-            formControlName="answerOption3MediaUrl"
-            type="url"
-            placeholder="Answer Option 3 Media URL"
-            nbInput
-            fullWidth
-          />
-          <nb-select
-            *ngIf="isMultipleChoice && hasAnswerWithMedia"
-            selected="1"
-            formControlName="answerOption3MediaType"
-          >
-            <nb-option value="1">Photo</nb-option>
-            <nb-option value="2">Video</nb-option>
-          </nb-select>
-          <div *ngIf="isMultipleChoice">
-            <nb-checkbox status="primary" formControlName="isAnswer3Correct"
-              >Correct Answer</nb-checkbox
-            >
+          <div class="row" *ngIf="isMultipleChoice">
+            <div class="form-group col-12">
+              <label for="answerOption3Text" class="label">
+                Answer Option 3 Text
+              </label>
+              <input
+                formControlName="answerOption3Text"
+                id="answerOption3Text"
+                type="text"
+                placeholder="Answer Option 3 Text"
+                nbInput
+                fullWidth
+                required
+              />
+            </div>
+          </div>
+          <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
+            <div class="form-group col-9">
+              <label for="answerOption3MediaUrl" class="label"
+                >Answer Option 3 Media URL</label
+              >
+              <input
+                formControlName="answerOption3MediaUrl"
+                id="answerOption3MediaUrl"
+                type="url"
+                placeholder="Answer Option 3 Media URL"
+                nbInput
+                fullWidth
+              />
+            </div>
+            <div class="form-group col-3 text-end">
+              <label for="answerOption3MediaType" class="label"
+                >Media Type</label
+              >
+              <nb-select
+                *ngIf="isMultipleChoice && hasAnswerWithMedia"
+                selected="1"
+                formControlName="answerOption3MediaType"
+                id="answerOption3MediaType"
+              >
+                <nb-option value="1">Photo</nb-option>
+                <nb-option value="2">Video</nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="row" *ngIf="isMultipleChoice">
+            <div class="col-12">
+              <div *ngIf="isMultipleChoice">
+                <nb-checkbox status="primary" formControlName="isAnswer3Correct"
+                  >Correct Answer</nb-checkbox
+                >
+              </div>
+            </div>
           </div>
 
-          <input
-            *ngIf="isMultipleChoice"
-            formControlName="answerOption4Text"
-            type="text"
-            placeholder="Answer Option 4 Text"
-            nbInput
-            fullWidth
-          />
-          <input
-            *ngIf="isMultipleChoice && hasAnswerWithMedia"
-            formControlName="answerOption4MediaUrl"
-            type="url"
-            placeholder="Answer Option 4 Media URL"
-            nbInput
-            fullWidth
-          />
-          <nb-select
-            *ngIf="isMultipleChoice && hasAnswerWithMedia"
-            selected="1"
-            formControlName="answerOption4MediaType"
-          >
-            <nb-option value="1">Photo</nb-option>
-            <nb-option value="2">Video</nb-option>
-          </nb-select>
-          <div *ngIf="isMultipleChoice">
-            <nb-checkbox status="primary" formControlName="isAnswer4Correct"
-              >Correct Answer</nb-checkbox
-            >
+          <div class="row" *ngIf="isMultipleChoice">
+            <div class="form-group col-12">
+              <label for="answerOption4Text" class="label">
+                Answer Option 4 Text
+              </label>
+              <input
+                formControlName="answerOption4Text"
+                id="answerOption4Text"
+                type="text"
+                placeholder="Answer Option 4 Text"
+                nbInput
+                fullWidth
+                required
+              />
+            </div>
+          </div>
+          <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
+            <div class="form-group col-9">
+              <label for="answerOption4MediaUrl" class="label"
+                >Answer Option 4 Media URL</label
+              >
+              <input
+                formControlName="answerOption4MediaUrl"
+                id="answerOption4MediaUrl"
+                type="url"
+                placeholder="Answer Option 4 Media URL"
+                nbInput
+                fullWidth
+              />
+            </div>
+            <div class="form-group col-3 text-end">
+              <label for="answerOption4MediaType" class="label"
+                >Media Type</label
+              >
+              <nb-select
+                *ngIf="isMultipleChoice && hasAnswerWithMedia"
+                selected="1"
+                formControlName="answerOption4MediaType"
+                id="answerOption4MediaType"
+              >
+                <nb-option value="1">Photo</nb-option>
+                <nb-option value="2">Video</nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="row" *ngIf="isMultipleChoice">
+            <div class="col-12">
+              <div *ngIf="isMultipleChoice">
+                <nb-checkbox status="primary" formControlName="isAnswer4Correct"
+                  >Correct Answer</nb-checkbox
+                >
+              </div>
+            </div>
           </div>
 
-          <input
-            *ngIf="isMultipleChoice"
-            formControlName="answerOption5Text"
-            type="text"
-            placeholder="Answer Option 5 Text"
-            nbInput
-            fullWidth
-          />
-          <input
-            *ngIf="isMultipleChoice && hasAnswerWithMedia"
-            formControlName="answerOption5MediaUrl"
-            type="url"
-            placeholder="Answer Option 5 Media URL"
-            nbInput
-            fullWidth
-          />
-          <nb-select
-            *ngIf="isMultipleChoice && hasAnswerWithMedia"
-            selected="1"
-            formControlName="answerOption5MediaType"
-          >
-            <nb-option value="1">Photo</nb-option>
-            <nb-option value="2">Video</nb-option>
-          </nb-select>
-          <div *ngIf="isMultipleChoice">
-            <nb-checkbox status="primary" formControlName="isAnswer5Correct"
-              >Correct Answer</nb-checkbox
-            >
+          <div class="row" *ngIf="isMultipleChoice">
+            <div class="form-group col-12">
+              <label for="answerOption5Text" class="label">
+                Answer Option 5 Text
+              </label>
+              <input
+                formControlName="answerOption5Text"
+                id="answerOption5Text"
+                type="text"
+                placeholder="Answer Option 5 Text"
+                nbInput
+                fullWidth
+                required
+              />
+            </div>
+          </div>
+          <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
+            <div class="form-group col-9">
+              <label for="answerOption5MediaUrl" class="label"
+                >Answer Option 5 Media URL</label
+              >
+              <input
+                formControlName="answerOption5MediaUrl"
+                id="answerOption5MediaUrl"
+                type="url"
+                placeholder="Answer Option 5 Media URL"
+                nbInput
+                fullWidth
+              />
+            </div>
+            <div class="form-group col-3 text-end">
+              <label for="answerOption5MediaType" class="label"
+                >Media Type</label
+              >
+              <nb-select
+                *ngIf="isMultipleChoice && hasAnswerWithMedia"
+                selected="1"
+                formControlName="answerOption5MediaType"
+                id="answerOption5MediaType"
+              >
+                <nb-option value="1">Photo</nb-option>
+                <nb-option value="2">Video</nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="row" *ngIf="isMultipleChoice">
+            <div class="col-12">
+              <div *ngIf="isMultipleChoice">
+                <nb-checkbox status="primary" formControlName="isAnswer5Correct"
+                  >Correct Answer</nb-checkbox
+                >
+              </div>
+            </div>
           </div>
 
-          <input
-            *ngIf="isMultipleChoice"
-            formControlName="answerOption6Text"
-            type="text"
-            placeholder="Answer Option 6 Text"
-            nbInput
-            fullWidth
-          />
-          <input
-            *ngIf="isMultipleChoice && hasAnswerWithMedia"
-            formControlName="answerOption6MediaUrl"
-            type="url"
-            placeholder="Answer Option 6 Media URL"
-            nbInput
-            fullWidth
-          />
-          <nb-select
-            *ngIf="isMultipleChoice && hasAnswerWithMedia"
-            selected="1"
-            formControlName="answerOption6MediaType"
-          >
-            <nb-option value="1">Photo</nb-option>
-            <nb-option value="2">Video</nb-option>
-          </nb-select>
-          <div *ngIf="isMultipleChoice">
-            <nb-checkbox status="primary" formControlName="isAnswer6Correct"
-              >Correct Answer</nb-checkbox
-            >
+          <div class="row" *ngIf="isMultipleChoice">
+            <div class="form-group col-12">
+              <label for="answerOption6Text" class="label">
+                Answer Option 6 Text
+              </label>
+              <input
+                formControlName="answerOption6Text"
+                id="answerOption6Text"
+                type="text"
+                placeholder="Answer Option 6 Text"
+                nbInput
+                fullWidth
+                required
+              />
+            </div>
+          </div>
+          <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
+            <div class="form-group col-9">
+              <label for="answerOption6MediaUrl" class="label"
+                >Answer Option 6 Media URL</label
+              >
+              <input
+                formControlName="answerOption6MediaUrl"
+                id="answerOption6MediaUrl"
+                type="url"
+                placeholder="Answer Option 6 Media URL"
+                nbInput
+                fullWidth
+              />
+            </div>
+            <div class="form-group col-3 text-end">
+              <label for="answerOption6MediaType" class="label"
+                >Media Type</label
+              >
+              <nb-select
+                *ngIf="isMultipleChoice && hasAnswerWithMedia"
+                selected="1"
+                formControlName="answerOption6MediaType"
+                id="answerOption6MediaType"
+              >
+                <nb-option value="1">Photo</nb-option>
+                <nb-option value="2">Video</nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="row" *ngIf="isMultipleChoice">
+            <div class="col-12">
+              <div *ngIf="isMultipleChoice">
+                <nb-checkbox status="primary" formControlName="isAnswer6Correct"
+                  >Correct Answer</nb-checkbox
+                >
+              </div>
+            </div>
           </div>
 
           <button type="submit" nbButton status="primary">Submit</button>
@@ -290,19 +431,19 @@
           (a)&nbsp;{{ previewAnswerOption1Text }}
         </div>
         <div *ngIf="isMultipleChoice && previewAnswerOption2Text" class="row">
-          (b)&nbsp;{{ previewAnswerOption1Text }}
+          (b)&nbsp;{{ previewAnswerOption2Text }}
         </div>
         <div *ngIf="isMultipleChoice && previewAnswerOption3Text" class="row">
-          (c)&nbsp;{{ previewAnswerOption1Text }}
+          (c)&nbsp;{{ previewAnswerOption3Text }}
         </div>
         <div *ngIf="isMultipleChoice && previewAnswerOption4Text" class="row">
-          (d)&nbsp;{{ previewAnswerOption1Text }}
+          (d)&nbsp;{{ previewAnswerOption4Text }}
         </div>
         <div *ngIf="isMultipleChoice && previewAnswerOption5Text" class="row">
-          (e)&nbsp;{{ previewAnswerOption1Text }}
+          (e)&nbsp;{{ previewAnswerOption5Text }}
         </div>
         <div *ngIf="isMultipleChoice && previewAnswerOption6Text" class="row">
-          (f)&nbsp;{{ previewAnswerOption1Text }}
+          (f)&nbsp;{{ previewAnswerOption6Text }}
         </div>
       </nb-card-body>
     </nb-card>
