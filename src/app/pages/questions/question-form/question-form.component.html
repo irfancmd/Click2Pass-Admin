@@ -3,59 +3,102 @@
     <nb-card>
       <nb-card-header>Create a question</nb-card-header>
       <nb-card-body>
-        <nb-checkbox status="primary" [(ngModel)]="hasQuestionMedia"
-          >Question with media</nb-checkbox
-        >
-        <nb-checkbox status="primary" [(ngModel)]="isMultipleChoice"
-          >Is multiple choice</nb-checkbox
-        >
-        <nb-checkbox status="primary" [(ngModel)]="hasAnswerWithMedia"
-          >Choice with media</nb-checkbox
-        >
-        <form [formGroup]="questionForm">
-          <input
-            formControlName="questionText"
-            type="text"
-            placeholder="Question Text"
-            nbInput
-            fullWidth
-            required
-          />
-          <input
-            *ngIf="hasQuestionMedia"
-            formControlName="questionMediaUrl"
-            type="url"
-            placeholder="Question Media URL"
-            nbInput
-            fullWidth
-          />
-          <nb-select
-            *ngIf="hasQuestionMedia"
-            selected="1"
-            formControlName="questionMediaType"
-          >
-            <nb-option value="1">Photo</nb-option>
-            <nb-option value="2">Video</nb-option>
-          </nb-select>
+        <div class="row">
+          <div class="col-4">
+            <nb-checkbox status="primary" [(ngModel)]="hasQuestionMedia"
+              >Question with media</nb-checkbox
+            >
+          </div>
+          <div class="col-4">
+            <nb-checkbox status="primary" [(ngModel)]="isMultipleChoice"
+              >Is multiple choice</nb-checkbox
+            >
+          </div>
+          <div class="col-4">
+            <nb-checkbox status="primary" [(ngModel)]="hasAnswerWithMedia"
+              >Choice with media</nb-checkbox
+            >
+          </div>
+        </div>
+        <form [formGroup]="questionForm" (ngSubmit)="onSubmit()" class="mt-3">
+          <div class="row">
+            <div class="col-12 form-group">
+              <label for="questionText" class="label">Question Text</label>
+              <input
+                formControlName="questionText"
+                id="questionText"
+                type="text"
+                placeholder="Question Text"
+                nbInput
+                fullWidth
+                required
+              />
+            </div>
+          </div>
+          <div class="row" *ngIf="hasQuestionMedia">
+            <div class="form-group col-9">
+              <label for="questionmediaUrl" class="label"
+                >Question Media URL</label
+              >
+              <input
+                id="questionMediaUrl"
+                formControlName="questionMediaUrl"
+                type="url"
+                placeholder="Question Media URL"
+                nbInput
+                fullWidth
+              />
+            </div>
+            <div class="form-group col-3 text-end">
+              <label for="questionMediaType" class="label">Media Type</label>
+              <nb-select
+                id="questionMediaType"
+                selected="1"
+                formControlName="questionMediaType"
+              >
+                <nb-option value="1">Photo</nb-option>
+                <nb-option value="2">Video</nb-option>
+              </nb-select>
+            </div>
+          </div>
 
-          <input
-            *ngIf="isMultipleChoice"
-            formControlName="numberOfOptionsVisible"
-            type="number"
-            min="1"
-            max="6"
-            placeholder="Number of Options Visible"
-            nbInput
-            fullWidth
-          />
-          <input
-            formControlName="answerOption1Text"
-            type="text"
-            placeholder="Answer Option 1 Text"
-            nbInput
-            fullWidth
-            required
-          />
+          <div class="row" *ngIf="isMultipleChoice">
+            <div class="form-group col-12">
+              <label for="numberOfOptionsVisible" class="label"
+                >Number of Visible Options</label
+              >
+              <input
+                id="numberOfOptionsVisible"
+                formControlName="numberOfOptionsVisible"
+                type="number"
+                min="1"
+                max="6"
+                placeholder="Number of Options Visible"
+                nbInput
+                fullWidth
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-12">
+              <label for="answerOption1Text" class="label">{{
+                isMultipleChoice ? "Answer Option 1 Text" : "Answer Text"
+              }}</label>
+              <input
+                formControlName="answerOption1Text"
+                id="answerOption1Text"
+                type="text"
+                placeholder="{{
+                  isMultipleChoice ? 'Answer Option 1 Text' : 'Answer Text'
+                }}"
+                nbInput
+                fullWidth
+                required
+              />
+            </div>
+          </div>
+
           <input
             *ngIf="isMultipleChoice && hasAnswerWithMedia"
             formControlName="answerOption1MediaUrl"
@@ -236,7 +279,32 @@
   <div class="col">
     <nb-card>
       <nb-card-header>Preview</nb-card-header>
-      <nb-card-body></nb-card-body>
+      <nb-card-body>
+        <div class="row">
+          <h5>{{ previewQuestionText }}</h5>
+        </div>
+        <div *ngIf="hasQuestionMedia" class="row">
+          <img [src]="previewMediaUrl" style="width: 300px; height: auto" />
+        </div>
+        <div *ngIf="isMultipleChoice && previewAnswerOption1Text" class="row">
+          (a)&nbsp;{{ previewAnswerOption1Text }}
+        </div>
+        <div *ngIf="isMultipleChoice && previewAnswerOption2Text" class="row">
+          (b)&nbsp;{{ previewAnswerOption1Text }}
+        </div>
+        <div *ngIf="isMultipleChoice && previewAnswerOption3Text" class="row">
+          (c)&nbsp;{{ previewAnswerOption1Text }}
+        </div>
+        <div *ngIf="isMultipleChoice && previewAnswerOption4Text" class="row">
+          (d)&nbsp;{{ previewAnswerOption1Text }}
+        </div>
+        <div *ngIf="isMultipleChoice && previewAnswerOption5Text" class="row">
+          (e)&nbsp;{{ previewAnswerOption1Text }}
+        </div>
+        <div *ngIf="isMultipleChoice && previewAnswerOption6Text" class="row">
+          (f)&nbsp;{{ previewAnswerOption1Text }}
+        </div>
+      </nb-card-body>
     </nb-card>
   </div>
 </div>

@@ -7,6 +7,10 @@ import { ECommerceComponent } from "./e-commerce/e-commerce.component";
 import { NotFoundComponent } from "./miscellaneous/not-found/not-found.component";
 import { QuestionListComponent } from "./questions/question-list/question-list.component";
 import { QuestionFormComponent } from "./questions/question-form/question-form.component";
+import { CategoryListComponent } from "./categories/category-list/category-list.component";
+import { CategoryFormComponent } from "./categories/category-form/category-form.component";
+import { LessonListComponent } from "./lessons/lesson-list/lesson-list.component";
+import { LessonFormComponent } from "./lessons/lesson-form/lesson-form.component";
 
 const routes: Routes = [
   {
@@ -20,6 +24,22 @@ const routes: Routes = [
       {
         path: "question-form",
         component: QuestionFormComponent,
+      },
+      {
+        path: "categories",
+        component: CategoryListComponent,
+      },
+      {
+        path: "category-form",
+        component: CategoryFormComponent,
+      },
+      {
+        path: "lessons",
+        component: LessonListComponent,
+      },
+      {
+        path: "lesson-form",
+        component: LessonFormComponent,
       },
       {
         path: "dashboard",

@@ -1,0 +1,31 @@
+<h1>Lessons</h1>
+
+<div class="row">
+  <div class="col">
+    <a routerLink="/pages/lesson-form" nbButton status="primary"
+      >Add New Lessons</a
+    >
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col">
+    <nb-card class="p-2 table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lesson of lessons">
+            <td>{{ lesson.name }}</td>
+            <td>{{ lesson.description ?? "N/A" }}</td>
+            <td>{{ lesson.category.name ?? "N/A" }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </nb-card>
+  </div>
+</div>

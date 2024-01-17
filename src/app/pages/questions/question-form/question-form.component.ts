@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
@@ -6,10 +7,19 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   templateUrl: "./question-form.component.html",
   styleUrls: ["./question-form.component.scss"],
 })
-export class QuestionFormComponent {
+export class QuestionFormComponent implements OnInit {
   public hasQuestionMedia = false;
   public isMultipleChoice = false;
   public hasAnswerWithMedia = false;
+
+  public previewQuestionText = "";
+  public previewMediaUrl = "";
+  public previewAnswerOption1Text = "";
+  public previewAnswerOption2Text = "";
+  public previewAnswerOption3Text = "";
+  public previewAnswerOption4Text = "";
+  public previewAnswerOption5Text = "";
+  public previewAnswerOption6Text = "";
 
   public questionForm = new FormGroup({
     questionText: new FormControl("", [Validators.required]),
@@ -42,7 +52,30 @@ export class QuestionFormComponent {
     answerOption6MediaUrl: new FormControl(null),
     answerOption6MediaType: new FormControl("1"),
     isAnswer6Correct: new FormControl(false),
-    categoryId: new FormControl(null),
-    lessonId: new FormControl(null),
+    categoryId: new FormControl(11),
+    lessonId: new FormControl(1),
   });
+
+  constructor(private httpClient: HttpClient) {}
+
+  ngOnInit(): void {
+    this.questionForm.valueChanges.subscribe((data) => {
+      this.previewQuestionText = data.questionText;
+      this.previewMediaUrl = data.questionMediaUrl;
+      this.previewAnswerOption1Text = data.answerOption1Text;
+      this.previewAnswerOption2Text = data.answerOption2Text;
+      this.previewAnswerOption3Text = data.answerOption3Text;
+      this.previewAnswerOption4Text = data.answerOption4Text;
+      this.previewAnswerOption5Text = data.answerOption5Text;
+      this.previewAnswerOption6Text = data.answerOption6Text;
+    });
+  }
+
+  onSubmit() {
+    this.httpClient
+      .post("http://localhost:3000/question", this.questionForm.value)
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 }

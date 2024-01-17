@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { QuestionListComponent } from "./question-list/question-list.component";
+import { CategoryFormComponent } from "./category-form/category-form.component";
+import { CategoryListComponent } from "./category-list/category-list.component";
+import { RouterLink } from "@angular/router";
 import {
   NbActionsModule,
   NbButtonModule,
@@ -13,15 +15,14 @@ import {
   NbSelectModule,
   NbUserModule,
 } from "@nebular/theme";
-import { QuestionFormComponent } from "./question-form/question-form.component";
-import { RouterLink } from "@angular/router";
 import { ThemeModule } from "../../@theme/theme.module";
 import { FormsRoutingModule } from "../forms/forms-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { CategoryService } from "./services/category.service";
 
 @NgModule({
-  declarations: [QuestionListComponent, QuestionFormComponent],
+  declarations: [CategoryFormComponent, CategoryListComponent],
   imports: [
     CommonModule,
     RouterLink,
@@ -41,6 +42,7 @@ import { HttpClientModule } from "@angular/common/http";
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  exports: [QuestionListComponent, QuestionFormComponent],
+  exports: [CategoryFormComponent, CategoryListComponent],
+  providers: [CategoryService],
 })
-export class QuestionsModule {}
+export class CategoriesModule {}

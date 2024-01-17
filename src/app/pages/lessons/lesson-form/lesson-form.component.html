@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col">
+    <nb-card>
+      <nb-card-header>Create a Lesson</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="lessonForm" (ngSubmit)="onSubmit()" class="mt-3">
+          <div class="row">
+            <div class="col-12 form-group">
+              <label for="lessonName" class="label">Lesson Name</label>
+              <input
+                formControlName="name"
+                id="lessonName"
+                type="text"
+                placeholder="Lesson Name"
+                nbInput
+                fullWidth
+                required
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-10">
+              <label for="questionmediaUrl" class="label"
+                >Lesson Description</label
+              >
+              <input
+                id="lessonDescription"
+                formControlName="description"
+                type="text"
+                placeholder="Lesson Description"
+                nbInput
+                fullWidth
+              />
+            </div>
+
+            <div class="form-group col-2 text-end">
+              <label for="categoryId" class="label">Category</label>
+              <nb-select id="categoryId" formControlName="categoryId">
+                <nb-option value="0">Select Category</nb-option>
+                <nb-option
+                  *ngFor="let selectItem of categorySelectItems"
+                  [value]="selectItem.value"
+                  >{{ selectItem.text }}</nb-option
+                >
+              </nb-select>
+            </div>
+          </div>
+
+          <button type="submit" nbButton status="primary">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -4,7 +4,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: "Questions",
     link: "/pages/questions",
+    icon: "message-circle-outline",
     home: true,
+  },
+  {
+    title: "Categories",
+    link: "/pages/categories",
+    icon: "keypad-outline",
+  },
+  {
+    title: "Lessons",
+    link: "/pages/lessons",
+    icon: "edit-2-outline",
   },
   {
     title: "E-commerce",

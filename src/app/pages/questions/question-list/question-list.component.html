@@ -9,33 +9,52 @@
 </div>
 <div class="row mt-3">
   <div class="col">
-    <nb-card class="p-2">
+    <nb-card class="p-2 table-responsive">
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Question</th>
+            <th scope="col">Lesson</th>
+            <th scope="col">Category</th>
+            <th scope="col">Question Media URL</th>
+            <th scope="col">QuestionType</th>
+            <th scope="col">Number of Visible Options</th>
+            <th scope="col">Correct Answer Option(s)</th>
+            <th scope="col">Answer Option 1</th>
+            <th scope="col">Option 1 Media</th>
+            <th scope="col">Answer Option 2</th>
+            <th scope="col">Option 2 Media</th>
+            <th scope="col">Answer Option 3</th>
+            <th scope="col">Option 3 Media</th>
+            <th scope="col">Answer Option 4</th>
+            <th scope="col">Option 4 Media</th>
+            <th scope="col">Answer Option 5</th>
+            <th scope="col">Option 5 Media</th>
+            <th scope="col">Answer Option 6</th>
+            <th scope="col">Option 6 Media</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
+          <tr *ngFor="let question of questions">
+            <td>{{ question.questionText }}</td>
+            <td>{{ question.lessonName }}</td>
+            <td>{{ question.categoryName }}</td>
+            <td>{{ question.questionMediaUrl ?? "N/A" }}</td>
+            <td>{{ getQuestionType(question) }}</td>
+            <td>{{ question.numberOfOptionsVisible ?? "N/A" }}</td>
+            <td>{{ question.correctAnswerText }}</td>
+            <td>{{ question.answerOption1Text }}</td>
+            <td>{{ question.answerOption1MediaUrl ?? "N/A" }}</td>
+            <td>{{ question.answerOption2Text ?? "N/A" }}</td>
+            <td>{{ question.answerOption2MediaUrl ?? "N/A" }}</td>
+            <td>{{ question.answerOption3Text ?? "N/A" }}</td>
+            <td>{{ question.answerOption3MediaUrl ?? "N/A" }}</td>
+            <td>{{ question.answerOption4Text ?? "N/A" }}</td>
+            <td>{{ question.answerOption4MediaUrl ?? "N/A" }}</td>
+            <td>{{ question.answerOption5Text ?? "N/A" }}</td>
+            <td>{{ question.answerOption5MediaUrl ?? "N/A" }}</td>
+            <td>{{ question.answerOption6Text ?? "N/A" }}</td>
+            <td>{{ question.answerOption6MediaUrl ?? "N/A" }}</td>
           </tr>
         </tbody>
       </table>
