@@ -10,6 +10,7 @@ import { MiscellaneousModule } from "./miscellaneous/miscellaneous.module";
 import { QuestionsModule } from "./questions/questions.module";
 import { CategoriesModule } from "./categories/categories.module";
 import { LessonsModule } from "./lessons/lessons.module";
+import { QuestionSetModule } from "./question-set/question-set.module";
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { LessonsModule } from "./lessons/lessons.module";
     QuestionsModule,
     CategoriesModule,
     LessonsModule,
+    QuestionSetModule,
   ],
   declarations: [PagesComponent],
 })

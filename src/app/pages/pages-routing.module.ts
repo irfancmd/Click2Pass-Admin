@@ -11,6 +11,8 @@ import { CategoryListComponent } from "./categories/category-list/category-list.
 import { CategoryFormComponent } from "./categories/category-form/category-form.component";
 import { LessonListComponent } from "./lessons/lesson-list/lesson-list.component";
 import { LessonFormComponent } from "./lessons/lesson-form/lesson-form.component";
+import { QuestionSetListComponent } from "./question-set/question-set-list/question-set-list.component";
+import { QuestionSetFormComponent } from "./question-set/question-set-form/question-set-form.component";
 
 const routes: Routes = [
   {
@@ -40,6 +42,14 @@ const routes: Routes = [
       {
         path: "lesson-form",
         component: LessonFormComponent,
+      },
+      {
+        path: "question-set",
+        component: QuestionSetListComponent,
+      },
+      {
+        path: "question-set-form",
+        component: QuestionSetFormComponent,
       },
       {
         path: "dashboard",
@@ -108,7 +118,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: "",
+        path: "dash",
         redirectTo: "dashboard",
         pathMatch: "full",
       },

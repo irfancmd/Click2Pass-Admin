@@ -19,9 +19,10 @@ import { ThemeModule } from "../../@theme/theme.module";
 import { FormsRoutingModule } from "../forms/forms-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { QuestionPreviewComponent } from './question-preview/question-preview.component';
 
 @NgModule({
-  declarations: [QuestionListComponent, QuestionFormComponent],
+  declarations: [QuestionListComponent, QuestionFormComponent, QuestionPreviewComponent],
   imports: [
     CommonModule,
     RouterLink,

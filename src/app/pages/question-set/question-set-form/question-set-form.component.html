@@ -1,1 +1,132 @@
-<p>question-set-form works!</p>
+<div class="row">
+  <div class="col">
+    <nb-card>
+      <nb-card-header>Create a Question Set</nb-card-header>
+      <nb-card-body>
+        <form
+          [formGroup]="questionSetForm"
+          (ngSubmit)="onSubmit()"
+          class="mt-3"
+        >
+          <div class="row">
+            <div class="col-12 form-group">
+              <label for="name" class="label">Question Set Name</label>
+              <input
+                formControlName="name"
+                id="name"
+                type="text"
+                placeholder="Question Set Name"
+                nbInput
+                fullWidth
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 form-group">
+              <label for="description" class="label"
+                >Question Set Description</label
+              >
+              <input
+                formControlName="description"
+                id="description"
+                type="text"
+                placeholder="Question Set Description"
+                nbInput
+                fullWidth
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 form-group">
+              <h5>Questions</h5>
+
+              <form>
+                <div class="form-group">
+                  <label for="categoryId" class="label"
+                    >Category&nbsp;&nbsp;&nbsp;&nbsp;</label
+                  >
+                  <nb-select
+                    id="categoryId"
+                    name="selectedCategory"
+                    [(ngModel)]="selectedCategoryModel"
+                    (selectedChange)="onChangeCategorySelection($event)"
+                  >
+                    <nb-option value="0">Select Category</nb-option>
+                    <nb-option
+                      *ngFor="let selectItem of categorySelectItems"
+                      [value]="selectItem.value"
+                      >{{ selectItem.text }}</nb-option
+                    >
+                  </nb-select>
+                </div>
+              </form>
+
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Select</th>
+                      <th scope="col">Question</th>
+                      <th scope="col">Lesson</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Question Media URL</th>
+                      <th scope="col">QuestionType</th>
+                      <th scope="col">Number of Visible Options</th>
+                      <th scope="col">Correct Answer Option(s)</th>
+                      <th scope="col">Answer Option 1</th>
+                      <th scope="col">Option 1 Media</th>
+                      <th scope="col">Answer Option 2</th>
+                      <th scope="col">Option 2 Media</th>
+                      <th scope="col">Answer Option 3</th>
+                      <th scope="col">Option 3 Media</th>
+                      <th scope="col">Answer Option 4</th>
+                      <th scope="col">Option 4 Media</th>
+                      <th scope="col">Answer Option 5</th>
+                      <th scope="col">Option 5 Media</th>
+                      <th scope="col">Answer Option 6</th>
+                      <th scope="col">Option 6 Media</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let question of questions">
+                      <td>
+                        <nb-checkbox
+                          status="primary"
+                          [checked]="isQuestionSelected(question.id)"
+                          (change)="onChangeCheckBox($event, question.id)"
+                        ></nb-checkbox>
+                      </td>
+                      <td>{{ question.questionText }}</td>
+                      <td>{{ question.lessonName }}</td>
+                      <td>{{ question.categoryName }}</td>
+                      <td>{{ question.questionMediaUrl ?? "N/A" }}</td>
+                      <td>{{ getQuestionType(question) }}</td>
+                      <td>{{ question.numberOfOptionsVisible ?? "N/A" }}</td>
+                      <td>{{ question.correctAnswerText }}</td>
+                      <td>{{ question.answerOption1Text }}</td>
+                      <td>{{ question.answerOption1MediaUrl ?? "N/A" }}</td>
+                      <td>{{ question.answerOption2Text ?? "N/A" }}</td>
+                      <td>{{ question.answerOption2MediaUrl ?? "N/A" }}</td>
+                      <td>{{ question.answerOption3Text ?? "N/A" }}</td>
+                      <td>{{ question.answerOption3MediaUrl ?? "N/A" }}</td>
+                      <td>{{ question.answerOption4Text ?? "N/A" }}</td>
+                      <td>{{ question.answerOption4MediaUrl ?? "N/A" }}</td>
+                      <td>{{ question.answerOption5Text ?? "N/A" }}</td>
+                      <td>{{ question.answerOption5MediaUrl ?? "N/A" }}</td>
+                      <td>{{ question.answerOption6Text ?? "N/A" }}</td>
+                      <td>{{ question.answerOption6MediaUrl ?? "N/A" }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <button type="submit" nbButton status="primary">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
