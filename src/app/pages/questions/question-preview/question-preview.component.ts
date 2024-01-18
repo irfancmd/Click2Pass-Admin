@@ -22,7 +22,7 @@ export class QuestionPreviewComponent implements OnInit {
       this.questionService
         .getQuestionById(parseInt(questionId))
         .subscribe((data: any) => {
-          this.question = data.data[0];
+          this.question = data.data;
         });
     }
   }

@@ -8,7 +8,6 @@ import { QuestionService } from "../../questions/services/question.service";
   styleUrls: ["./question-set-list.component.scss"],
 })
 export class QuestionSetListComponent implements OnInit {
-  // public questionSetSelectItems: any[] = [];
   public questionSets: any[] = [];
 
   constructor(
@@ -20,12 +19,6 @@ export class QuestionSetListComponent implements OnInit {
     this.questionSetService.getQuestionSets().subscribe((data: any) => {
       if (data.data) {
         this.questionSets = data.data;
-        // this.questionSetService = data.data.map((questionSet: any) => {
-        //   return {
-        //     value: questionSet.id,
-        //     text: questionSet.name,
-        //   };
-        // });
       }
     });
   }

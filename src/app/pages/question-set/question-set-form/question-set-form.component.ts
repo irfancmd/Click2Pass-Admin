@@ -51,7 +51,7 @@ export class QuestionSetFormComponent implements OnInit {
       this.questionSetService
         .createQuestionSets({
           ...this.questionSetForm.value,
-          tempQuestionIds: this.selectedQuestionIds.join(","),
+          questionIds: this.selectedQuestionIds,
         })
         .subscribe();
     }
