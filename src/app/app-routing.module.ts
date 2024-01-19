@@ -23,10 +23,10 @@ export const routes: Routes = [
         path: "",
         component: NbLoginComponent,
       },
-      // {
-      //   path: "login",
-      //   component: NbLoginComponent,
-      // },
+      {
+        path: "login",
+        component: NbLoginComponent,
+      },
       {
         path: "register",
         component: NbRegisterComponent,

@@ -5,7 +5,12 @@ import {
   SkipSelf,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { NbAuthModule, NbDummyAuthStrategy } from "@nebular/auth";
+import {
+  NbAuthModule,
+  NbAuthSimpleToken,
+  NbDummyAuthStrategy,
+  NbPasswordAuthStrategy,
+} from "@nebular/auth";
 import { NbSecurityModule, NbRoleProvider } from "@nebular/security";
 import { of as observableOf } from "rxjs";
 
@@ -113,9 +118,24 @@ export const NB_CORE_PROVIDERS = [
   ...DATA_SERVICES,
   ...NbAuthModule.forRoot({
     strategies: [
-      NbDummyAuthStrategy.setup({
+      // NbDummyAuthStrategy.setup({
+      //   name: "email",
+      //   delay: 3000,
+      // }),
+      NbPasswordAuthStrategy.setup({
         name: "email",
-        delay: 3000,
+        baseEndpoint: "http://localhost:3000/user/",
+        token: {
+          class: NbAuthSimpleToken,
+          key: "data.access_token",
+        },
+        login: {
+          endpoint: "login",
+          method: "post",
+          redirect: {
+            success: "/",
+          },
+        },
       }),
     ],
     forms: {
@@ -128,8 +148,8 @@ export const NB_CORE_PROVIDERS = [
       validation: {
         password: {
           required: true,
-          minLength: 4,
-          maxLength: 50,
+          minLength: 3,
+          maxLength: 16,
         },
         email: {
           required: true,
