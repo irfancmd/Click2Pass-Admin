@@ -6,9 +6,8 @@ import {
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
+  NbAuthJWTToken,
   NbAuthModule,
-  NbAuthSimpleToken,
-  NbDummyAuthStrategy,
   NbPasswordAuthStrategy,
 } from "@nebular/auth";
 import { NbSecurityModule, NbRoleProvider } from "@nebular/security";
@@ -126,7 +125,7 @@ export const NB_CORE_PROVIDERS = [
         name: "email",
         baseEndpoint: "http://localhost:3000/user/",
         token: {
-          class: NbAuthSimpleToken,
+          class: NbAuthJWTToken,
           key: "data.access_token",
         },
         login: {
