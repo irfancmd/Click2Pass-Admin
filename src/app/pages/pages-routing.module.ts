@@ -21,6 +21,10 @@ const routes: Routes = [
     component: PagesComponent,
     children: [
       {
+        path: "",
+        component: QuestionListComponent,
+      },
+      {
         path: "questions",
         component: QuestionListComponent,
       },
