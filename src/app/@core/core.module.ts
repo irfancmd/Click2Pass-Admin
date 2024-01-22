@@ -132,7 +132,7 @@ export const NB_CORE_PROVIDERS = [
           endpoint: "login",
           method: "post",
           redirect: {
-            success: "/",
+            success: "/pages",
           },
         },
       }),
