@@ -33,6 +33,23 @@
               />
             </div>
           </div>
+          <div class="row">
+            <div class="col-6">
+              <label for="curriculumId" class="label"
+                >Curriculum&nbsp;&nbsp;&nbsp;&nbsp;</label
+              >
+              <nb-select
+                id="curriculumId"
+                name="selectedCurriculum"
+                [selected]="0"
+              >
+                <nb-option value="0">Select Curriculum</nb-option>
+                <nb-option value="1">Citizenship</nb-option>
+                <nb-option value="2">Driving License</nb-option>
+              </nb-select>
+            </div>
+          </div>
+
           <button type="submit" nbButton status="primary">Submit</button>
         </form>
       </nb-card-body>

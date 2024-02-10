@@ -9,11 +9,11 @@
               >Question with media</nb-checkbox
             >
           </div>
-          <div class="col-4">
+          <!-- <div class="col-4">
             <nb-checkbox status="primary" [(ngModel)]="isMultipleChoice"
               >Is multiple choice</nb-checkbox
             >
-          </div>
+          </div> -->
           <div class="col-4">
             <nb-checkbox status="primary" [(ngModel)]="hasAnswerWithMedia"
               >Choice with media</nb-checkbox
@@ -21,6 +21,40 @@
           </div>
         </div>
         <form [formGroup]="questionForm" (ngSubmit)="onSubmit()" class="mt-3">
+          <div class="row">
+            <div class="col-4">
+              <label for="categoryId" class="label"
+                >Chapter&nbsp;&nbsp;&nbsp;&nbsp;</label
+              >
+              <nb-select
+                id="categoryId"
+                name="selectedCategory"
+                formControlName="categoryId"
+              >
+                <nb-option value="0">Select Chapter</nb-option>
+                <nb-option
+                  *ngFor="let selectItem of categorySelectItems"
+                  [value]="selectItem.value"
+                  >{{ selectItem.text }}</nb-option
+                >
+              </nb-select>
+            </div>
+            <div class="col-6">
+              <label for="curriculumId" class="label"
+                >Curriculum&nbsp;&nbsp;&nbsp;&nbsp;</label
+              >
+              <nb-select
+                id="curriculumId"
+                name="selectedCurriculum"
+                [selected]="0"
+              >
+                <nb-option value="0">Select Curriculum</nb-option>
+                <nb-option value="1">Citizenship</nb-option>
+                <nb-option value="2">Driving License</nb-option>
+              </nb-select>
+            </div>
+          </div>
+
           <div class="row">
             <div class="col-12 form-group">
               <label for="questionText" class="label">Question Text</label>
@@ -49,7 +83,7 @@
                 fullWidth
               />
             </div>
-            <div class="form-group col-3 text-end">
+            <!-- <div class="form-group col-3 text-end">
               <label for="questionMediaType" class="label">Media Type</label>
               <nb-select
                 id="questionMediaType"
@@ -59,10 +93,10 @@
                 <nb-option value="1">Photo</nb-option>
                 <nb-option value="2">Video</nb-option>
               </nb-select>
-            </div>
+            </div> -->
           </div>
 
-          <div class="row" *ngIf="isMultipleChoice">
+          <!-- <div class="row" *ngIf="isMultipleChoice">
             <div class="form-group col-12">
               <label for="numberOfOptionsVisible" class="label"
                 >Number of Visible Options</label
@@ -78,7 +112,7 @@
                 fullWidth
               />
             </div>
-          </div>
+          </div> -->
 
           <div class="row">
             <div class="form-group col-12">
@@ -112,7 +146,7 @@
                 fullWidth
               />
             </div>
-            <div class="form-group col-3 text-end">
+            <!-- <div class="form-group col-3 text-end">
               <label for="answerOption1MediaType" class="label"
                 >Media Type</label
               >
@@ -125,7 +159,7 @@
                 <nb-option value="1">Photo</nb-option>
                 <nb-option value="2">Video</nb-option>
               </nb-select>
-            </div>
+            </div> -->
           </div>
           <div class="row" *ngIf="isMultipleChoice">
             <div class="col-12">
@@ -167,7 +201,7 @@
                 fullWidth
               />
             </div>
-            <div class="form-group col-3 text-end">
+            <!-- <div class="form-group col-3 text-end">
               <label for="answerOption2MediaType" class="label"
                 >Media Type</label
               >
@@ -180,7 +214,7 @@
                 <nb-option value="1">Photo</nb-option>
                 <nb-option value="2">Video</nb-option>
               </nb-select>
-            </div>
+            </div> -->
           </div>
           <div class="row" *ngIf="isMultipleChoice">
             <div class="col-12">
@@ -222,7 +256,7 @@
                 fullWidth
               />
             </div>
-            <div class="form-group col-3 text-end">
+            <!-- <div class="form-group col-3 text-end">
               <label for="answerOption3MediaType" class="label"
                 >Media Type</label
               >
@@ -235,7 +269,7 @@
                 <nb-option value="1">Photo</nb-option>
                 <nb-option value="2">Video</nb-option>
               </nb-select>
-            </div>
+            </div> -->
           </div>
           <div class="row" *ngIf="isMultipleChoice">
             <div class="col-12">
@@ -277,7 +311,7 @@
                 fullWidth
               />
             </div>
-            <div class="form-group col-3 text-end">
+            <!-- <div class="form-group col-3 text-end">
               <label for="answerOption4MediaType" class="label"
                 >Media Type</label
               >
@@ -290,7 +324,7 @@
                 <nb-option value="1">Photo</nb-option>
                 <nb-option value="2">Video</nb-option>
               </nb-select>
-            </div>
+            </div> -->
           </div>
           <div class="row" *ngIf="isMultipleChoice">
             <div class="col-12">
@@ -332,7 +366,7 @@
                 fullWidth
               />
             </div>
-            <div class="form-group col-3 text-end">
+            <!-- <div class="form-group col-3 text-end">
               <label for="answerOption5MediaType" class="label"
                 >Media Type</label
               >
@@ -345,7 +379,7 @@
                 <nb-option value="1">Photo</nb-option>
                 <nb-option value="2">Video</nb-option>
               </nb-select>
-            </div>
+            </div> -->
           </div>
           <div class="row" *ngIf="isMultipleChoice">
             <div class="col-12">
@@ -387,7 +421,7 @@
                 fullWidth
               />
             </div>
-            <div class="form-group col-3 text-end">
+            <!-- <div class="form-group col-3 text-end">
               <label for="answerOption6MediaType" class="label"
                 >Media Type</label
               >
@@ -400,7 +434,7 @@
                 <nb-option value="1">Photo</nb-option>
                 <nb-option value="2">Video</nb-option>
               </nb-select>
-            </div>
+            </div> -->
           </div>
           <div class="row" *ngIf="isMultipleChoice">
             <div class="col-12">
