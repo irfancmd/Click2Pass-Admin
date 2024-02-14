@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CategoryService } from "../../categories/services/category.service";
+import { CurriculumService } from "../../curriculum/services/curriculum.service";
 
 @Component({
   selector: "ngx-question-form",
@@ -14,6 +15,7 @@ export class QuestionFormComponent implements OnInit {
   public hasAnswerWithMedia = false;
 
   public categorySelectItems: any[] = [];
+  public curriculumSelectItems: any[] = [];
 
   public previewQuestionText = "";
   public previewMediaUrl = "";
@@ -28,7 +30,7 @@ export class QuestionFormComponent implements OnInit {
     questionText: new FormControl("", [Validators.required]),
     questionMediaUrl: new FormControl(null),
     questionMediaType: new FormControl("1"),
-    numberOfOptionsVisible: new FormControl(6), // Not being used
+    numberOfOptionsVisible: new FormControl(4), // Not being used
     questionType: new FormControl(1),
     correctAnswerText: new FormControl(""),
     answerOption1Text: new FormControl(""),
@@ -57,11 +59,13 @@ export class QuestionFormComponent implements OnInit {
     isAnswer6Correct: new FormControl(false),
     categoryId: new FormControl("0"),
     // lessonId: new FormControl("0"),
+    curriculumId: new FormControl("0"),
   });
 
   constructor(
     private httpClient: HttpClient,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private curriculumService: CurriculumService
   ) {}
 
   ngOnInit(): void {
@@ -82,6 +86,17 @@ export class QuestionFormComponent implements OnInit {
           return {
             value: category.id,
             text: category.name,
+          };
+        });
+      }
+    });
+
+    this.curriculumService.getCurriculums().subscribe((data: any) => {
+      if (data.data) {
+        this.curriculumSelectItems = data.data.map((curriculum: any) => {
+          return {
+            value: curriculum.id,
+            text: curriculum.name,
           };
         });
       }

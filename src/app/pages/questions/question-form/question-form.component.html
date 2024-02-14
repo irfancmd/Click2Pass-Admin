@@ -39,18 +39,21 @@
                 >
               </nb-select>
             </div>
-            <div class="col-6">
+            <div class="col-4">
               <label for="curriculumId" class="label"
                 >Curriculum&nbsp;&nbsp;&nbsp;&nbsp;</label
               >
               <nb-select
                 id="curriculumId"
-                name="selectedCurriculum"
-                [selected]="0"
+                name="selectedCategory"
+                formControlName="curriculumId"
               >
                 <nb-option value="0">Select Curriculum</nb-option>
-                <nb-option value="1">Citizenship</nb-option>
-                <nb-option value="2">Driving License</nb-option>
+                <nb-option
+                  *ngFor="let selectItem of curriculumSelectItems"
+                  [value]="selectItem.value"
+                  >{{ selectItem.text }}</nb-option
+                >
               </nb-select>
             </div>
           </div>
@@ -459,7 +462,11 @@
           <h5>{{ previewQuestionText }}</h5>
         </div>
         <div *ngIf="hasQuestionMedia" class="row">
-          <img [src]="previewMediaUrl" style="width: 300px; height: auto" />
+          <img
+            [src]="previewMediaUrl"
+            alt="Question media"
+            style="width: 300px; height: auto"
+          />
         </div>
         <div *ngIf="isMultipleChoice && previewAnswerOption1Text" class="row">
           (a)&nbsp;{{ previewAnswerOption1Text }}

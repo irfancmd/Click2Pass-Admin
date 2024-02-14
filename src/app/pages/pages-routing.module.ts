@@ -14,6 +14,8 @@ import { LessonFormComponent } from "./lessons/lesson-form/lesson-form.component
 import { QuestionSetListComponent } from "./question-set/question-set-list/question-set-list.component";
 import { QuestionSetFormComponent } from "./question-set/question-set-form/question-set-form.component";
 import { QuestionPreviewComponent } from "./questions/question-preview/question-preview.component";
+import { CurriculumListComponent } from "./curriculum/curriculum-list/curriculum-list.component";
+import { CurriculumFormComponent } from "./curriculum/curriculum-form/curriculum-form.component";
 
 const routes: Routes = [
   {
@@ -59,6 +61,14 @@ const routes: Routes = [
       {
         path: "question-set-form",
         component: QuestionSetFormComponent,
+      },
+      {
+        path: "curriculums",
+        component: CurriculumListComponent,
+      },
+      {
+        path: "curriculum-form",
+        component: CurriculumFormComponent,
       },
       {
         path: "dashboard",

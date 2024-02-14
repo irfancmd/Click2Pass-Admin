@@ -11,6 +11,7 @@ import { QuestionsModule } from "./questions/questions.module";
 import { CategoriesModule } from "./categories/categories.module";
 import { LessonsModule } from "./lessons/lessons.module";
 import { QuestionSetModule } from "./question-set/question-set.module";
+import { CurriculumModule } from "./curriculum/curriculum.module";
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { QuestionSetModule } from "./question-set/question-set.module";
     CategoriesModule,
     LessonsModule,
     QuestionSetModule,
+    CurriculumModule,
   ],
   declarations: [PagesComponent],
 })
