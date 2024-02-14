@@ -8,10 +8,10 @@ export class CategoryService {
   constructor(private httpClient: HttpClient) {}
 
   getCategories() {
-    return this.httpClient.get("http://localhost:3000/category");
+    return this.httpClient.get("http://localhost:3000/chapter");
   }
 
   createCategory(category: any) {
-    return this.httpClient.post("http://localhost:3000/category", category);
+    return this.httpClient.post("http://localhost:3000/chapter", category);
   }
 }
