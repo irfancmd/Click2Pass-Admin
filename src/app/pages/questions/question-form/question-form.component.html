@@ -39,7 +39,10 @@
                 >
               </nb-select>
             </div>
-            <div class="col-4">
+            <div
+              class="col-4"
+              [hidden]="this.questionForm.controls.categoryId.value !== '0'"
+            >
               <label for="curriculumId" class="label"
                 >Curriculum&nbsp;&nbsp;&nbsp;&nbsp;</label
               >
