@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CategoryService } from "../services/category.service";
 import { CurriculumService } from "../../curriculum/services/curriculum.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "ngx-category-form",
@@ -18,6 +19,7 @@ export class CategoryFormComponent implements OnInit {
   public curriculumSelectItems: any[] = [];
 
   constructor(
+    private router: Router,
     private categoryService: CategoryService,
     private curriculumService: CurriculumService
   ) {}
@@ -36,6 +38,12 @@ export class CategoryFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.categoryService.createCategory(this.categoryForm.value).subscribe();
+    if (
+      this.categoryForm.controls.name.value &&
+      this.categoryForm.controls.curriculumId.value != "0"
+    ) {
+      this.categoryService.createCategory(this.categoryForm.value).subscribe();
+      this.router.navigate(["/pages/category-list"]);
+    }
   }
 }
