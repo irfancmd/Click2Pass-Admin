@@ -42,8 +42,11 @@ export class CategoryFormComponent implements OnInit {
       this.categoryForm.controls.name.value &&
       this.categoryForm.controls.curriculumId.value != "0"
     ) {
-      this.categoryService.createCategory(this.categoryForm.value).subscribe();
-      this.router.navigate(["/pages/category-list"]);
+      this.categoryService
+        .createCategory(this.categoryForm.value)
+        .subscribe(() => {
+          this.router.navigate(["/pages/category-list"]);
+        });
     }
   }
 }

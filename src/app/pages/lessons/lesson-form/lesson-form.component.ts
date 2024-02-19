@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { LessonService } from "../services/lesson.service";
 import { CategoryService } from "../../categories/services/category.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "ngx-lesson-form",
@@ -18,6 +19,7 @@ export class LessonFormComponent implements OnInit {
   public categorySelectItems: any[] = [];
 
   constructor(
+    private router: Router,
     private lessonService: LessonService,
     private categoryService: CategoryService
   ) {}
@@ -37,11 +39,20 @@ export class LessonFormComponent implements OnInit {
 
   onSubmit() {
     const categoryId = this.lessonForm.get("categoryId")?.value;
-    this.lessonService
-      .createLesson({
-        ...this.lessonForm.value,
-        categoryId: categoryId !== "0" ? parseInt(categoryId) : null,
-      })
-      .subscribe();
+
+    if (
+      this.lessonForm.controls.name.value &&
+      categoryId &&
+      categoryId != "0"
+    ) {
+      this.lessonService
+        .createLesson({
+          ...this.lessonForm.value,
+          categoryId: categoryId !== "0" ? parseInt(categoryId) : null,
+        })
+        .subscribe(() => {
+          this.router.navigate(["/pages/lesson-list"]);
+        });
+    }
   }
 }

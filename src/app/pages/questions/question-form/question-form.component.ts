@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CategoryService } from "../../categories/services/category.service";
 import { CurriculumService } from "../../curriculum/services/curriculum.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "ngx-question-form",
@@ -63,6 +64,7 @@ export class QuestionFormComponent implements OnInit {
   });
 
   constructor(
+    private router: Router,
     private httpClient: HttpClient,
     private categoryService: CategoryService,
     private curriculumService: CurriculumService
@@ -104,40 +106,103 @@ export class QuestionFormComponent implements OnInit {
   }
 
   onSubmit() {
-    const correctAnswerArray = [];
+    if (this.isFormValid()) {
+      const correctAnswerArray = [];
 
-    if (this.questionForm.controls.isAnswer1Correct.value) {
-      correctAnswerArray.push(1);
+      if (this.questionForm.controls.isAnswer1Correct.value) {
+        correctAnswerArray.push(1);
+      }
+
+      if (this.questionForm.controls.isAnswer2Correct.value) {
+        correctAnswerArray.push(2);
+      }
+
+      if (this.questionForm.controls.isAnswer3Correct.value) {
+        correctAnswerArray.push(3);
+      }
+
+      if (this.questionForm.controls.isAnswer4Correct.value) {
+        correctAnswerArray.push(4);
+      }
+
+      if (this.questionForm.controls.isAnswer5Correct.value) {
+        correctAnswerArray.push(5);
+      }
+
+      if (this.questionForm.controls.isAnswer6Correct.value) {
+        correctAnswerArray.push(6);
+      }
+
+      const correctAnswerText = correctAnswerArray.join(",");
+
+      this.questionForm.controls.correctAnswerText.setValue(correctAnswerText);
+
+      if (this.questionForm.controls.categoryId.value != "0") {
+        this.questionForm.controls.curriculumId.setValue(null);
+      } else if (this.questionForm.controls.curriculumId.value != "0") {
+        this.questionForm.controls.categoryId.setValue(null);
+      }
+
+      this.httpClient
+        .post("http://localhost:3000/question", this.questionForm.value)
+        .subscribe(() => {
+          this.router.navigate(["/pages/question-list"]);
+        });
+    }
+  }
+
+  private isFormValid(): boolean {
+    if (!this.questionForm.controls.questionText.value.trim()) {
+      return false;
     }
 
-    if (this.questionForm.controls.isAnswer2Correct.value) {
-      correctAnswerArray.push(2);
+    if (
+      this.hasQuestionMedia &&
+      !this.questionForm.controls.questionMediaUrl.value.trim()
+    ) {
+      return false;
     }
 
-    if (this.questionForm.controls.isAnswer3Correct.value) {
-      correctAnswerArray.push(3);
+    if (
+      this.isMultipleChoice &&
+      this.questionForm.controls.numberOfOptionsVisible.value < 2
+    ) {
+      return false;
     }
 
-    if (this.questionForm.controls.isAnswer4Correct.value) {
-      correctAnswerArray.push(4);
+    if (
+      !this.questionForm.controls.isAnswer1Correct &&
+      !this.questionForm.controls.isAnswer2Correct &&
+      !this.questionForm.controls.isAnswer3Correct &&
+      !this.questionForm.controls.isAnswer4Correct &&
+      !this.questionForm.controls.isAnswer5Correct &&
+      !this.questionForm.controls.isAnswer6Correct
+    ) {
+      return false;
     }
 
-    if (this.questionForm.controls.isAnswer5Correct.value) {
-      correctAnswerArray.push(5);
+    for (
+      let i = 1;
+      i <= this.questionForm.controls.numberOfOptionsVisible.value;
+      i++
+    ) {
+      if (
+        !(
+          this.questionForm.get(`answerOption${i}Text`) &&
+          this.questionForm.controls[`answerOption${i}Text`].value.trim()
+        )
+      ) {
+        return false;
+      }
     }
 
-    if (this.questionForm.controls.isAnswer6Correct.value) {
-      correctAnswerArray.push(6);
+    if (
+      this.questionForm.controls.categoryId.value != "0" &&
+      this.questionForm.controls.curriculumId.value != "0"
+    ) {
+      return false;
     }
 
-    const correctAnswerText = correctAnswerArray.join(",");
-
-    this.questionForm.controls.correctAnswerText.setValue(correctAnswerText);
-
-    this.httpClient
-      .post("http://localhost:3000/question", this.questionForm.value)
-      .subscribe((data) => {
-        console.log(data);
-      });
+    return true;
   }
 }

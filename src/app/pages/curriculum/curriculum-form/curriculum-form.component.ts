@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CurriculumService } from "../services/curriculum.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "ngx-curriculum-form",
@@ -13,11 +14,18 @@ export class CurriculumFormComponent {
     description: new FormControl(""),
   });
 
-  constructor(private curriculumService: CurriculumService) {}
+  constructor(
+    private router: Router,
+    private curriculumService: CurriculumService
+  ) {}
 
   onSubmit() {
-    this.curriculumService
-      .createCurriculum(this.curriculumForm.value)
-      .subscribe();
+    if (this.curriculumForm.controls.name.value) {
+      this.curriculumService
+        .createCurriculum(this.curriculumForm.value)
+        .subscribe(() => {
+          this.router.navigate(["/pages/curriculum-list"]);
+        });
+    }
   }
 }
