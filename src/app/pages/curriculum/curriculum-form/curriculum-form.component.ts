@@ -24,7 +24,7 @@ export class CurriculumFormComponent {
       this.curriculumService
         .createCurriculum(this.curriculumForm.value)
         .subscribe(() => {
-          this.router.navigate(["/pages/curriculum-list"]);
+          this.router.navigate(["/pages/curriculums"]);
         });
     }
   }

@@ -51,7 +51,7 @@ export class LessonFormComponent implements OnInit {
           categoryId: categoryId !== "0" ? parseInt(categoryId) : null,
         })
         .subscribe(() => {
-          this.router.navigate(["/pages/lesson-list"]);
+          this.router.navigate(["/pages/lessons"]);
         });
     }
   }

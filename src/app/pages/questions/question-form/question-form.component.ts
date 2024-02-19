@@ -146,7 +146,7 @@ export class QuestionFormComponent implements OnInit {
       this.httpClient
         .post("http://localhost:3000/question", this.questionForm.value)
         .subscribe(() => {
-          this.router.navigate(["/pages/question-list"]);
+          this.router.navigate(["/pages/questions"]);
         });
     }
   }

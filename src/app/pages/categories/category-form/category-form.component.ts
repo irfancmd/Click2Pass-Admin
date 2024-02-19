@@ -45,7 +45,7 @@ export class CategoryFormComponent implements OnInit {
       this.categoryService
         .createCategory(this.categoryForm.value)
         .subscribe(() => {
-          this.router.navigate(["/pages/category-list"]);
+          this.router.navigate(["/pages/categories"]);
         });
     }
   }

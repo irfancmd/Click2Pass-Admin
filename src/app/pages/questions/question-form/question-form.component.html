@@ -102,7 +102,7 @@
             </div> -->
           </div>
 
-          <!-- <div class="row" *ngIf="isMultipleChoice">
+          <div class="row" *ngIf="isMultipleChoice">
             <div class="form-group col-12">
               <label for="numberOfOptionsVisible" class="label"
                 >Number of Visible Options</label
@@ -111,14 +111,14 @@
                 id="numberOfOptionsVisible"
                 formControlName="numberOfOptionsVisible"
                 type="number"
-                min="1"
+                min="2"
                 max="6"
                 placeholder="Number of Options Visible"
                 nbInput
                 fullWidth
               />
             </div>
-          </div> -->
+          </div>
 
           <div class="row">
             <div class="form-group col-12">
@@ -232,7 +232,13 @@
             </div>
           </div>
 
-          <div class="row" *ngIf="isMultipleChoice">
+          <div
+            class="row"
+            *ngIf="
+              isMultipleChoice &&
+              questionForm.controls.numberOfOptionsVisible.value > 2
+            "
+          >
             <div class="form-group col-12">
               <label for="answerOption3Text" class="label">
                 Answer Option 3 Text
@@ -248,7 +254,14 @@
               />
             </div>
           </div>
-          <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
+          <div
+            class="row"
+            *ngIf="
+              isMultipleChoice &&
+              hasAnswerWithMedia &&
+              questionForm.controls.numberOfOptionsVisible.value > 2
+            "
+          >
             <div class="form-group col-9">
               <label for="answerOption3MediaUrl" class="label"
                 >Answer Option 3 Media URL</label
@@ -277,7 +290,13 @@
               </nb-select>
             </div> -->
           </div>
-          <div class="row" *ngIf="isMultipleChoice">
+          <div
+            class="row"
+            *ngIf="
+              isMultipleChoice &&
+              questionForm.controls.numberOfOptionsVisible.value > 2
+            "
+          >
             <div class="col-12">
               <div *ngIf="isMultipleChoice">
                 <nb-checkbox status="primary" formControlName="isAnswer3Correct"
@@ -287,7 +306,13 @@
             </div>
           </div>
 
-          <div class="row" *ngIf="isMultipleChoice">
+          <div
+            class="row"
+            *ngIf="
+              isMultipleChoice &&
+              questionForm.controls.numberOfOptionsVisible.value > 3
+            "
+          >
             <div class="form-group col-12">
               <label for="answerOption4Text" class="label">
                 Answer Option 4 Text
@@ -303,7 +328,14 @@
               />
             </div>
           </div>
-          <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
+          <div
+            class="row"
+            *ngIf="
+              isMultipleChoice &&
+              hasAnswerWithMedia &&
+              questionForm.controls.numberOfOptionsVisible.value > 3
+            "
+          >
             <div class="form-group col-9">
               <label for="answerOption4MediaUrl" class="label"
                 >Answer Option 4 Media URL</label
@@ -332,7 +364,13 @@
               </nb-select>
             </div> -->
           </div>
-          <div class="row" *ngIf="isMultipleChoice">
+          <div
+            class="row"
+            *ngIf="
+              isMultipleChoice &&
+              questionForm.controls.numberOfOptionsVisible.value > 3
+            "
+          >
             <div class="col-12">
               <div *ngIf="isMultipleChoice">
                 <nb-checkbox status="primary" formControlName="isAnswer4Correct"
@@ -342,7 +380,13 @@
             </div>
           </div>
 
-          <div class="row" *ngIf="isMultipleChoice">
+          <div
+            class="row"
+            *ngIf="
+              isMultipleChoice &&
+              questionForm.controls.numberOfOptionsVisible.value > 4
+            "
+          >
             <div class="form-group col-12">
               <label for="answerOption5Text" class="label">
                 Answer Option 5 Text
@@ -358,7 +402,14 @@
               />
             </div>
           </div>
-          <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
+          <div
+            class="row"
+            *ngIf="
+              isMultipleChoice &&
+              hasAnswerWithMedia &&
+              questionForm.controls.numberOfOptionsVisible.value > 4
+            "
+          >
             <div class="form-group col-9">
               <label for="answerOption5MediaUrl" class="label"
                 >Answer Option 5 Media URL</label
@@ -387,7 +438,13 @@
               </nb-select>
             </div> -->
           </div>
-          <div class="row" *ngIf="isMultipleChoice">
+          <div
+            class="row"
+            *ngIf="
+              isMultipleChoice &&
+              questionForm.controls.numberOfOptionsVisible.value > 4
+            "
+          >
             <div class="col-12">
               <div *ngIf="isMultipleChoice">
                 <nb-checkbox status="primary" formControlName="isAnswer5Correct"
@@ -397,7 +454,13 @@
             </div>
           </div>
 
-          <div class="row" *ngIf="isMultipleChoice">
+          <div
+            class="row"
+            *ngIf="
+              isMultipleChoice &&
+              questionForm.controls.numberOfOptionsVisible.value > 5
+            "
+          >
             <div class="form-group col-12">
               <label for="answerOption6Text" class="label">
                 Answer Option 6 Text
@@ -413,7 +476,14 @@
               />
             </div>
           </div>
-          <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
+          <div
+            class="row"
+            *ngIf="
+              isMultipleChoice &&
+              hasAnswerWithMedia &&
+              questionForm.controls.numberOfOptionsVisible.value > 5
+            "
+          >
             <div class="form-group col-9">
               <label for="answerOption6MediaUrl" class="label"
                 >Answer Option 6 Media URL</label
@@ -442,7 +512,13 @@
               </nb-select>
             </div> -->
           </div>
-          <div class="row" *ngIf="isMultipleChoice">
+          <div
+            class="row"
+            *ngIf="
+              isMultipleChoice &&
+              questionForm.controls.numberOfOptionsVisible.value > 5
+            "
+          >
             <div class="col-12">
               <div *ngIf="isMultipleChoice">
                 <nb-checkbox status="primary" formControlName="isAnswer6Correct"
@@ -474,20 +550,116 @@
         <div *ngIf="isMultipleChoice && previewAnswerOption1Text" class="row">
           (a)&nbsp;{{ previewAnswerOption1Text }}
         </div>
+        <div
+          *ngIf="
+            isMultipleChoice &&
+            previewAnswerOption1Text &&
+            hasAnswerWithMedia &&
+            questionForm.controls.answerOption1MediaUrl &&
+            questionForm.controls.answerOption1MediaUrl.value
+          "
+          class="row"
+        >
+          <img
+            [src]="questionForm.controls.answerOption1MediaUrl.value"
+            alt="Question media"
+            style="width: 300px; height: auto"
+          />
+        </div>
         <div *ngIf="isMultipleChoice && previewAnswerOption2Text" class="row">
           (b)&nbsp;{{ previewAnswerOption2Text }}
+        </div>
+        <div
+          *ngIf="
+            isMultipleChoice &&
+            previewAnswerOption1Text &&
+            hasAnswerWithMedia &&
+            questionForm.controls.answerOption2MediaUrl &&
+            questionForm.controls.answerOption2MediaUrl.value
+          "
+          class="row"
+        >
+          <img
+            [src]="questionForm.controls.answerOption2MediaUrl.value"
+            alt="Question media"
+            style="width: 300px; height: auto"
+          />
         </div>
         <div *ngIf="isMultipleChoice && previewAnswerOption3Text" class="row">
           (c)&nbsp;{{ previewAnswerOption3Text }}
         </div>
+        <div
+          *ngIf="
+            isMultipleChoice &&
+            previewAnswerOption1Text &&
+            hasAnswerWithMedia &&
+            questionForm.controls.answerOption3MediaUrl &&
+            questionForm.controls.answerOption3MediaUrl.value
+          "
+          class="row"
+        >
+          <img
+            [src]="questionForm.controls.answerOption3MediaUrl.value"
+            alt="Question media"
+            style="width: 300px; height: auto"
+          />
+        </div>
         <div *ngIf="isMultipleChoice && previewAnswerOption4Text" class="row">
           (d)&nbsp;{{ previewAnswerOption4Text }}
+        </div>
+        <div
+          *ngIf="
+            isMultipleChoice &&
+            previewAnswerOption1Text &&
+            hasAnswerWithMedia &&
+            questionForm.controls.answerOption4MediaUrl &&
+            questionForm.controls.answerOption4MediaUrl.value
+          "
+          class="row"
+        >
+          <img
+            [src]="questionForm.controls.answerOption4MediaUrl.value"
+            alt="Question media"
+            style="width: 300px; height: auto"
+          />
         </div>
         <div *ngIf="isMultipleChoice && previewAnswerOption5Text" class="row">
           (e)&nbsp;{{ previewAnswerOption5Text }}
         </div>
+        <div
+          *ngIf="
+            isMultipleChoice &&
+            previewAnswerOption1Text &&
+            hasAnswerWithMedia &&
+            questionForm.controls.answerOption5MediaUrl &&
+            questionForm.controls.answerOption5MediaUrl.value
+          "
+          class="row"
+        >
+          <img
+            [src]="questionForm.controls.answerOption5MediaUrl.value"
+            alt="Question media"
+            style="width: 300px; height: auto"
+          />
+        </div>
         <div *ngIf="isMultipleChoice && previewAnswerOption6Text" class="row">
           (f)&nbsp;{{ previewAnswerOption6Text }}
+        </div>
+        <div
+          *ngIf="
+            isMultipleChoice &&
+            previewAnswerOption1Text &&
+            hasAnswerWithMedia &&
+            questionForm.controls.answerOption6MediaUrl &&
+            questionForm.controls.answerOption6MediaUrl.value
+          "
+          class="row"
+        >
+          <img
+            [src]="questionForm.controls.answerOption6MediaUrl.value"
+            alt="Question media"
+            style="width: 300px; height: auto"
+          />
         </div>
       </nb-card-body>
     </nb-card>

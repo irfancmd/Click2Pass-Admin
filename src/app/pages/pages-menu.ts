@@ -18,11 +18,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: "edit-2-outline",
   },
   { title: "Curriculums", link: "/pages/curriculums", icon: "grid-outline" },
-  {
-    title: "Question Sets",
-    link: "/pages/question-set",
-    icon: "grid-outline",
-  },
+  // {
+  //   title: "Question Sets",
+  //   link: "/pages/question-set",
+  //   icon: "grid-outline",
+  // },
   // {
   //   title: "E-commerce",
   //   icon: "shopping-cart-outline",
