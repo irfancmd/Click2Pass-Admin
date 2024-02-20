@@ -203,8 +203,8 @@ export class QuestionFormComponent implements OnInit {
     }
 
     if (
-      this.questionForm.controls.chapterId.value != "0" &&
-      this.questionForm.controls.curriculumId.value != "0"
+      this.questionForm.controls.chapterId.value == "0" &&
+      this.questionForm.controls.curriculumId.value == "0"
     ) {
       return false;
     }
