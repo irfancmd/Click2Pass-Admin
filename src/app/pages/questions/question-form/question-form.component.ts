@@ -171,12 +171,14 @@ export class QuestionFormComponent implements OnInit {
     }
 
     if (
-      !this.questionForm.controls.isAnswer1Correct &&
-      !this.questionForm.controls.isAnswer2Correct &&
-      !this.questionForm.controls.isAnswer3Correct &&
-      !this.questionForm.controls.isAnswer4Correct &&
-      !this.questionForm.controls.isAnswer5Correct &&
-      !this.questionForm.controls.isAnswer6Correct
+      !(
+        this.questionForm.controls.isAnswer1Correct.value ||
+        this.questionForm.controls.isAnswer2Correct.value ||
+        this.questionForm.controls.isAnswer3Correct.value ||
+        this.questionForm.controls.isAnswer4Correct.value ||
+        this.questionForm.controls.isAnswer5Correct.value ||
+        this.questionForm.controls.isAnswer6Correct.value
+      )
     ) {
       return false;
     }

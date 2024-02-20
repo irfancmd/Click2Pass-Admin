@@ -15,12 +15,32 @@
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let category of categories">
             <td>{{ category.name }}</td>
             <td>{{ category.description ?? "N/A" }}</td>
+            <td>
+              <button
+                nbButton
+                status="warning"
+                class="mx-3"
+                (click)="onClickEdit(category.id)"
+              >
+                Edit
+              </button>
+
+              <button
+                nbButton
+                status="danger"
+                class="mx-3"
+                (click)="onClickDelete(category.id)"
+              >
+                Delete
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
