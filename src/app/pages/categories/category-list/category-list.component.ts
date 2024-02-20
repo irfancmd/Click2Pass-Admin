@@ -22,12 +22,12 @@ export class CategoryListComponent implements OnInit {
   }
 
   onClickEdit(id: number) {
-    alert("Hello " + id);
+    this.router.navigate(["/pages/category-form", id]);
   }
 
   onClickDelete(id: number) {
     this.categoryService.removeCategory(id).subscribe(() => {
-      this.router.navigate(["/pages/categoreis"]);
+      this.router.navigate(["/pages/categories"]);
     });
   }
 }

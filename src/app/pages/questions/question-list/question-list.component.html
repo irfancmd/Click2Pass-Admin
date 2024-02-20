@@ -14,6 +14,7 @@
         <thead>
           <tr>
             <th scope="col">Question</th>
+            <th scope="col">Curriculum</th>
             <th scope="col">Lesson</th>
             <th scope="col">Category</th>
             <th scope="col">Question Media URL</th>
@@ -37,8 +38,9 @@
         <tbody>
           <tr *ngFor="let question of questions">
             <td>{{ question.questionText }}</td>
-            <td>{{ question.lessonName }}</td>
-            <td>{{ question.categoryName }}</td>
+            <td>{{ question.curriculumName ?? "N/A" }}</td>
+            <td>{{ question.lessonName ?? "N/A" }}</td>
+            <td>{{ question.chapterName ?? "N/A" }}</td>
             <td>{{ question.questionMediaUrl ?? "N/A" }}</td>
             <td>{{ getQuestionType(question) }}</td>
             <td>{{ question.numberOfOptionsVisible ?? "N/A" }}</td>

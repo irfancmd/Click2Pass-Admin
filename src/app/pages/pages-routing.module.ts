@@ -47,6 +47,10 @@ const routes: Routes = [
         component: CategoryFormComponent,
       },
       {
+        path: "category-form/:id",
+        component: CategoryFormComponent,
+      },
+      {
         path: "lessons",
         component: LessonListComponent,
       },

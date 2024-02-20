@@ -12,12 +12,19 @@ export class CategoryService {
     return this.httpClient.get(`${this.API_ENDPOINT}`);
   }
 
+  getById(id: number) {
+    return this.httpClient.get(`${this.API_ENDPOINT}/${id}`);
+  }
+
   createCategory(category: any) {
     return this.httpClient.post(`${this.API_ENDPOINT}`, category);
   }
 
   updateCategory(categoryId, category: any) {
-    return this.httpClient.put(`${this.API_ENDPOINT}/${categoryId}`, category);
+    return this.httpClient.patch(
+      `${this.API_ENDPOINT}/${categoryId}`,
+      category
+    );
   }
 
   removeCategory(categoryId) {

@@ -58,8 +58,8 @@ export class QuestionFormComponent implements OnInit {
     answerOption6MediaUrl: new FormControl(null),
     answerOption6MediaType: new FormControl("1"),
     isAnswer6Correct: new FormControl(false),
-    categoryId: new FormControl("0"),
-    // lessonId: new FormControl("0"),
+    chapterId: new FormControl("0"),
+    lessonId: new FormControl("0"),
     curriculumId: new FormControl("0"),
   });
 
@@ -137,10 +137,14 @@ export class QuestionFormComponent implements OnInit {
 
       this.questionForm.controls.correctAnswerText.setValue(correctAnswerText);
 
-      if (this.questionForm.controls.categoryId.value != "0") {
+      if (this.questionForm.controls.chapterId.value != "0") {
         this.questionForm.controls.curriculumId.setValue(null);
       } else if (this.questionForm.controls.curriculumId.value != "0") {
-        this.questionForm.controls.categoryId.setValue(null);
+        this.questionForm.controls.chapterId.setValue(null);
+      }
+
+      if (this.questionForm.controls.lessonId.value == "0") {
+        this.questionForm.controls.lessonId.setValue(null);
       }
 
       this.httpClient
@@ -199,7 +203,7 @@ export class QuestionFormComponent implements OnInit {
     }
 
     if (
-      this.questionForm.controls.categoryId.value != "0" &&
+      this.questionForm.controls.chapterId.value != "0" &&
       this.questionForm.controls.curriculumId.value != "0"
     ) {
       return false;

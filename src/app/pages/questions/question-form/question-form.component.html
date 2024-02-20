@@ -29,7 +29,7 @@
               <nb-select
                 id="categoryId"
                 name="selectedCategory"
-                formControlName="categoryId"
+                formControlName="chapterId"
               >
                 <nb-option value="0">Select Chapter</nb-option>
                 <nb-option
@@ -41,14 +41,14 @@
             </div>
             <div
               class="col-4"
-              [hidden]="this.questionForm.controls.categoryId.value !== '0'"
+              [hidden]="this.questionForm.controls.chapterId.value !== '0'"
             >
               <label for="curriculumId" class="label"
                 >Curriculum&nbsp;&nbsp;&nbsp;&nbsp;</label
               >
               <nb-select
                 id="curriculumId"
-                name="selectedCategory"
+                name="selectedCurriculum"
                 formControlName="curriculumId"
               >
                 <nb-option value="0">Select Curriculum</nb-option>
