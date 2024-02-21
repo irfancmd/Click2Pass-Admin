@@ -9,6 +9,7 @@ import {
   NbCardModule,
   NbCheckboxModule,
   NbDatepickerModule,
+  NbDialogModule,
   NbIconModule,
   NbInputModule,
   NbRadioModule,
@@ -20,11 +21,13 @@ import { FormsRoutingModule } from "../forms/forms-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { CategoryService } from "./services/category.service";
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   declarations: [CategoryFormComponent, CategoryListComponent],
   imports: [
     CommonModule,
+    SharedModule,
     RouterLink,
     NbCardModule,
     ThemeModule,
@@ -41,6 +44,7 @@ import { CategoryService } from "./services/category.service";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NbDialogModule,
   ],
   exports: [CategoryFormComponent, CategoryListComponent],
   providers: [CategoryService],

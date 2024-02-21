@@ -1,0 +1,12 @@
+<nb-card>
+  <nb-card-header>Confirm Delete</nb-card-header>
+  <nb-card-body> Are you sure you want to delete this? </nb-card-body>
+  <nb-card-footer>
+    <button nbButton hero status="danger" class="mx-2" (click)="delete()">
+      Delete
+    </button>
+    <button nbButton hero status="primary" class="mx-2" (click)="dismiss()">
+      Close
+    </button>
+  </nb-card-footer>
+</nb-card>
