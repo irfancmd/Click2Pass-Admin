@@ -15,7 +15,6 @@
     "length-zero-no-unit": true,
 
     "string-no-newline": true,
-    "string-quotes": "double",
 
     "unit-case": "lower",
     "unit-no-unknown": true,
