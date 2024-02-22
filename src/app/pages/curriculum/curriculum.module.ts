@@ -20,6 +20,7 @@ import { FormsRoutingModule } from "../forms/forms-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { CurriculumService } from "./services/curriculum.service";
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   declarations: [CurriculumFormComponent, CurriculumListComponent],

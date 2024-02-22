@@ -35,6 +35,10 @@ const routes: Routes = [
         component: QuestionFormComponent,
       },
       {
+        path: "question-form/:id",
+        component: QuestionFormComponent,
+      },
+      {
         path: "questions/:id",
         component: QuestionPreviewComponent,
       },
@@ -59,6 +63,10 @@ const routes: Routes = [
         component: LessonFormComponent,
       },
       {
+        path: "lesson-form/:id",
+        component: LessonFormComponent,
+      },
+      {
         path: "question-set",
         component: QuestionSetListComponent,
       },
@@ -67,11 +75,19 @@ const routes: Routes = [
         component: QuestionSetFormComponent,
       },
       {
+        path: "question-set-form/:id",
+        component: QuestionSetFormComponent,
+      },
+      {
         path: "curriculums",
         component: CurriculumListComponent,
       },
       {
         path: "curriculum-form",
+        component: CurriculumFormComponent,
+      },
+      {
+        path: "curriculum-form/:id",
         component: CurriculumFormComponent,
       },
       {

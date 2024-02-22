@@ -5,13 +5,27 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class LessonService {
+  private API_ENDPOINT = "http://localhost:3000/lesson";
+
   constructor(private httpClient: HttpClient) {}
 
   getLessons() {
-    return this.httpClient.get("http://localhost:3000/lesson");
+    return this.httpClient.get(`${this.API_ENDPOINT}`);
+  }
+
+  getById(id: number) {
+    return this.httpClient.get(`${this.API_ENDPOINT}/${id}`);
   }
 
   createLesson(lesson: any) {
-    return this.httpClient.post("http://localhost:3000/lesson", lesson);
+    return this.httpClient.post(`${this.API_ENDPOINT}`, lesson);
+  }
+
+  update(lessonId, category: any) {
+    return this.httpClient.patch(`${this.API_ENDPOINT}/${lessonId}`, category);
+  }
+
+  remove(lessonId) {
+    return this.httpClient.delete(`${this.API_ENDPOINT}/${lessonId}`);
   }
 }

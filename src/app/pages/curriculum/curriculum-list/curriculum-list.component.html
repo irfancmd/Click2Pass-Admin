@@ -15,12 +15,32 @@
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let curriculum of curriculums">
             <td>{{ curriculum.name }}</td>
             <td>{{ curriculum.description ?? "N/A" }}</td>
+            <td>
+              <button
+                nbButton
+                status="warning"
+                class="mx-3"
+                (click)="onClickEdit(curriculum.id)"
+              >
+                Edit
+              </button>
+
+              <button
+                nbButton
+                status="danger"
+                class="mx-3"
+                (click)="onClickDelete(curriculum.id)"
+              >
+                Delete
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

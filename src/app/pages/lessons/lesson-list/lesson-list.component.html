@@ -16,13 +16,33 @@
             <th scope="col">Name</th>
             <th scope="col">Description</th>
             <th scope="col">Category</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let lesson of lessons">
             <td>{{ lesson.name }}</td>
             <td>{{ lesson.description ?? "N/A" }}</td>
-            <td>{{ lesson.category.name ?? "N/A" }}</td>
+            <td>{{ lesson.category && (lesson.category.name ?? "N/A") }}</td>
+            <td>
+              <button
+                nbButton
+                status="warning"
+                class="mx-3"
+                (click)="onClickEdit(lesson.id)"
+              >
+                Edit
+              </button>
+
+              <button
+                nbButton
+                status="danger"
+                class="mx-3"
+                (click)="onClickDelete(lesson.id)"
+              >
+                Delete
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

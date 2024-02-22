@@ -5,13 +5,30 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class CurriculumService {
+  private API_ENDPOINT = "http://localhost:3000/curriculum";
+
   constructor(private httpClient: HttpClient) {}
 
   getCurriculums() {
-    return this.httpClient.get("http://localhost:3000/curriculum");
+    return this.httpClient.get(`${this.API_ENDPOINT}`);
+  }
+
+  getById(id: number) {
+    return this.httpClient.get(`${this.API_ENDPOINT}/${id}`);
   }
 
   createCurriculum(curriculum: any) {
-    return this.httpClient.post("http://localhost:3000/curriculum", curriculum);
+    return this.httpClient.post(`${this.API_ENDPOINT}`, curriculum);
+  }
+
+  update(curriculumId, category: any) {
+    return this.httpClient.patch(
+      `${this.API_ENDPOINT}/${curriculumId}`,
+      category
+    );
+  }
+
+  remove(curriculumId) {
+    return this.httpClient.delete(`${this.API_ENDPOINT}/${curriculumId}`);
   }
 }
