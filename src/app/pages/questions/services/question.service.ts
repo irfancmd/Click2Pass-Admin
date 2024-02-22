@@ -6,14 +6,31 @@ import { of } from "rxjs";
   providedIn: "root",
 })
 export class QuestionService {
+  private API_ENDPOINT = "http://localhost:3000/question";
+
   constructor(private httpClient: HttpClient) {}
 
   getQuestions() {
-    return this.httpClient.get("http://localhost:3000/question");
+    return this.httpClient.get(`${this.API_ENDPOINT}`);
   }
 
   getQuestionById(questionId: number) {
-    return this.httpClient.get(`http://localhost:3000/question/${questionId}`);
+    return this.httpClient.get(`${this.API_ENDPOINT}/${questionId}`);
+  }
+
+  createQuestion(question: any) {
+    return this.httpClient.post(`${this.API_ENDPOINT}`, question);
+  }
+
+  update(questionId, question: any) {
+    return this.httpClient.patch(
+      `${this.API_ENDPOINT}/${questionId}`,
+      question
+    );
+  }
+
+  remove(questionId) {
+    return this.httpClient.delete(`${this.API_ENDPOINT}/${questionId}`);
   }
 
   tempGetQuestions() {

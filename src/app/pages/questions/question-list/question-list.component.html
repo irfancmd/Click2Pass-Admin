@@ -33,6 +33,7 @@
             <th scope="col">Option 5 Media</th>
             <th scope="col">Answer Option 6</th>
             <th scope="col">Option 6 Media</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -57,6 +58,25 @@
             <td>{{ question.answerOption5MediaUrl ?? "N/A" }}</td>
             <td>{{ question.answerOption6Text ?? "N/A" }}</td>
             <td>{{ question.answerOption6MediaUrl ?? "N/A" }}</td>
+            <td>
+              <button
+                nbButton
+                status="warning"
+                class="mx-3"
+                (click)="onClickEdit(question.id)"
+              >
+                Edit
+              </button>
+
+              <button
+                nbButton
+                status="danger"
+                class="mx-3"
+                (click)="onClickDelete(question.id)"
+              >
+                Delete
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

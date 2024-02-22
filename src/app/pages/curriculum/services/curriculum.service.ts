@@ -21,10 +21,10 @@ export class CurriculumService {
     return this.httpClient.post(`${this.API_ENDPOINT}`, curriculum);
   }
 
-  update(curriculumId, category: any) {
+  update(curriculumId, curriculum: any) {
     return this.httpClient.patch(
       `${this.API_ENDPOINT}/${curriculumId}`,
-      category
+      curriculum
     );
   }
 

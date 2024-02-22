@@ -21,8 +21,8 @@ export class LessonService {
     return this.httpClient.post(`${this.API_ENDPOINT}`, lesson);
   }
 
-  update(lessonId, category: any) {
-    return this.httpClient.patch(`${this.API_ENDPOINT}/${lessonId}`, category);
+  update(lessonId, lesson: any) {
+    return this.httpClient.patch(`${this.API_ENDPOINT}/${lessonId}`, lesson);
   }
 
   remove(lessonId) {

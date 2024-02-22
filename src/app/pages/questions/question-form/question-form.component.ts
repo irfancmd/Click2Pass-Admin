@@ -1,9 +1,9 @@
-import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CategoryService } from "../../categories/services/category.service";
 import { CurriculumService } from "../../curriculum/services/curriculum.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { QuestionService } from "../services/question.service";
 
 @Component({
   selector: "ngx-question-form",
@@ -63,14 +63,19 @@ export class QuestionFormComponent implements OnInit {
     curriculumId: new FormControl("0"),
   });
 
+  public questionToBeUpdated: any = null;
+
   constructor(
     private router: Router,
-    private httpClient: HttpClient,
+    private activatedRoute: ActivatedRoute,
+    private questionService: QuestionService,
     private categoryService: CategoryService,
     private curriculumService: CurriculumService
   ) {}
 
   ngOnInit(): void {
+    const questionId = this.activatedRoute.snapshot.params["id"];
+
     this.questionForm.valueChanges.subscribe((data) => {
       this.previewQuestionText = data.questionText;
       this.previewMediaUrl = data.questionMediaUrl;
@@ -91,17 +96,104 @@ export class QuestionFormComponent implements OnInit {
           };
         });
       }
-    });
 
-    this.curriculumService.getCurriculums().subscribe((data: any) => {
-      if (data.data) {
-        this.curriculumSelectItems = data.data.map((curriculum: any) => {
-          return {
-            value: curriculum.id,
-            text: curriculum.name,
-          };
-        });
-      }
+      this.curriculumService.getCurriculums().subscribe((data: any) => {
+        if (data.data) {
+          this.curriculumSelectItems = data.data.map((curriculum: any) => {
+            return {
+              value: curriculum.id,
+              text: curriculum.name,
+            };
+          });
+        }
+
+        if (questionId) {
+          this.questionService
+            .getQuestionById(questionId)
+            .subscribe((data: any) => {
+              this.questionToBeUpdated = data.data;
+
+              if (this.questionToBeUpdated.questionType == 1) {
+                this.isMultipleChoice = true;
+              }
+
+              if (this.questionToBeUpdated.questionMediaUrl) {
+                this.hasQuestionMedia = true;
+              }
+
+              if (
+                this.questionToBeUpdated.answerOption1MediaUrl ||
+                this.questionToBeUpdated.answerOption2MediaUrl ||
+                this.questionToBeUpdated.answerOption3MediaUrl ||
+                this.questionToBeUpdated.answerOption4MediaUrl ||
+                this.questionToBeUpdated.answerOption5MediaUrl ||
+                this.questionToBeUpdated.answerOption6MediaUrl
+              ) {
+                this.hasAnswerWithMedia = true;
+              }
+
+              this.questionForm.patchValue({
+                questionText: this.questionToBeUpdated.questionText ?? null,
+                questionMediaUrl:
+                  this.questionToBeUpdated.questionMediaUrl ?? null,
+                questionMediaType:
+                  this.questionToBeUpdated.questionMediaType ?? "1",
+                numberOfOptionsVisible:
+                  this.questionToBeUpdated.numberOfOptionsVisible ?? "4",
+                questionType: this.questionToBeUpdated.questionType ?? 1,
+                correctAnswerText:
+                  this.questionToBeUpdated.correctAnswerText ?? "",
+                answerOption1Text:
+                  this.questionToBeUpdated.answerOption1Text ?? "",
+                answerOption1MediaUrl:
+                  this.questionToBeUpdated.answerOption1MediaUrl ?? null,
+                answerOption1MediaType:
+                  this.questionToBeUpdated.answerOption1MediaType ?? "1",
+                answerOption2Text:
+                  this.questionToBeUpdated.answerOption2Text ?? "",
+                answerOption2MediaUrl:
+                  this.questionToBeUpdated.answerOption2MediaUrl ?? null,
+                answerOption2MediaType:
+                  this.questionToBeUpdated.answerOption2MediaType ?? "1",
+                answerOption3Text:
+                  this.questionToBeUpdated.answerOption3Text ?? "",
+                answerOption3MediaUrl:
+                  this.questionToBeUpdated.answerOption3MediaUrl ?? null,
+                answerOption3MediaType:
+                  this.questionToBeUpdated.answerOption3MediaType ?? "1",
+                answerOption4Text:
+                  this.questionToBeUpdated.answerOption4Text ?? "",
+                answerOption4MediaUrl:
+                  this.questionToBeUpdated.answerOption4MediaUrl ?? null,
+                answerOption4MediaType:
+                  this.questionToBeUpdated.answerOption4MediaType ?? "1",
+                answerOption5Text:
+                  this.questionToBeUpdated.answerOption5Text ?? "",
+                answerOption5MediaUrl:
+                  this.questionToBeUpdated.answerOption5MediaUrl ?? null,
+                answerOption5MediaType:
+                  this.questionToBeUpdated.answerOption5MediaType ?? "1",
+                answerOption6Text:
+                  this.questionToBeUpdated.answerOption6Text ?? "",
+                answerOption6MediaUrl:
+                  this.questionToBeUpdated.answerOption6MediaUrl ?? null,
+                answerOption6MediaType:
+                  this.questionToBeUpdated.answerOption6MediaType ?? "1",
+                chapterId: this.questionToBeUpdated.chapterId ?? "0",
+                lessonId: this.questionToBeUpdated.lessonId ?? "0",
+                curriculumId: this.questionToBeUpdated.curriculumId ?? "0",
+              });
+
+              const correctOptionArray =
+                this.questionToBeUpdated.correctAnswerText.split(",");
+              for (const option of correctOptionArray) {
+                this.questionForm
+                  .get<any>(`isAnswer${option}Correct`)
+                  ?.setValue(true);
+              }
+            });
+        }
+      });
     });
   }
 
@@ -147,11 +239,21 @@ export class QuestionFormComponent implements OnInit {
         this.questionForm.controls.lessonId.setValue(null);
       }
 
-      this.httpClient
-        .post("http://localhost:3000/question", this.questionForm.value)
-        .subscribe(() => {
-          this.router.navigate(["/pages/questions"]);
-        });
+      if (!this.questionToBeUpdated) {
+        // Create
+        this.questionService
+          .createQuestion(this.questionForm.value)
+          .subscribe(() => {
+            this.router.navigate(["/pages/questions"]);
+          });
+      } else {
+        // Update
+        this.questionService
+          .update(this.questionToBeUpdated.id, this.questionForm.value)
+          .subscribe(() => {
+            this.router.navigate(["/pages/questions"]);
+          });
+      }
     }
   }
 
