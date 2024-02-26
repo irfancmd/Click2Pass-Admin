@@ -3,6 +3,7 @@ import { CategoryService } from "../services/category.service";
 import { Router } from "@angular/router";
 import { NbDialogService } from "@nebular/theme";
 import { DeleteModalComponent } from "../../../shared/delete-modal/delete-modal.component";
+import { FormControl, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "ngx-category-list",
@@ -11,6 +12,10 @@ import { DeleteModalComponent } from "../../../shared/delete-modal/delete-modal.
 })
 export class CategoryListComponent implements OnInit {
   categories: any[];
+
+  public searchForm = new FormGroup({
+    searchText: new FormControl(null),
+  });
 
   constructor(
     private router: Router,
@@ -21,6 +26,22 @@ export class CategoryListComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe((data: any) => {
       this.categories = data.data;
+    });
+
+    this.searchForm.valueChanges.subscribe((controlValues) => {
+      if (controlValues.searchText) {
+        this.categoryService.getCategories().subscribe((data: any) => {
+          this.categories = data.data.filter((e) =>
+            e.name
+              .toLowerCase()
+              .includes(controlValues.searchText.toLowerCase())
+          );
+        });
+      } else {
+        this.categoryService.getCategories().subscribe((data: any) => {
+          this.categories = data.data;
+        });
+      }
     });
   }
 

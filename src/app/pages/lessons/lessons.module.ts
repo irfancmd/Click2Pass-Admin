@@ -20,6 +20,7 @@ import { FormsRoutingModule } from "../forms/forms-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { CategoriesModule } from "../categories/categories.module";
+import { LessonService } from "./services/lesson.service";
 
 @NgModule({
   declarations: [LessonFormComponent, LessonListComponent],
@@ -44,5 +45,6 @@ import { CategoriesModule } from "../categories/categories.module";
     CategoriesModule,
   ],
   exports: [LessonFormComponent, LessonListComponent],
+  providers: [LessonService],
 })
 export class LessonsModule {}

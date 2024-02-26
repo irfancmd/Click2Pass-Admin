@@ -9,6 +9,21 @@
 </div>
 <div class="row mt-3">
   <div class="col">
+    <form [formGroup]="searchForm">
+      <label for="search" class="label">Search</label>
+      <input
+        id="search"
+        type="text"
+        placeholder="Search"
+        formControlName="searchText"
+        nbInput
+        fullWidth
+      />
+    </form>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col">
     <nb-card class="p-2 table-responsive">
       <table class="table table-bordered">
         <thead>

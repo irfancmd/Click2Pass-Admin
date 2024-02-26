@@ -22,7 +22,7 @@
         </div>
         <form [formGroup]="questionForm" (ngSubmit)="onSubmit()" class="mt-3">
           <div class="row">
-            <div class="col-4">
+            <div class="col-6">
               <label for="categoryId" class="label"
                 >Chapter&nbsp;&nbsp;&nbsp;&nbsp;</label
               >
@@ -31,7 +31,7 @@
                 name="selectedCategory"
                 formControlName="chapterId"
               >
-                <nb-option value="0">Select Chapter</nb-option>
+                <nb-option value="0">Select</nb-option>
                 <nb-option
                   *ngFor="let selectItem of categorySelectItems"
                   [value]="selectItem.value"
@@ -39,8 +39,10 @@
                 >
               </nb-select>
             </div>
+          </div>
+          <div class="row">
             <div
-              class="col-4"
+              class="col-6"
               [hidden]="this.questionForm.controls.chapterId.value !== '0'"
             >
               <label for="curriculumId" class="label"
@@ -51,9 +53,28 @@
                 name="selectedCurriculum"
                 formControlName="curriculumId"
               >
-                <nb-option value="0">Select Curriculum</nb-option>
+                <nb-option value="0">Select</nb-option>
                 <nb-option
                   *ngFor="let selectItem of curriculumSelectItems"
+                  [value]="selectItem.value"
+                  >{{ selectItem.text }}</nb-option
+                >
+              </nb-select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <label for="lessonId" class="label"
+                >Lesson&nbsp;&nbsp;&nbsp;&nbsp;</label
+              >
+              <nb-select
+                id="lessonId"
+                name="selectedLesson"
+                formControlName="lessonId"
+              >
+                <nb-option value="0">Select</nb-option>
+                <nb-option
+                  *ngFor="let selectItem of lessonSelectItems"
                   [value]="selectItem.value"
                   >{{ selectItem.text }}</nb-option
                 >

@@ -3,6 +3,7 @@ import { QuestionService } from "../services/question.service";
 import { Router } from "@angular/router";
 import { NbDialogService } from "@nebular/theme";
 import { DeleteModalComponent } from "../../../shared/delete-modal/delete-modal.component";
+import { FormControl, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "ngx-question-list",
@@ -11,6 +12,10 @@ import { DeleteModalComponent } from "../../../shared/delete-modal/delete-modal.
 })
 export class QuestionListComponent implements OnInit {
   questions = [];
+
+  public searchForm = new FormGroup({
+    searchText: new FormControl(null),
+  });
 
   constructor(
     private router: Router,
@@ -21,6 +26,22 @@ export class QuestionListComponent implements OnInit {
   ngOnInit(): void {
     this.questionService.getQuestions().subscribe((data: any) => {
       this.questions = data.data;
+    });
+
+    this.searchForm.valueChanges.subscribe((controlValues) => {
+      if (controlValues.searchText) {
+        this.questionService.getQuestions().subscribe((data: any) => {
+          this.questions = data.data.filter((e) =>
+            e.questionText
+              .toLowerCase()
+              .includes(controlValues.searchText.toLowerCase())
+          );
+        });
+      } else {
+        this.questionService.getQuestions().subscribe((data: any) => {
+          this.questions = data.data;
+        });
+      }
     });
   }
 
