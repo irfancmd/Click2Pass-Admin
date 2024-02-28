@@ -49,18 +49,19 @@ export class CategoryListComponent implements OnInit {
     this.router.navigate(["/pages/category-form", id]);
   }
 
-  onDelete() {
-    console.log("Deletting");
+  onDelete(id: number) {
+    return () => {
+      this.categoryService.removeCategory(id).subscribe(() => {
+        this.categories = this.categories.filter((e) => e.id != id);
+      });
+    };
   }
 
   onClickDelete(id: number) {
     this.dialogService.open(DeleteModalComponent, {
       context: {
-        onDeleteFunction: this.onDelete,
+        onDeleteFunction: this.onDelete(id),
       },
     });
-    // this.categoryService.removeCategory(id).subscribe(() => {
-    //   this.router.navigate(["/pages/categories"]);
-    // });
   }
 }

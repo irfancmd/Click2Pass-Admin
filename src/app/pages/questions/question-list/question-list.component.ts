@@ -49,19 +49,20 @@ export class QuestionListComponent implements OnInit {
     this.router.navigate(["/pages/question-form", id]);
   }
 
-  onDelete() {
-    console.log("Deleting");
+  onDelete(id: number) {
+    return () => {
+      this.questionService.remove(id).subscribe(() => {
+        this.questions = this.questions.filter((e) => e.id != id);
+      });
+    };
   }
 
   onClickDelete(id: number) {
     this.dialogService.open(DeleteModalComponent, {
       context: {
-        onDeleteFunction: this.onDelete,
+        onDeleteFunction: this.onDelete(id),
       },
     });
-    // this.categoryService.removeCategory(id).subscribe(() => {
-    //   this.router.navigate(["/pages/categories"]);
-    // });
   }
 
   getQuestionType(question: any) {

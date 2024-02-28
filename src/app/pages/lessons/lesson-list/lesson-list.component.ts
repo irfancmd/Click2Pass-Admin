@@ -49,18 +49,19 @@ export class LessonListComponent implements OnInit {
     this.router.navigate(["/pages/lesson-form", id]);
   }
 
-  onDelete() {
-    console.log("Deleting");
+  onDelete(id: number) {
+    return () => {
+      this.lessonService.remove(id).subscribe(() => {
+        this.lessons = this.lessons.filter((e) => e.id != id);
+      });
+    };
   }
 
   onClickDelete(id: number) {
     this.dialogService.open(DeleteModalComponent, {
       context: {
-        onDeleteFunction: this.onDelete,
+        onDeleteFunction: this.onDelete(id),
       },
     });
-    // this.categoryService.removeCategory(id).subscribe(() => {
-    //   this.router.navigate(["/pages/categories"]);
-    // });
   }
 }

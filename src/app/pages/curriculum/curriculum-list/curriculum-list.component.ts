@@ -49,14 +49,18 @@ export class CurriculumListComponent implements OnInit {
     this.router.navigate(["/pages/curriculum-form", id]);
   }
 
-  onDelete() {
-    console.log("Deleting");
+  onDelete(id: number) {
+    return () => {
+      this.curriculumService.remove(id).subscribe(() => {
+        this.curriculums = this.curriculums.filter((e) => e.id != id);
+      });
+    };
   }
 
   onClickDelete(id: number) {
     this.dialogService.open(DeleteModalComponent, {
       context: {
-        onDeleteFunction: this.onDelete,
+        onDeleteFunction: this.onDelete(id),
       },
     });
   }
