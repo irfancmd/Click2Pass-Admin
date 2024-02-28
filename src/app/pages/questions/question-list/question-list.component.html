@@ -54,9 +54,11 @@
         <tbody>
           <tr *ngFor="let question of questions">
             <td>{{ question.questionText }}</td>
-            <td>{{ question.curriculumName ?? "N/A" }}</td>
-            <td>{{ question.lessonName ?? "N/A" }}</td>
-            <td>{{ question.chapterName ?? "N/A" }}</td>
+            <td>
+              {{ question.curriculum ? question.curriculum.name : "N/A" }}
+            </td>
+            <td>{{ question.lesson ? question.lesson.name : "N/A" }}</td>
+            <td>{{ question.chapter ? question.chapter.name : "N/A" }}</td>
             <td>
               <div *ngIf="question.questionMediaUrl; else elseBlock">
                 <img
