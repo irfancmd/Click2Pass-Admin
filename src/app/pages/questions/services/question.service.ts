@@ -6,7 +6,8 @@ import { of } from "rxjs";
   providedIn: "root",
 })
 export class QuestionService {
-  private API_ENDPOINT = "http://localhost:3000/question";
+  // private API_ENDPOINT = "http://localhost:3000/question";
+  private API_ENDPOINT = "http://72.167.50.39:3000/question";
 
   constructor(private httpClient: HttpClient) {}
 

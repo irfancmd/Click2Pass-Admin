@@ -5,7 +5,8 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class LessonService {
-  private API_ENDPOINT = "http://localhost:3000/lesson";
+  // private API_ENDPOINT = "http://localhost:3000/lesson";
+  private API_ENDPOINT = "http://72.167.50.39:3000/lesson";
 
   constructor(private httpClient: HttpClient) {}
 
