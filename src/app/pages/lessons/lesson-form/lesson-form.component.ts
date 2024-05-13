@@ -13,7 +13,7 @@ export class LessonFormComponent implements OnInit {
   public lessonForm = new FormGroup({
     name: new FormControl(null, [Validators.required]),
     description: new FormControl(""),
-    chapterId: new FormControl("0", [Validators.required]),
+    chapterId: new FormControl(window.localStorage.getItem("lf-selectedChapterId") ??  "0", [Validators.required]),
   });
 
   public categorySelectItems: any[] = [];
@@ -51,6 +51,10 @@ export class LessonFormComponent implements OnInit {
           });
         });
       }
+    });
+
+    this.lessonForm.controls.chapterId.valueChanges.subscribe(chapterId => {
+      window.localStorage.setItem("lf-selectedChapterId", chapterId);
     });
   }
 

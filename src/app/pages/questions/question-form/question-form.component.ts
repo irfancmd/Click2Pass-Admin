@@ -17,8 +17,10 @@ export class QuestionFormComponent implements OnInit {
   public hasAnswerWithMedia = false;
 
   public categorySelectItems: any[] = [];
+  public categorySelectItemsViewable: any[] = [];
   public curriculumSelectItems: any[] = [];
   public lessonSelectItems: any[] = [];
+  public lessonSelectItemsViewable: any[] = [];
 
   public previewQuestionText = "";
   public previewMediaUrl = "";
@@ -60,9 +62,9 @@ export class QuestionFormComponent implements OnInit {
     answerOption6MediaUrl: new FormControl(null),
     answerOption6MediaType: new FormControl("1"),
     isAnswer6Correct: new FormControl(false),
-    chapterId: new FormControl("0"),
-    lessonId: new FormControl("0"),
-    curriculumId: new FormControl("0"),
+    chapterId: new FormControl(window.localStorage.getItem("qf-selectedChapterId") ?? "0"),
+    lessonId: new FormControl(window.localStorage.getItem("qf-selectedLessonId") ?? "0"),
+    curriculumId: new FormControl(window.localStorage.getItem("qf-selectedCurriculumId") ??  "1"),
   });
 
   public questionToBeUpdated: any = null;
@@ -96,8 +98,11 @@ export class QuestionFormComponent implements OnInit {
           return {
             value: category.id,
             text: category.name,
+            curriculumId: category.curriculumId
           };
         });
+
+        this.categorySelectItemsViewable = this.categorySelectItems.filter(categorySelectItem => categorySelectItem.curriculumId == '1');
       }
 
       this.curriculumService.getCurriculums().subscribe((data: any) => {
@@ -118,6 +123,8 @@ export class QuestionFormComponent implements OnInit {
                 text: lesson.name,
               };
             });
+
+            this.lessonSelectItemsViewable = this.lessonSelectItems;
           }
 
           if (questionId) {
@@ -208,6 +215,19 @@ export class QuestionFormComponent implements OnInit {
           }
         });
       });
+    });
+
+    this.questionForm.controls.curriculumId.valueChanges.subscribe(curriculumId => {
+      this.categorySelectItemsViewable = this.categorySelectItems.filter(categorySelectItem => categorySelectItem.curriculumId == curriculumId);
+      window.localStorage.setItem("qf-selectedCurriculumId", curriculumId);
+    });
+
+    this.questionForm.controls.chapterId.valueChanges.subscribe(chapterId => {
+      window.localStorage.setItem("qf-selectedChapterId", chapterId);
+    });
+
+    this.questionForm.controls.lessonId.valueChanges.subscribe(lessonId => {
+      window.localStorage.setItem("qf-selectedLessonId", lessonId);
     });
   }
 

@@ -13,7 +13,7 @@ export class CategoryFormComponent implements OnInit {
   public categoryForm = new FormGroup({
     name: new FormControl("", [Validators.required]),
     description: new FormControl(""),
-    curriculumId: new FormControl("0"),
+    curriculumId: new FormControl(window.localStorage.getItem("chf-selectedCurriculumId") ??  "1"),
   });
 
   public curriculumSelectItems: any[] = [];
@@ -51,6 +51,10 @@ export class CategoryFormComponent implements OnInit {
           });
         }
       }
+    });
+
+    this.categoryForm.controls.curriculumId.valueChanges.subscribe(curriculumId => {
+      window.localStorage.setItem("chf-selectedCurriculumId", curriculumId);
     });
   }
 
