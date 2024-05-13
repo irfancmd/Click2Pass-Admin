@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { CategoryService } from "./services/category.service";
 import { SharedModule } from "../../shared/shared.module";
+import { CurriculumModule } from "../curriculum/curriculum.module";
 
 @NgModule({
   declarations: [CategoryFormComponent, CategoryListComponent],
@@ -45,6 +46,7 @@ import { SharedModule } from "../../shared/shared.module";
     ReactiveFormsModule,
     HttpClientModule,
     NbDialogModule,
+    CurriculumModule,
   ],
   exports: [CategoryFormComponent, CategoryListComponent],
   providers: [CategoryService],

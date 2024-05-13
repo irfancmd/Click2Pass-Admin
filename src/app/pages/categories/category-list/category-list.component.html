@@ -7,9 +7,9 @@
     >
   </div>
 </div>
-<div class="row mt-3">
-  <div class="col">
-    <form [formGroup]="searchForm">
+<form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+  <div class="row mt-3">
+    <div class="col-9">
       <label for="search" class="label">Search</label>
       <input
         id="search"
@@ -19,9 +19,37 @@
         nbInput
         fullWidth
       />
-    </form>
+    </div>
+    <div class="col-2">
+      <label for="curriculumId" class="label"
+        >Curriculum&nbsp;&nbsp;&nbsp;&nbsp;</label
+      >
+      <nb-select
+        id="curriculumId"
+        name="selectedCurriculum"
+        formControlName="curriculumId"
+        style="width: 100% !important"
+      >
+        <nb-option value="0">Select</nb-option>
+        <nb-option
+          *ngFor="let selectItem of curriculumSelectItems"
+          [value]="selectItem.value"
+          >{{ selectItem.text }}</nb-option
+        >
+      </nb-select>
+    </div>
+    <div class="col-1">
+      <button
+        type="submit"
+        style="margin-top: 1.8rem !important"
+        nbButton
+        status="primary"
+      >
+        Search
+      </button>
+    </div>
   </div>
-</div>
+</form>
 <div class="row mt-3">
   <div class="col">
     <nb-card class="p-2 table-responsive">
@@ -29,6 +57,7 @@
         <thead>
           <tr>
             <th scope="col">Name</th>
+            <th scope="col">Curriculum</th>
             <th scope="col">Description</th>
             <th scope="col">Action</th>
           </tr>
@@ -36,6 +65,7 @@
         <tbody>
           <tr *ngFor="let category of categories">
             <td>{{ category.name }}</td>
+            <td>{{ category.curriculum.name ?? "N/A" }}</td>
             <td>{{ category.description ?? "N/A" }}</td>
             <td>
               <button
