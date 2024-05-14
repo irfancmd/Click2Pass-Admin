@@ -104,13 +104,13 @@
           <div class="row" *ngIf="hasQuestionMedia">
             <div class="form-group col-9">
               <label for="questionmediaUrl" class="label"
-                >Question Media URL</label
+                >Question Media File</label
               >
               <input
                 id="questionMediaUrl"
                 formControlName="questionMediaUrl"
                 type="url"
-                placeholder="Question Media URL"
+                placeholder="Question Media File"
                 nbInput
                 fullWidth
               />
@@ -167,16 +167,24 @@
           <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
             <div class="form-group col-9">
               <label for="answerOption1MediaUrl" class="label"
-                >Answer Option 1 Media URL</label
+                >Answer Option 1 Media File</label
               >
               <input
+                formControlName="answerOption1MediaUrl"
+                id="answerOption1MediaUrl"
+                type="file"
+                placeholder="Answer Option 1 Media File"
+                nbInput
+                fullWidth
+              />
+              <!-- <input
                 formControlName="answerOption1MediaUrl"
                 id="answerOption1MediaUrl"
                 type="url"
                 placeholder="Answer Option 1 Media URL"
                 nbInput
                 fullWidth
-              />
+              /> -->
             </div>
             <!-- <div class="form-group col-3 text-end">
               <label for="answerOption1MediaType" class="label"
@@ -222,16 +230,24 @@
           <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
             <div class="form-group col-9">
               <label for="answerOption2MediaUrl" class="label"
-                >Answer Option 2 Media URL</label
+                >Answer Option 2 Media File</label
               >
               <input
+                formControlName="answerOption2MediaUrl"
+                id="answerOption2MediaUrl"
+                type="file"
+                placeholder="Answer Option 2 Media File"
+                nbInput
+                fullWidth
+              />
+              <!-- <input
                 formControlName="answerOption2MediaUrl"
                 id="answerOption2MediaUrl"
                 type="url"
                 placeholder="Answer Option 2 Media URL"
                 nbInput
                 fullWidth
-              />
+              /> -->
             </div>
             <!-- <div class="form-group col-3 text-end">
               <label for="answerOption2MediaType" class="label"
@@ -290,16 +306,24 @@
           >
             <div class="form-group col-9">
               <label for="answerOption3MediaUrl" class="label"
-                >Answer Option 3 Media URL</label
+                >Answer Option 3 Media File</label
               >
               <input
+                formControlName="answerOption3MediaUrl"
+                id="answerOption3MediaUrl"
+                type="file"
+                placeholder="Answer Option 3 Media File"
+                nbInput
+                fullWidth
+              />
+              <!-- <input
                 formControlName="answerOption3MediaUrl"
                 id="answerOption3MediaUrl"
                 type="url"
                 placeholder="Answer Option 3 Media URL"
                 nbInput
                 fullWidth
-              />
+              /> -->
             </div>
             <!-- <div class="form-group col-3 text-end">
               <label for="answerOption3MediaType" class="label"
@@ -364,16 +388,24 @@
           >
             <div class="form-group col-9">
               <label for="answerOption4MediaUrl" class="label"
-                >Answer Option 4 Media URL</label
+                >Answer Option 4 Media File</label
               >
               <input
+                formControlName="answerOption4MediaUrl"
+                id="answerOption4MediaUrl"
+                type="file"
+                placeholder="Answer Option 4 Media File"
+                nbInput
+                fullWidth
+              />
+              <!-- <input
                 formControlName="answerOption4MediaUrl"
                 id="answerOption4MediaUrl"
                 type="url"
                 placeholder="Answer Option 4 Media URL"
                 nbInput
                 fullWidth
-              />
+              /> -->
             </div>
             <!-- <div class="form-group col-3 text-end">
               <label for="answerOption4MediaType" class="label"
@@ -438,13 +470,13 @@
           >
             <div class="form-group col-9">
               <label for="answerOption5MediaUrl" class="label"
-                >Answer Option 5 Media URL</label
+                >Answer Option 5 Media File</label
               >
               <input
                 formControlName="answerOption5MediaUrl"
                 id="answerOption5MediaUrl"
-                type="url"
-                placeholder="Answer Option 5 Media URL"
+                type="file"
+                placeholder="Answer Option 5 Media File"
                 nbInput
                 fullWidth
               />
@@ -512,13 +544,13 @@
           >
             <div class="form-group col-9">
               <label for="answerOption6MediaUrl" class="label"
-                >Answer Option 6 Media URL</label
+                >Answer Option 6 Media File</label
               >
               <input
                 formControlName="answerOption6MediaUrl"
                 id="answerOption6MediaUrl"
-                type="url"
-                placeholder="Answer Option 6 Media URL"
+                type="file"
+                placeholder="Answer Option 6 Media File"
                 nbInput
                 fullWidth
               />
