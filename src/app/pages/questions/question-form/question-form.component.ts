@@ -12,6 +12,8 @@ import { LessonService } from "../../lessons/services/lesson.service";
   styleUrls: ["./question-form.component.scss"],
 })
 export class QuestionFormComponent implements OnInit {
+  // public IMG_ROOT = "../uploads/";
+  public IMG_ROOT = "http://72.167.50.39/uploads/";
   public hasQuestionMedia = false;
   public isMultipleChoice = true;
   public hasAnswerWithMedia = false;
@@ -25,11 +27,17 @@ export class QuestionFormComponent implements OnInit {
   public previewQuestionText = "";
   public previewMediaUrl = "";
   public previewAnswerOption1Text = "";
+  public previewAnswerOption1MediaUrl = "";
   public previewAnswerOption2Text = "";
+  public previewAnswerOption2MediaUrl = "";
   public previewAnswerOption3Text = "";
+  public previewAnswerOption3MediaUrl = "";
   public previewAnswerOption4Text = "";
+  public previewAnswerOption4MediaUrl = "";
   public previewAnswerOption5Text = "";
+  public previewAnswerOption5MediaUrl = "";
   public previewAnswerOption6Text = "";
+  public previewAnswerOption6MediaUrl = "";
 
   public questionForm = new FormGroup({
     questionText: new FormControl("", [Validators.required]),
@@ -62,9 +70,24 @@ export class QuestionFormComponent implements OnInit {
     answerOption6MediaUrl: new FormControl(null),
     answerOption6MediaType: new FormControl("1"),
     isAnswer6Correct: new FormControl(false),
-    chapterId: new FormControl(window.localStorage.getItem("qf-selectedChapterId") ?? "0"),
-    lessonId: new FormControl(window.localStorage.getItem("qf-selectedLessonId") ?? "0"),
-    curriculumId: new FormControl(window.localStorage.getItem("qf-selectedCurriculumId") ??  "1"),
+    chapterId: new FormControl(
+      window.localStorage.getItem("qf-selectedChapterId") &&
+      window.localStorage.getItem("qf-selectedChapterId") != "null"
+        ? window.localStorage.getItem("qf-selectedChapterId")
+        : "0"
+    ),
+    lessonId: new FormControl(
+      window.localStorage.getItem("qf-selectedLessonId") &&
+      window.localStorage.getItem("qf-selectedLessonId") != "null"
+        ? window.localStorage.getItem("qf-selectedLessonId")
+        : "0"
+    ),
+    curriculumId: new FormControl(
+      window.localStorage.getItem("qf-selectedCurriculumId") &&
+      window.localStorage.getItem("qf-selectedCurriculumId") != "null"
+        ? window.localStorage.getItem("qf-selectedCurriculumId")
+        : "0"
+    ),
   });
 
   public questionToBeUpdated: any = null;
@@ -83,7 +106,6 @@ export class QuestionFormComponent implements OnInit {
 
     this.questionForm.valueChanges.subscribe((data) => {
       this.previewQuestionText = data.questionText;
-      this.previewMediaUrl = data.questionMediaUrl;
       this.previewAnswerOption1Text = data.answerOption1Text;
       this.previewAnswerOption2Text = data.answerOption2Text;
       this.previewAnswerOption3Text = data.answerOption3Text;
@@ -98,11 +120,13 @@ export class QuestionFormComponent implements OnInit {
           return {
             value: category.id,
             text: category.name,
-            curriculumId: category.curriculumId
+            curriculumId: category.curriculumId,
           };
         });
 
-        this.categorySelectItemsViewable = this.categorySelectItems.filter(categorySelectItem => categorySelectItem.curriculumId == '1');
+        this.categorySelectItemsViewable = this.categorySelectItems.filter(
+          (categorySelectItem) => categorySelectItem.curriculumId == "1"
+        );
       }
 
       this.curriculumService.getCurriculums().subscribe((data: any) => {
@@ -139,6 +163,8 @@ export class QuestionFormComponent implements OnInit {
 
                 if (this.questionToBeUpdated.questionMediaUrl) {
                   this.hasQuestionMedia = true;
+                  this.previewMediaUrl =
+                    this.IMG_ROOT + this.questionToBeUpdated.questionMediaUrl;
                 }
 
                 if (
@@ -149,13 +175,32 @@ export class QuestionFormComponent implements OnInit {
                   this.questionToBeUpdated.answerOption5MediaUrl ||
                   this.questionToBeUpdated.answerOption6MediaUrl
                 ) {
+                  this.previewAnswerOption1MediaUrl =
+                    this.IMG_ROOT +
+                    this.questionToBeUpdated.answerOption1MediaUrl;
+                  this.previewAnswerOption2MediaUrl =
+                    this.IMG_ROOT +
+                    this.questionToBeUpdated.answerOption2MediaUrl;
+                  this.previewAnswerOption3MediaUrl =
+                    this.IMG_ROOT +
+                    this.questionToBeUpdated.answerOption3MediaUrl;
+                  this.previewAnswerOption4MediaUrl =
+                    this.IMG_ROOT +
+                    this.questionToBeUpdated.answerOption4MediaUrl;
+                  this.previewAnswerOption5MediaUrl =
+                    this.IMG_ROOT +
+                    this.questionToBeUpdated.answerOption5MediaUrl;
+                  this.previewAnswerOption6MediaUrl =
+                    this.IMG_ROOT +
+                    this.questionToBeUpdated.answerOption6MediaUrl;
+
                   this.hasAnswerWithMedia = true;
                 }
 
                 this.questionForm.patchValue({
                   questionText: this.questionToBeUpdated.questionText ?? null,
-                  questionMediaUrl:
-                    this.questionToBeUpdated.questionMediaUrl ?? null,
+                  // questionMediaUrl:
+                  //   this.questionToBeUpdated.questionMediaUrl ?? null,
                   questionMediaType:
                     this.questionToBeUpdated.questionMediaType ?? "1",
                   numberOfOptionsVisible:
@@ -165,44 +210,62 @@ export class QuestionFormComponent implements OnInit {
                     this.questionToBeUpdated.correctAnswerText ?? "",
                   answerOption1Text:
                     this.questionToBeUpdated.answerOption1Text ?? "",
-                  answerOption1MediaUrl:
-                    this.questionToBeUpdated.answerOption1MediaUrl ?? null,
+                  // answerOption1MediaUrl:
+                  //   this.questionToBeUpdated.answerOption1MediaUrl ?? null,
                   answerOption1MediaType:
                     this.questionToBeUpdated.answerOption1MediaType ?? "1",
                   answerOption2Text:
                     this.questionToBeUpdated.answerOption2Text ?? "",
-                  answerOption2MediaUrl:
-                    this.questionToBeUpdated.answerOption2MediaUrl ?? null,
+                  // answerOption2MediaUrl:
+                  //   this.questionToBeUpdated.answerOption2MediaUrl ?? null,
                   answerOption2MediaType:
                     this.questionToBeUpdated.answerOption2MediaType ?? "1",
                   answerOption3Text:
                     this.questionToBeUpdated.answerOption3Text ?? "",
-                  answerOption3MediaUrl:
-                    this.questionToBeUpdated.answerOption3MediaUrl ?? null,
+                  // answerOption3MediaUrl:
+                  //   this.questionToBeUpdated.answerOption3MediaUrl ?? null,
                   answerOption3MediaType:
                     this.questionToBeUpdated.answerOption3MediaType ?? "1",
                   answerOption4Text:
                     this.questionToBeUpdated.answerOption4Text ?? "",
-                  answerOption4MediaUrl:
-                    this.questionToBeUpdated.answerOption4MediaUrl ?? null,
+                  // answerOption4MediaUrl:
+                  //   this.questionToBeUpdated.answerOption4MediaUrl ?? null,
                   answerOption4MediaType:
                     this.questionToBeUpdated.answerOption4MediaType ?? "1",
                   answerOption5Text:
                     this.questionToBeUpdated.answerOption5Text ?? "",
-                  answerOption5MediaUrl:
-                    this.questionToBeUpdated.answerOption5MediaUrl ?? null,
+                  // answerOption5MediaUrl:
+                  //   this.questionToBeUpdated.answerOption5MediaUrl ?? null,
                   answerOption5MediaType:
                     this.questionToBeUpdated.answerOption5MediaType ?? "1",
                   answerOption6Text:
                     this.questionToBeUpdated.answerOption6Text ?? "",
-                  answerOption6MediaUrl:
-                    this.questionToBeUpdated.answerOption6MediaUrl ?? null,
+                  // answerOption6MediaUrl:
+                  //   this.questionToBeUpdated.answerOption6MediaUrl ?? null,
                   answerOption6MediaType:
                     this.questionToBeUpdated.answerOption6MediaType ?? "1",
                   chapterId: this.questionToBeUpdated.chapterId ?? "0",
                   lessonId: this.questionToBeUpdated.lessonId ?? "0",
                   curriculumId: this.questionToBeUpdated.curriculumId ?? "0",
                 });
+
+                if (this.questionToBeUpdated.curriculumId) {
+                  this.categorySelectItemsViewable =
+                    this.categorySelectItems.filter(
+                      (categorySelectItem) =>
+                        categorySelectItem.curriculumId ==
+                        this.questionToBeUpdated.curriculumId
+                    );
+                }
+
+                if (this.questionToBeUpdated.chapterId) {
+                  this.lessonSelectItemsViewable =
+                    this.lessonSelectItems.filter(
+                      (lessonSelectItem) =>
+                        lessonSelectItem.chapterId ==
+                        this.questionToBeUpdated.chapterId
+                    );
+                }
 
                 const correctOptionArray =
                   this.questionToBeUpdated.correctAnswerText.split(",");
@@ -217,16 +280,23 @@ export class QuestionFormComponent implements OnInit {
       });
     });
 
-    this.questionForm.controls.curriculumId.valueChanges.subscribe(curriculumId => {
-      this.categorySelectItemsViewable = this.categorySelectItems.filter(categorySelectItem => categorySelectItem.curriculumId == curriculumId);
-      window.localStorage.setItem("qf-selectedCurriculumId", curriculumId);
-    });
+    this.questionForm.controls.curriculumId.valueChanges.subscribe(
+      (curriculumId) => {
+        this.questionForm.controls.chapterId.reset();
+        this.categorySelectItemsViewable = this.categorySelectItems.filter(
+          (categorySelectItem) =>
+            categorySelectItem.curriculumId == curriculumId
+        );
+        window.localStorage.setItem("qf-selectedCurriculumId", curriculumId);
+      }
+    );
 
-    this.questionForm.controls.chapterId.valueChanges.subscribe(chapterId => {
+    this.questionForm.controls.chapterId.valueChanges.subscribe((chapterId) => {
+      this.questionForm.controls.lessonId.reset();
       window.localStorage.setItem("qf-selectedChapterId", chapterId);
     });
 
-    this.questionForm.controls.lessonId.valueChanges.subscribe(lessonId => {
+    this.questionForm.controls.lessonId.valueChanges.subscribe((lessonId) => {
       window.localStorage.setItem("qf-selectedLessonId", lessonId);
     });
   }
@@ -273,11 +343,60 @@ export class QuestionFormComponent implements OnInit {
         this.questionForm.controls.lessonId.setValue(null);
       }
 
+      const formData = new FormData();
+
+      if (this.questionForm.get("questionMediaUrl")?.value) {
+        formData.append(
+          "questionMediaUrl",
+          this.questionForm.get("questionMediaUrl")?.value
+        );
+      }
+      if (this.questionForm.get("answerOption1MediaUrl")?.value) {
+        formData.append(
+          "answerOption1MediaUrl",
+          this.questionForm.get("answerOption1MediaUrl")?.value
+        );
+      }
+      if (this.questionForm.get("answerOption2MediaUrl")?.value) {
+        formData.append(
+          "answerOption2MediaUrl",
+          this.questionForm.get("answerOption2MediaUrl")?.value
+        );
+      }
+      if (this.questionForm.get("answerOption3MediaUrl")?.value) {
+        formData.append(
+          "answerOption3MediaUrl",
+          this.questionForm.get("answerOption3MediaUrl")?.value
+        );
+      }
+      if (this.questionForm.get("answerOption4MediaUrl")?.value) {
+        formData.append(
+          "answerOption4MediaUrl",
+          this.questionForm.get("answerOption4MediaUrl")?.value
+        );
+      }
+      if (this.questionForm.get("answerOption5MediaUrl")?.value) {
+        formData.append(
+          "answerOption5MediaUrl",
+          this.questionForm.get("answerOption5MediaUrl")?.value
+        );
+      }
+      if (this.questionForm.get("answerOption6MediaUrl")?.value) {
+        formData.append(
+          "answerOption6MediaUrl",
+          this.questionForm.get("answerOption6MediaUrl")?.value
+        );
+      }
+
       if (!this.questionToBeUpdated) {
         // Create
         this.questionService
           .createQuestion(this.questionForm.value)
-          .subscribe(() => {
+          .subscribe((data: any) => {
+            this.questionService
+              .uploadImages(data.data.id, formData)
+              .subscribe();
+
             this.router.navigate(["/pages/questions"]);
           });
       } else {
@@ -285,8 +404,37 @@ export class QuestionFormComponent implements OnInit {
         this.questionService
           .update(this.questionToBeUpdated.id, this.questionForm.value)
           .subscribe(() => {
+            this.questionService
+              .uploadImages(this.questionToBeUpdated.id, formData)
+              .subscribe();
+
             this.router.navigate(["/pages/questions"]);
           });
+      }
+    }
+  }
+
+  onFileChange(event: any, field: string) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.questionForm.patchValue({
+        [field]: file,
+      });
+
+      if (field == "questionMediaUrl") {
+        this.previewMediaUrl = URL.createObjectURL(file);
+      } else if (field == "answerOption1MediaUrl") {
+        this.previewAnswerOption1MediaUrl = URL.createObjectURL(file);
+      } else if (field == "answerOption2MediaUrl") {
+        this.previewAnswerOption2MediaUrl = URL.createObjectURL(file);
+      } else if (field == "answerOption3MediaUrl") {
+        this.previewAnswerOption3MediaUrl = URL.createObjectURL(file);
+      } else if (field == "answerOption4MediaUrl") {
+        this.previewAnswerOption4MediaUrl = URL.createObjectURL(file);
+      } else if (field == "answerOption5MediaUrl") {
+        this.previewAnswerOption5MediaUrl = URL.createObjectURL(file);
+      } else if (field == "answerOption6MediaUrl") {
+        this.previewAnswerOption6MediaUrl = URL.createObjectURL(file);
       }
     }
   }
@@ -298,7 +446,7 @@ export class QuestionFormComponent implements OnInit {
 
     if (
       this.hasQuestionMedia &&
-      !this.questionForm.controls.questionMediaUrl.value.trim()
+      !this.questionForm.controls.questionMediaUrl.value
     ) {
       return false;
     }

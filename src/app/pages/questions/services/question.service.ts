@@ -34,6 +34,15 @@ export class QuestionService {
     return this.httpClient.delete(`${this.API_ENDPOINT}/${questionId}`);
   }
 
+  uploadImages(questionId, formdata: FormData) {
+    console.log(formdata);
+
+    return this.httpClient.post(
+      `${this.API_ENDPOINT}/upload-images/${questionId}`,
+      formdata
+    );
+  }
+
   tempGetQuestions() {
     return of({
       data: [
