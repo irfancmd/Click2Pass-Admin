@@ -86,7 +86,7 @@ export class QuestionFormComponent implements OnInit {
       window.localStorage.getItem("qf-selectedCurriculumId") &&
       window.localStorage.getItem("qf-selectedCurriculumId") != "null"
         ? window.localStorage.getItem("qf-selectedCurriculumId")
-        : "0"
+        : "1"
     ),
   });
 
@@ -166,6 +166,19 @@ export class QuestionFormComponent implements OnInit {
                   this.previewMediaUrl =
                     this.IMG_ROOT + this.questionToBeUpdated.questionMediaUrl;
                 }
+
+                this.categorySelectItemsViewable =
+                  this.categorySelectItems.filter(
+                    (categorySelectItem) =>
+                      categorySelectItem.curriculumId ==
+                      this.questionToBeUpdated.curriculumId
+                  );
+
+                this.lessonSelectItemsViewable = this.lessonSelectItems.filter(
+                  (lessonSelectItem) =>
+                    lessonSelectItem.chapterId ==
+                    this.questionToBeUpdated.lessonId
+                );
 
                 if (
                   this.questionToBeUpdated.answerOption1MediaUrl ||
@@ -249,23 +262,40 @@ export class QuestionFormComponent implements OnInit {
                   curriculumId: this.questionToBeUpdated.curriculumId ?? "0",
                 });
 
-                if (this.questionToBeUpdated.curriculumId) {
-                  this.categorySelectItemsViewable =
-                    this.categorySelectItems.filter(
-                      (categorySelectItem) =>
-                        categorySelectItem.curriculumId ==
-                        this.questionToBeUpdated.curriculumId
-                    );
-                }
+                // if (this.questionToBeUpdated.curriculumId) {
+                //   if (
+                //     !this.categorySelectItemsViewable.includes(
+                //       window.localStorage.getItem("qf-selectedChapterId")
+                //     )
+                //   ) {
+                //     this.questionForm.controls.chapterId.setValue("0");
+                //   } else {
+                //     this.questionForm.controls.chapterId.setValue(
+                //       this.questionToBeUpdated.chapterId
+                //     );
+                //   }
+                // }
 
-                if (this.questionToBeUpdated.chapterId) {
-                  this.lessonSelectItemsViewable =
-                    this.lessonSelectItems.filter(
-                      (lessonSelectItem) =>
-                        lessonSelectItem.chapterId ==
-                        this.questionToBeUpdated.chapterId
-                    );
-                }
+                // if (this.questionToBeUpdated.chapterId) {
+                //   this.lessonSelectItemsViewable =
+                //     this.lessonSelectItems.filter(
+                //       (lessonSelectItem) =>
+                //         lessonSelectItem.chapterId ==
+                //         this.questionToBeUpdated.chapterId
+                //     );
+
+                //   if (
+                //     !this.lessonSelectItemsViewable.includes(
+                //       window.localStorage.getItem("qf-selectedLessonId")
+                //     )
+                //   ) {
+                //     this.questionForm.controls.lessonId.setValue("0");
+                //   } else {
+                //     this.questionForm.controls.lessonId.setValue(
+                //       this.questionToBeUpdated.lessonId
+                //     );
+                //   }
+                // }
 
                 const correctOptionArray =
                   this.questionToBeUpdated.correctAnswerText.split(",");
@@ -282,7 +312,7 @@ export class QuestionFormComponent implements OnInit {
 
     this.questionForm.controls.curriculumId.valueChanges.subscribe(
       (curriculumId) => {
-        this.questionForm.controls.chapterId.reset();
+        // this.questionForm.controls.chapterId.setValue("0");
         this.categorySelectItemsViewable = this.categorySelectItems.filter(
           (categorySelectItem) =>
             categorySelectItem.curriculumId == curriculumId
@@ -292,7 +322,7 @@ export class QuestionFormComponent implements OnInit {
     );
 
     this.questionForm.controls.chapterId.valueChanges.subscribe((chapterId) => {
-      this.questionForm.controls.lessonId.reset();
+      // this.questionForm.controls.lessonId.setValue("0");
       window.localStorage.setItem("qf-selectedChapterId", chapterId);
     });
 

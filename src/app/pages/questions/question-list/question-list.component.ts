@@ -15,6 +15,7 @@ import { CurriculumService } from "../../curriculum/services/curriculum.service"
 export class QuestionListComponent implements OnInit {
   questions = [];
 
+  public IMG_ROOT = "http://72.167.50.39/uploads/";
   public chapterSelectItems: any[] = [];
   public chapterSelectItemsViewable: any[] = [];
   public curriculumSelectItems: any[] = [];
