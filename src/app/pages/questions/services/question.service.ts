@@ -7,7 +7,7 @@ import { of } from "rxjs";
 })
 export class QuestionService {
   // private API_ENDPOINT = "http://localhost:3000/question";
-  private API_ENDPOINT = "http://72.167.50.39:3000/question";
+  private API_ENDPOINT = "https://click2pass.ca:3000/question";
 
   constructor(private httpClient: HttpClient) {}
 

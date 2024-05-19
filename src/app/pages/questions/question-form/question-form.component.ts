@@ -13,7 +13,7 @@ import { LessonService } from "../../lessons/services/lesson.service";
 })
 export class QuestionFormComponent implements OnInit {
   // public IMG_ROOT = "../uploads/";
-  public IMG_ROOT = "http://72.167.50.39/uploads/";
+  public IMG_ROOT = "https://click2pass.ca/uploads/";
   public hasQuestionMedia = false;
   public isMultipleChoice = true;
   public hasAnswerWithMedia = false;

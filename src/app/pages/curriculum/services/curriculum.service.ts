@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 })
 export class CurriculumService {
   // private API_ENDPOINT = "http://localhost:3000/curriculum";
-  private API_ENDPOINT = "http://72.167.50.39:3000/curriculum";
+  private API_ENDPOINT = "https://click2pass.ca:3000/curriculum";
 
   constructor(private httpClient: HttpClient) {}
 

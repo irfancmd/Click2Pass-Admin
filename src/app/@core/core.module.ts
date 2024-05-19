@@ -123,7 +123,7 @@ export const NB_CORE_PROVIDERS = [
       // }),
       NbPasswordAuthStrategy.setup({
         name: "email",
-        baseEndpoint: "http://72.167.50.39:3000/user/",
+        baseEndpoint: "https://click2pass.ca:3000/user/",
         token: {
           class: NbAuthJWTToken,
           key: "data.access_token",
