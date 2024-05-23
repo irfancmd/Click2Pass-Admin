@@ -74,6 +74,7 @@
       <table class="table table-bordered">
         <thead>
           <tr>
+            <th scope="col">Action</th>
             <th scope="col">Question</th>
             <th scope="col">Curriculum</th>
             <th scope="col">Lesson</th>
@@ -94,11 +95,29 @@
             <th scope="col">Option 5 Media</th>
             <th scope="col">Answer Option 6</th>
             <th scope="col">Option 6 Media</th>
-            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let question of questions">
+            <td>
+              <button
+                nbButton
+                status="warning"
+                class="mx-3"
+                (click)="onClickEdit(question.id)"
+              >
+                Edit
+              </button>
+
+              <button
+                nbButton
+                status="danger"
+                class="mx-3"
+                (click)="onClickDelete(question.id)"
+              >
+                Delete
+              </button>
+            </td>
             <td>{{ question.questionText }}</td>
             <td>
               {{ question.curriculum ? question.curriculum.name : "N/A" }}
@@ -176,25 +195,6 @@
                 />
               </div>
               <ng-template #elseBlock>N/A</ng-template>
-            </td>
-            <td>
-              <button
-                nbButton
-                status="warning"
-                class="mx-3"
-                (click)="onClickEdit(question.id)"
-              >
-                Edit
-              </button>
-
-              <button
-                nbButton
-                status="danger"
-                class="mx-3"
-                (click)="onClickDelete(question.id)"
-              >
-                Delete
-              </button>
             </td>
           </tr>
         </tbody>
