@@ -8,6 +8,8 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./question-preview.component.scss"],
 })
 export class QuestionPreviewComponent implements OnInit {
+  public IMG_ROOT = "https://click2pass.ca/uploads/";
+
   public question: any;
 
   constructor(

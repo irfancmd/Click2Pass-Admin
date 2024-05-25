@@ -6,15 +6,29 @@ import { Injectable } from "@angular/core";
 })
 export class QuestionSetService {
   constructor(private httpClient: HttpClient) {}
+  // private API_ENDPOINT = "http://localhost:3000/question-set";
+  private API_ENDPOINT = "https://click2pass.ca:3000/question-set";
 
   getQuestionSets() {
-    return this.httpClient.get("http://localhost:3000/question-set");
+    return this.httpClient.get(this.API_ENDPOINT);
+  }
+
+  getQuestionSetById(questionSetId: number) {
+    return this.httpClient.get(`${this.API_ENDPOINT}/${questionSetId}`);
   }
 
   createQuestionSets(questionSet: any) {
-    return this.httpClient.post(
-      "http://localhost:3000/question-set",
-      questionSet
+    return this.httpClient.post(this.API_ENDPOINT, questionSet);
+  }
+
+  update(questionSetId, question: any) {
+    return this.httpClient.patch(
+      `${this.API_ENDPOINT}/${questionSetId}`,
+      question
     );
+  }
+
+  remove(questionSetId) {
+    return this.httpClient.delete(`${this.API_ENDPOINT}/${questionSetId}`);
   }
 }

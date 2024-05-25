@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { QuestionSetService } from "../services/question-set.service";
 import { CategoryService } from "../../categories/services/category.service";
 import { QuestionService } from "../../questions/services/question.service";
+import { CurriculumService } from "../../curriculum/services/curriculum.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "ngx-question-set-form",
@@ -13,47 +15,151 @@ export class QuestionSetFormComponent implements OnInit {
   public questionSetForm = new FormGroup({
     name: new FormControl("", [Validators.required]),
     description: new FormControl(""),
+    numOfQuestions: new FormControl(20),
+  });
+
+  public questionSearch = new FormGroup({
+    searchText: new FormControl(null),
+    chapterId: new FormControl(
+      window.localStorage.getItem("qsf-selectedChapterId") ?? "0"
+    ),
+    curriculumId: new FormControl(
+      window.localStorage.getItem("qsf-selectedCurriculumId") ?? "0"
+    ),
   });
 
   public questions: any[] = [];
 
-  public categorySelectItems: any[] = [];
+  public IMG_ROOT = "https://click2pass.ca/uploads/";
+  public chapterSelectItems: any[] = [];
+  public chapterSelectItemsViewable: any[] = [];
+  public curriculumSelectItems: any[] = [];
 
   public selectedCategoryModel: string = "0";
 
   public selectedQuestionIds: number[] = [];
 
+  public questionSetToBeUpdated: any;
+
   constructor(
     private questionSetService: QuestionSetService,
+    private curriculumService: CurriculumService,
     private categoryService: CategoryService,
-    private questionService: QuestionService
+    private questionService: QuestionService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.questionService.getQuestions().subscribe((data: any) => {
-      this.questions = data.data;
-    });
+    const questionSetId = this.activatedRoute.snapshot.params["id"];
 
-    this.categoryService.getCategories().subscribe((data: any) => {
+    if (questionSetId) {
+      this.questionSetService
+        .getQuestionSetById(questionSetId)
+        .subscribe((data: any) => {
+          this.questionSetToBeUpdated = data.data;
+          this.selectedQuestionIds = this.questionSetToBeUpdated.questions.map(
+            (q) => q.id
+          );
+
+          this.questionSetForm.patchValue({
+            name: this.questionSetToBeUpdated.name,
+            description: this.questionSetToBeUpdated.description,
+            numOfQuestions: this.selectedQuestionIds.length,
+          });
+        });
+    }
+
+    this.curriculumService.getCurriculums().subscribe((data: any) => {
       if (data.data) {
-        this.categorySelectItems = data.data.map((category: any) => {
+        this.curriculumSelectItems = data.data.map((curriculum: any) => {
           return {
-            value: category.id,
-            text: category.name,
+            value: curriculum.id,
+            text: curriculum.name,
           };
         });
       }
     });
+
+    this.categoryService.getCategories().subscribe((data: any) => {
+      if (data.data) {
+        this.chapterSelectItems = data.data.map((category: any) => {
+          return {
+            value: category.id,
+            text: category.name,
+            curriculumId: category.curriculumId,
+          };
+        });
+
+        let curriculumId = this.questionSearch.controls.curriculumId.value;
+
+        if (curriculumId != "0") {
+          this.chapterSelectItemsViewable = this.chapterSelectItems.filter(
+            (categorySelectItem) =>
+              categorySelectItem.curriculumId == curriculumId
+          );
+        } else {
+          this.chapterSelectItemsViewable = this.chapterSelectItems;
+        }
+      }
+    });
+
+    this.questionSearch.controls.curriculumId.valueChanges.subscribe(
+      (curriculumId) => {
+        this.chapterSelectItemsViewable = this.chapterSelectItems.filter(
+          (categorySelectItem) =>
+            categorySelectItem.curriculumId == curriculumId
+        );
+        window.localStorage.setItem("qsf-selectedCurriculumId", curriculumId);
+      }
+    );
+
+    this.questionSearch.controls.chapterId.valueChanges.subscribe(
+      (chapterId) => {
+        window.localStorage.setItem("qsf-selectedChapterId", chapterId);
+      }
+    );
+
+    this.onSearch();
   }
 
   onSubmit() {
+    const countDiff =
+      this.selectedQuestionIds.length -
+      this.questionSetForm.controls.numOfQuestions.value;
+    if (countDiff > 0) {
+      alert(
+        `You have exceeded the question set limit by ${Math.abs(
+          countDiff
+        )} questions. Please deselect extra questions.`
+      );
+      return;
+    } else if (countDiff < 0) {
+      alert(`Please select ${Math.abs(countDiff)} more questions.`);
+      return;
+    }
+
     if (this.selectedQuestionIds.length > 0) {
-      this.questionSetService
-        .createQuestionSets({
-          ...this.questionSetForm.value,
-          questionIds: this.selectedQuestionIds,
-        })
-        .subscribe();
+      if (!this.questionSetToBeUpdated) {
+        // Create
+        this.questionSetService
+          .createQuestionSets({
+            ...this.questionSetForm.value,
+            questionIds: this.selectedQuestionIds,
+          })
+          .subscribe(() => {
+            this.router.navigate(["/pages/question-set"]);
+          });
+      } else {
+        this.questionSetService
+          .update(this.questionSetToBeUpdated.id, {
+            ...this.questionSetForm.value,
+            questionIds: this.selectedQuestionIds,
+          })
+          .subscribe(() => {
+            this.router.navigate(["/pages/question-set"]);
+          });
+      }
     }
   }
 
@@ -98,5 +204,33 @@ export class QuestionSetFormComponent implements OnInit {
 
   isQuestionSelected(questionId: number) {
     return this.selectedQuestionIds.includes(questionId);
+  }
+
+  onSearch() {
+    this.questionService.getQuestions().subscribe((data: any) => {
+      let questionList = data.data;
+
+      let searchText = this.questionSearch.controls.searchText.value;
+      let curriculumId = this.questionSearch.controls.curriculumId.value;
+      let chapterId = this.questionSearch.controls.chapterId.value;
+
+      if (searchText) {
+        questionList = questionList.filter((e) =>
+          e.questionText.toLowerCase().includes(searchText.toLowerCase())
+        );
+      }
+
+      if (curriculumId && curriculumId != "0") {
+        questionList = questionList.filter(
+          (e) => e.curriculumId == curriculumId
+        );
+      }
+
+      if (chapterId && chapterId != "0") {
+        questionList = questionList.filter((e) => e.chapterId == chapterId);
+      }
+
+      this.questions = questionList;
+    });
   }
 }

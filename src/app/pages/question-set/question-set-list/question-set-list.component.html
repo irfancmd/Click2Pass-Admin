@@ -13,6 +13,7 @@
       <table class="table table-bordered">
         <thead>
           <tr>
+            <th scope="col">Action</th>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
             <th scope="col">Question ID(s)</th>
@@ -20,6 +21,25 @@
         </thead>
         <tbody>
           <tr *ngFor="let questionSet of questionSets">
+            <td>
+              <button
+                nbButton
+                status="warning"
+                class="mx-3"
+                (click)="onClickEdit(questionSet.id)"
+              >
+                Edit
+              </button>
+
+              <button
+                nbButton
+                status="danger"
+                class="mx-3"
+                (click)="onClickDelete(questionSet.id)"
+              >
+                Delete
+              </button>
+            </td>
             <td>{{ questionSet.name }}</td>
             <td>{{ questionSet.description ?? "N/A" }}</td>
             <td>
