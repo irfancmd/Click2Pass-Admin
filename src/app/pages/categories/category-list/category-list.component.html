@@ -63,7 +63,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let category of categories">
+          <tr *ngFor="let category of categories; index as i">
+            <td>{{ i + 1 }}</td>
             <td>{{ category.name }}</td>
             <td>{{ category.curriculum.name ?? "N/A" }}</td>
             <td>{{ category.description ?? "N/A" }}</td>

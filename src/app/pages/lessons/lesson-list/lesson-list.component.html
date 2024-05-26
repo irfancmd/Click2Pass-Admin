@@ -35,7 +35,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let lesson of lessons">
+          <tr *ngFor="let lesson of lessons; index as i">
+            <td>{{ i + 1 }}</td>
             <td>{{ lesson.name }}</td>
             <td>{{ lesson.description ?? "N/A" }}</td>
             <td>{{ lesson.chapter ? lesson.chapter.name : "N/A" }}</td>

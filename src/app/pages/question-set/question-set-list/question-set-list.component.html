@@ -15,12 +15,14 @@
           <tr>
             <th scope="col">Action</th>
             <th scope="col">Name</th>
+            <th scope="col">Curriculum</th>
             <th scope="col">Description</th>
             <th scope="col">Question ID(s)</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let questionSet of questionSets">
+          <tr *ngFor="let questionSet of questionSets; index as i">
+            <td>{{ i + 1 }}</td>
             <td>
               <button
                 nbButton
@@ -41,6 +43,7 @@
               </button>
             </td>
             <td>{{ questionSet.name }}</td>
+            <td>{{ questionSet.curriculum?.name ?? "N/A" }}</td>
             <td>{{ questionSet.description ?? "N/A" }}</td>
             <td>
               <span *ngFor="let question of questionSet.questions">

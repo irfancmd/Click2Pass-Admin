@@ -34,7 +34,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let curriculum of curriculums">
+          <tr *ngFor="let curriculum of curriculums; index as i">
+            <td>{{ i + 1 }}</td>
             <td>{{ curriculum.name }}</td>
             <td>{{ curriculum.description ?? "N/A" }}</td>
             <td>

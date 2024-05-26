@@ -41,6 +41,27 @@
 
           <div class="row">
             <div class="col-12 form-group">
+              <label for="curriculumId" class="label"
+                >Curriculum&nbsp;&nbsp;&nbsp;&nbsp;</label
+              >
+              <nb-select
+                id="curriculumId"
+                name="selectedCurriculum"
+                formControlName="curriculumId"
+                style="width: 100% !important"
+              >
+                <nb-option value="0">Select</nb-option>
+                <nb-option
+                  *ngFor="let selectItem of curriculumSelectItems"
+                  [value]="selectItem.value"
+                  >{{ selectItem.text }}</nb-option
+                >
+              </nb-select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 form-group">
               <label for="numOfQuestions" class="label"
                 >Number of Questions</label
               >
@@ -91,24 +112,6 @@
                       <nb-option value="0">Select</nb-option>
                       <nb-option
                         *ngFor="let selectItem of chapterSelectItemsViewable"
-                        [value]="selectItem.value"
-                        >{{ selectItem.text }}</nb-option
-                      >
-                    </nb-select>
-                  </div>
-                  <div class="col-2">
-                    <label for="curriculumId" class="label"
-                      >Curriculum&nbsp;&nbsp;&nbsp;&nbsp;</label
-                    >
-                    <nb-select
-                      id="curriculumId"
-                      name="selectedCurriculum"
-                      formControlName="curriculumId"
-                      style="width: 100% !important"
-                    >
-                      <nb-option value="0">Select</nb-option>
-                      <nb-option
-                        *ngFor="let selectItem of curriculumSelectItems"
                         [value]="selectItem.value"
                         >{{ selectItem.text }}</nb-option
                       >
@@ -170,6 +173,7 @@
                       <td>
                         <div *ngIf="question.questionMediaUrl; else elseBlock">
                           <img
+                            alt="{{ question.questionText }}"
                             src="{{ IMG_ROOT + question.questionMediaUrl }}"
                             class="table-image"
                           />
@@ -185,6 +189,7 @@
                           *ngIf="question.answerOption1MediaUrl; else elseBlock"
                         >
                           <img
+                            alt="{{ questoin.answerOption1Text }}"
                             src="{{
                               IMG_ROOT + question.answerOption1MediaUrl
                             }}"
@@ -202,6 +207,7 @@
                             src="{{
                               IMG_ROOT + question.answerOption2MediaUrl
                             }}"
+                            alt="{{ questoin.answerOption2Text }}"
                             class="table-image"
                           />
                         </div>
@@ -213,6 +219,7 @@
                           *ngIf="question.answerOption3MediaUrl; else elseBlock"
                         >
                           <img
+                            alt="{{ questoin.answerOption3Text }}"
                             src="{{
                               IMG_ROOT + question.answerOption3MediaUrl
                             }}"
@@ -227,6 +234,7 @@
                           *ngIf="question.answerOption4MediaUrl; else elseBlock"
                         >
                           <img
+                            alt="{{ questoin.answerOption4Text }}"
                             src="{{
                               IMG_ROOT + question.answerOption4MediaUrl
                             }}"
@@ -241,6 +249,7 @@
                           *ngIf="question.answerOption5MediaUrl; else elseBlock"
                         >
                           <img
+                            alt="{{ questoin.answerOption5Text }}"
                             src="{{
                               IMG_ROOT + question.answerOption5MediaUrl
                             }}"
@@ -255,6 +264,7 @@
                           *ngIf="question.answerOption6MediaUrl; else elseBlock"
                         >
                           <img
+                            alt="{{ questoin.answerOption6Text }}"
                             src="{{
                               IMG_ROOT + question.answerOption6MediaUrl
                             }}"

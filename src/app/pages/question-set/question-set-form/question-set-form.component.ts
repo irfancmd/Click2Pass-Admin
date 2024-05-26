@@ -16,15 +16,15 @@ export class QuestionSetFormComponent implements OnInit {
     name: new FormControl("", [Validators.required]),
     description: new FormControl(""),
     numOfQuestions: new FormControl(20),
+    curriculumId: new FormControl(
+      window.localStorage.getItem("qsf-selectedCurriculumId") ?? "0"
+    ),
   });
 
   public questionSearch = new FormGroup({
     searchText: new FormControl(null),
     chapterId: new FormControl(
       window.localStorage.getItem("qsf-selectedChapterId") ?? "0"
-    ),
-    curriculumId: new FormControl(
-      window.localStorage.getItem("qsf-selectedCurriculumId") ?? "0"
     ),
   });
 
@@ -65,6 +65,7 @@ export class QuestionSetFormComponent implements OnInit {
           this.questionSetForm.patchValue({
             name: this.questionSetToBeUpdated.name,
             description: this.questionSetToBeUpdated.description,
+            curriculumId: this.questionSetToBeUpdated.curriculumId,
             numOfQuestions: this.selectedQuestionIds.length,
           });
         });
@@ -91,7 +92,7 @@ export class QuestionSetFormComponent implements OnInit {
           };
         });
 
-        let curriculumId = this.questionSearch.controls.curriculumId.value;
+        let curriculumId = this.questionSetForm.controls.curriculumId.value;
 
         if (curriculumId != "0") {
           this.chapterSelectItemsViewable = this.chapterSelectItems.filter(
@@ -104,13 +105,23 @@ export class QuestionSetFormComponent implements OnInit {
       }
     });
 
-    this.questionSearch.controls.curriculumId.valueChanges.subscribe(
+    this.questionSetForm.controls.curriculumId.valueChanges.subscribe(
       (curriculumId) => {
         this.chapterSelectItemsViewable = this.chapterSelectItems.filter(
           (categorySelectItem) =>
             categorySelectItem.curriculumId == curriculumId
         );
         window.localStorage.setItem("qsf-selectedCurriculumId", curriculumId);
+
+        // Clear selected questoin ids when curriculum selection is changed
+        this.selectedQuestionIds = [];
+
+        // Re-populate questions of that curriculum
+        this.questionService.getQuestions().subscribe((data: any) => {
+          let questionList = data.data;
+
+          this.questions = questionList.filter(q => q.curriculumId == curriculumId);
+        });
       }
     );
 
@@ -211,7 +222,7 @@ export class QuestionSetFormComponent implements OnInit {
       let questionList = data.data;
 
       let searchText = this.questionSearch.controls.searchText.value;
-      let curriculumId = this.questionSearch.controls.curriculumId.value;
+      let curriculumId = this.questionSetForm.controls.curriculumId.value;
       let chapterId = this.questionSearch.controls.chapterId.value;
 
       if (searchText) {
