@@ -135,6 +135,7 @@
                   <thead>
                     <tr>
                       <th scope="col">Select</th>
+                      <th scope="col">ID</th>
                       <th scope="col">Question</th>
                       <th scope="col">Curriculum</th>
                       <th scope="col">Chapter</th>
@@ -166,6 +167,7 @@
                           (change)="onChangeCheckBox($event, question.id)"
                         ></nb-checkbox>
                       </td>
+                      <td>{{ question.id }}</td>
                       <td>{{ question.questionText }}</td>
                       <td>{{ question.curriculum?.name ?? "N/A" }}</td>
                       <td>{{ question.chapter?.name ?? "N/A" }}</td>
