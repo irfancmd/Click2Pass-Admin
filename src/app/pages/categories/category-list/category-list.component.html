@@ -9,17 +9,6 @@
 </div>
 <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
   <div class="row mt-3">
-    <div class="col-9">
-      <label for="search" class="label">Search</label>
-      <input
-        id="search"
-        type="text"
-        placeholder="Search"
-        formControlName="searchText"
-        nbInput
-        fullWidth
-      />
-    </div>
     <div class="col-2">
       <label for="curriculumId" class="label"
         >Curriculum&nbsp;&nbsp;&nbsp;&nbsp;</label
@@ -38,6 +27,17 @@
         >
       </nb-select>
     </div>
+    <div class="col-9">
+      <label for="search" class="label">Search</label>
+      <input
+        id="search"
+        type="text"
+        placeholder="Search"
+        formControlName="searchText"
+        nbInput
+        fullWidth
+      />
+    </div>
     <div class="col-1">
       <button
         type="submit"
@@ -50,9 +50,9 @@
     </div>
   </div>
 </form>
-<div class="row mt-3">
+<div class="row mt-3 table-container">
   <div class="col">
-    <nb-card class="p-2 table-responsive">
+    <nb-card class="p-2">
       <table class="table table-bordered">
         <thead>
           <tr>

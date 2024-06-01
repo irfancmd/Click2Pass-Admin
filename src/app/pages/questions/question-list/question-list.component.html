@@ -9,16 +9,23 @@
 </div>
 <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
   <div class="row mt-3">
-    <div class="col-7">
-      <label for="search" class="label">Search</label>
-      <input
-        id="search"
-        type="text"
-        placeholder="Search"
-        formControlName="searchText"
-        nbInput
-        fullWidth
-      />
+    <div class="col-2">
+      <label for="curriculumId" class="label"
+        >Curriculum&nbsp;&nbsp;&nbsp;&nbsp;</label
+      >
+      <nb-select
+        id="curriculumId"
+        name="selectedCurriculum"
+        formControlName="curriculumId"
+        style="width: 100% !important"
+      >
+        <nb-option value="0">Select</nb-option>
+        <nb-option
+          *ngFor="let selectItem of curriculumSelectItems"
+          [value]="selectItem.value"
+          >{{ selectItem.text }}</nb-option
+        >
+      </nb-select>
     </div>
     <div class="col-2">
       <label for="chapterId" class="label"
@@ -38,23 +45,16 @@
         >
       </nb-select>
     </div>
-    <div class="col-2">
-      <label for="curriculumId" class="label"
-        >Curriculum&nbsp;&nbsp;&nbsp;&nbsp;</label
-      >
-      <nb-select
-        id="curriculumId"
-        name="selectedCurriculum"
-        formControlName="curriculumId"
-        style="width: 100% !important"
-      >
-        <nb-option value="0">Select</nb-option>
-        <nb-option
-          *ngFor="let selectItem of curriculumSelectItems"
-          [value]="selectItem.value"
-          >{{ selectItem.text }}</nb-option
-        >
-      </nb-select>
+    <div class="col-7">
+      <label for="search" class="label">Search</label>
+      <input
+        id="search"
+        type="text"
+        placeholder="Search"
+        formControlName="searchText"
+        nbInput
+        fullWidth
+      />
     </div>
     <div class="col-1">
       <button
@@ -68,9 +68,9 @@
     </div>
   </div>
 </form>
-<div class="row mt-3">
+<div class="row mt-3 table-container">
   <div class="col">
-    <nb-card class="p-2 table-responsive">
+    <nb-card class="p-2">
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -79,8 +79,8 @@
             <th scope="col">Action</th>
             <th scope="col">Question</th>
             <th scope="col">Curriculum</th>
+            <th scope="col">Chapter</th>
             <th scope="col">Lesson</th>
-            <th scope="col">Category</th>
             <th scope="col">Question Media URL</th>
             <th scope="col">QuestionType</th>
             <th scope="col">Number of Visible Options</th>
@@ -107,7 +107,7 @@
               <button
                 nbButton
                 status="warning"
-                class="mx-3"
+                class="mx-2 my-2"
                 (click)="onClickEdit(question.id)"
               >
                 Edit
@@ -116,7 +116,7 @@
               <button
                 nbButton
                 status="danger"
-                class="mx-3"
+                class="mx-2 my-2"
                 (click)="onClickDelete(question.id)"
               >
                 Delete
@@ -126,8 +126,8 @@
             <td>
               {{ question.curriculum ? question.curriculum.name : "N/A" }}
             </td>
-            <td>{{ question.lesson ? question.lesson.name : "N/A" }}</td>
             <td>{{ question.chapter ? question.chapter.name : "N/A" }}</td>
+            <td>{{ question.lesson ? question.lesson.name : "N/A" }}</td>
             <td>
               <div *ngIf="question.questionMediaUrl; else elseBlock">
                 <img

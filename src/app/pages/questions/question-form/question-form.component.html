@@ -86,37 +86,37 @@
           </div>
           <!-- <div class="row"> -->
           <!-- </div> -->
-
-          <div class="row mt-3">
-            <div class="col-12 form-group">
-              <label for="questionText" class="label">Question Text</label>
-              <input
-                formControlName="questionText"
-                id="questionText"
-                type="text"
-                placeholder="Question Text"
-                nbInput
-                fullWidth
-                required
-              />
+          <div class="question-section">
+            <div class="row mt-3">
+              <div class="col-12 form-group">
+                <label for="questionText" class="label">Question Text</label>
+                <input
+                  formControlName="questionText"
+                  id="questionText"
+                  type="text"
+                  placeholder="Question Text"
+                  nbInput
+                  fullWidth
+                  required
+                />
+              </div>
             </div>
-          </div>
-          <div class="row" *ngIf="hasQuestionMedia">
-            <div class="form-group col-9">
-              <label for="questionmediaUrl" class="label"
-                >Question Media File</label
-              >
-              <!-- formControlName="questionMediaUrl" -->
-              <input
-                id="questionMediaUrl"
-                type="file"
-                (change)="onFileChange($event, 'questionMediaUrl')"
-                placeholder="Question Media File"
-                nbInput
-                fullWidth
-              />
-            </div>
-            <!-- <div class="form-group col-3 text-end">
+            <div class="row" *ngIf="hasQuestionMedia">
+              <div class="form-group col-9">
+                <label for="questionmediaUrl" class="label"
+                  >Question Media File</label
+                >
+                <!-- formControlName="questionMediaUrl" -->
+                <input
+                  id="questionMediaUrl"
+                  type="file"
+                  (change)="onFileChange($event, 'questionMediaUrl')"
+                  placeholder="Question Media File"
+                  nbInput
+                  fullWidth
+                />
+              </div>
+              <!-- <div class="form-group col-3 text-end">
               <label for="questionMediaType" class="label">Media Type</label>
               <nb-select
                 id="questionMediaType"
@@ -127,59 +127,61 @@
                 <nb-option value="2">Video</nb-option>
               </nb-select>
             </div> -->
-          </div>
+            </div>
 
-          <div class="row" *ngIf="isMultipleChoice">
-            <div class="form-group col-12">
-              <label for="numberOfOptionsVisible" class="label"
-                >Number of Visible Options</label
-              >
-              <input
-                id="numberOfOptionsVisible"
-                formControlName="numberOfOptionsVisible"
-                type="number"
-                min="2"
-                max="6"
-                placeholder="Number of Options Visible"
-                nbInput
-                fullWidth
-              />
+            <div class="row" *ngIf="isMultipleChoice">
+              <div class="form-group col-12">
+                <label for="numberOfOptionsVisible" class="label"
+                  >Number of Visible Options</label
+                >
+                <input
+                  id="numberOfOptionsVisible"
+                  formControlName="numberOfOptionsVisible"
+                  type="number"
+                  min="2"
+                  max="6"
+                  placeholder="Number of Options Visible"
+                  nbInput
+                  fullWidth
+                />
+              </div>
             </div>
           </div>
 
-          <div class="row mt-3">
-            <div class="form-group col-12">
-              <label for="answerOption1Text" class="label">{{
-                isMultipleChoice ? "Answer Option 1 Text" : "Answer Text"
-              }}</label>
-              <input
-                formControlName="answerOption1Text"
-                id="answerOption1Text"
-                type="text"
-                placeholder="{{
-                  isMultipleChoice ? 'Answer Option 1 Text' : 'Answer Text'
-                }}"
-                nbInput
-                fullWidth
-                required
-              />
+          <div class="answer-section">
+            <div class="row mt-3">
+              <div class="form-group col-12">
+                <label for="answerOption1Text" class="label">{{
+                  isMultipleChoice ? "Answer Option 1 Text" : "Answer Text"
+                }}</label>
+                <input
+                  formControlName="answerOption1Text"
+                  id="answerOption1Text"
+                  type="text"
+                  placeholder="{{
+                    isMultipleChoice ? 'Answer Option 1 Text' : 'Answer Text'
+                  }}"
+                  nbInput
+                  fullWidth
+                  required
+                />
+              </div>
             </div>
-          </div>
-          <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
-            <div class="form-group col-9">
-              <label for="answerOption1MediaUrl" class="label"
-                >Answer Option 1 Media File</label
-              >
-              <!-- formControlName="answerOption1MediaUrl" -->
-              <input
-                id="answerOption1MediaUrl"
-                type="file"
-                (change)="onFileChange($event, 'answerOption1MediaUrl')"
-                placeholder="Answer Option 1 Media File"
-                nbInput
-                fullWidth
-              />
-              <!-- <input
+            <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
+              <div class="form-group col-9">
+                <label for="answerOption1MediaUrl" class="label"
+                  >Answer Option 1 Media File</label
+                >
+                <!-- formControlName="answerOption1MediaUrl" -->
+                <input
+                  id="answerOption1MediaUrl"
+                  type="file"
+                  (change)="onFileChange($event, 'answerOption1MediaUrl')"
+                  placeholder="Answer Option 1 Media File"
+                  nbInput
+                  fullWidth
+                />
+                <!-- <input
                 formControlName="answerOption1MediaUrl"
                 id="answerOption1MediaUrl"
                 type="url"
@@ -187,8 +189,8 @@
                 nbInput
                 fullWidth
               /> -->
-            </div>
-            <!-- <div class="form-group col-3 text-end">
+              </div>
+              <!-- <div class="form-group col-3 text-end">
               <label for="answerOption1MediaType" class="label"
                 >Media Type</label
               >
@@ -202,48 +204,50 @@
                 <nb-option value="2">Video</nb-option>
               </nb-select>
             </div> -->
-          </div>
-          <div class="row" *ngIf="isMultipleChoice">
-            <div class="col-12">
-              <div *ngIf="isMultipleChoice">
-                <nb-checkbox status="primary" formControlName="isAnswer1Correct"
-                  >Correct Answer</nb-checkbox
-                >
+            </div>
+            <div class="row" *ngIf="isMultipleChoice">
+              <div class="col-12">
+                <div *ngIf="isMultipleChoice">
+                  <nb-checkbox
+                    status="primary"
+                    formControlName="isAnswer1Correct"
+                    >Correct Answer</nb-checkbox
+                  >
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="row mt-3" *ngIf="isMultipleChoice">
-            <div class="form-group col-12">
-              <label for="answerOption2Text" class="label">
-                Answer Option 2 Text
-              </label>
-              <input
-                formControlName="answerOption2Text"
-                id="answerOption2Text"
-                type="text"
-                placeholder="Answer Option 2 Text"
-                nbInput
-                fullWidth
-                required
-              />
+            <div class="row mt-3" *ngIf="isMultipleChoice">
+              <div class="form-group col-12">
+                <label for="answerOption2Text" class="label">
+                  Answer Option 2 Text
+                </label>
+                <input
+                  formControlName="answerOption2Text"
+                  id="answerOption2Text"
+                  type="text"
+                  placeholder="Answer Option 2 Text"
+                  nbInput
+                  fullWidth
+                  required
+                />
+              </div>
             </div>
-          </div>
-          <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
-            <div class="form-group col-9">
-              <label for="answerOption2MediaUrl" class="label"
-                >Answer Option 2 Media File</label
-              >
-              <!-- formControlName="answerOption2MediaUrl" -->
-              <input
-                id="answerOption2MediaUrl"
-                type="file"
-                (change)="onFileChange($event, 'answerOption2MediaUrl')"
-                placeholder="Answer Option 2 Media File"
-                nbInput
-                fullWidth
-              />
-              <!-- <input
+            <div class="row" *ngIf="isMultipleChoice && hasAnswerWithMedia">
+              <div class="form-group col-9">
+                <label for="answerOption2MediaUrl" class="label"
+                  >Answer Option 2 Media File</label
+                >
+                <!-- formControlName="answerOption2MediaUrl" -->
+                <input
+                  id="answerOption2MediaUrl"
+                  type="file"
+                  (change)="onFileChange($event, 'answerOption2MediaUrl')"
+                  placeholder="Answer Option 2 Media File"
+                  nbInput
+                  fullWidth
+                />
+                <!-- <input
                 formControlName="answerOption2MediaUrl"
                 id="answerOption2MediaUrl"
                 type="url"
@@ -251,8 +255,8 @@
                 nbInput
                 fullWidth
               /> -->
-            </div>
-            <!-- <div class="form-group col-3 text-end">
+              </div>
+              <!-- <div class="form-group col-3 text-end">
               <label for="answerOption2MediaType" class="label"
                 >Media Type</label
               >
@@ -266,61 +270,63 @@
                 <nb-option value="2">Video</nb-option>
               </nb-select>
             </div> -->
-          </div>
-          <div class="row" *ngIf="isMultipleChoice">
-            <div class="col-12">
-              <div *ngIf="isMultipleChoice">
-                <nb-checkbox status="primary" formControlName="isAnswer2Correct"
-                  >Correct Answer</nb-checkbox
-                >
+            </div>
+            <div class="row" *ngIf="isMultipleChoice">
+              <div class="col-12">
+                <div *ngIf="isMultipleChoice">
+                  <nb-checkbox
+                    status="primary"
+                    formControlName="isAnswer2Correct"
+                    >Correct Answer</nb-checkbox
+                  >
+                </div>
               </div>
             </div>
-          </div>
 
-          <div
-            class="row mt-3"
-            *ngIf="
-              isMultipleChoice &&
-              questionForm.controls.numberOfOptionsVisible.value > 2
-            "
-          >
-            <div class="form-group col-12">
-              <label for="answerOption3Text" class="label">
-                Answer Option 3 Text
-              </label>
-              <input
-                formControlName="answerOption3Text"
-                id="answerOption3Text"
-                type="text"
-                placeholder="Answer Option 3 Text"
-                nbInput
-                fullWidth
-                required
-              />
+            <div
+              class="row mt-3"
+              *ngIf="
+                isMultipleChoice &&
+                questionForm.controls.numberOfOptionsVisible.value > 2
+              "
+            >
+              <div class="form-group col-12">
+                <label for="answerOption3Text" class="label">
+                  Answer Option 3 Text
+                </label>
+                <input
+                  formControlName="answerOption3Text"
+                  id="answerOption3Text"
+                  type="text"
+                  placeholder="Answer Option 3 Text"
+                  nbInput
+                  fullWidth
+                  required
+                />
+              </div>
             </div>
-          </div>
-          <div
-            class="row"
-            *ngIf="
-              isMultipleChoice &&
-              hasAnswerWithMedia &&
-              questionForm.controls.numberOfOptionsVisible.value > 2
-            "
-          >
-            <div class="form-group col-9">
-              <label for="answerOption3MediaUrl" class="label"
-                >Answer Option 3 Media File</label
-              >
-              <!-- formControlName="answerOption3MediaUrl" -->
-              <input
-                id="answerOption3MediaUrl"
-                type="file"
-                (change)="onFileChange($event, 'answerOption3MediaUrl')"
-                placeholder="Answer Option 3 Media File"
-                nbInput
-                fullWidth
-              />
-              <!-- <input
+            <div
+              class="row"
+              *ngIf="
+                isMultipleChoice &&
+                hasAnswerWithMedia &&
+                questionForm.controls.numberOfOptionsVisible.value > 2
+              "
+            >
+              <div class="form-group col-9">
+                <label for="answerOption3MediaUrl" class="label"
+                  >Answer Option 3 Media File</label
+                >
+                <!-- formControlName="answerOption3MediaUrl" -->
+                <input
+                  id="answerOption3MediaUrl"
+                  type="file"
+                  (change)="onFileChange($event, 'answerOption3MediaUrl')"
+                  placeholder="Answer Option 3 Media File"
+                  nbInput
+                  fullWidth
+                />
+                <!-- <input
                 formControlName="answerOption3MediaUrl"
                 id="answerOption3MediaUrl"
                 type="url"
@@ -328,8 +334,8 @@
                 nbInput
                 fullWidth
               /> -->
-            </div>
-            <!-- <div class="form-group col-3 text-end">
+              </div>
+              <!-- <div class="form-group col-3 text-end">
               <label for="answerOption3MediaType" class="label"
                 >Media Type</label
               >
@@ -343,67 +349,69 @@
                 <nb-option value="2">Video</nb-option>
               </nb-select>
             </div> -->
-          </div>
-          <div
-            class="row"
-            *ngIf="
-              isMultipleChoice &&
-              questionForm.controls.numberOfOptionsVisible.value > 2
-            "
-          >
-            <div class="col-12">
-              <div *ngIf="isMultipleChoice">
-                <nb-checkbox status="primary" formControlName="isAnswer3Correct"
-                  >Correct Answer</nb-checkbox
-                >
+            </div>
+            <div
+              class="row"
+              *ngIf="
+                isMultipleChoice &&
+                questionForm.controls.numberOfOptionsVisible.value > 2
+              "
+            >
+              <div class="col-12">
+                <div *ngIf="isMultipleChoice">
+                  <nb-checkbox
+                    status="primary"
+                    formControlName="isAnswer3Correct"
+                    >Correct Answer</nb-checkbox
+                  >
+                </div>
               </div>
             </div>
-          </div>
 
-          <div
-            class="row mt-3"
-            *ngIf="
-              isMultipleChoice &&
-              questionForm.controls.numberOfOptionsVisible.value > 3
-            "
-          >
-            <div class="form-group col-12">
-              <label for="answerOption4Text" class="label">
-                Answer Option 4 Text
-              </label>
-              <input
-                formControlName="answerOption4Text"
-                id="answerOption4Text"
-                type="text"
-                placeholder="Answer Option 4 Text"
-                nbInput
-                fullWidth
-                required
-              />
+            <div
+              class="row mt-3"
+              *ngIf="
+                isMultipleChoice &&
+                questionForm.controls.numberOfOptionsVisible.value > 3
+              "
+            >
+              <div class="form-group col-12">
+                <label for="answerOption4Text" class="label">
+                  Answer Option 4 Text
+                </label>
+                <input
+                  formControlName="answerOption4Text"
+                  id="answerOption4Text"
+                  type="text"
+                  placeholder="Answer Option 4 Text"
+                  nbInput
+                  fullWidth
+                  required
+                />
+              </div>
             </div>
-          </div>
-          <div
-            class="row"
-            *ngIf="
-              isMultipleChoice &&
-              hasAnswerWithMedia &&
-              questionForm.controls.numberOfOptionsVisible.value > 3
-            "
-          >
-            <div class="form-group col-9">
-              <label for="answerOption4MediaUrl" class="label"
-                >Answer Option 4 Media File</label
-              >
-              <!-- formControlName="answerOption4MediaUrl" -->
-              <input
-                id="answerOption4MediaUrl"
-                type="file"
-                (change)="onFileChange($event, 'answerOption4MediaUrl')"
-                placeholder="Answer Option 4 Media File"
-                nbInput
-                fullWidth
-              />
-              <!-- <input
+            <div
+              class="row"
+              *ngIf="
+                isMultipleChoice &&
+                hasAnswerWithMedia &&
+                questionForm.controls.numberOfOptionsVisible.value > 3
+              "
+            >
+              <div class="form-group col-9">
+                <label for="answerOption4MediaUrl" class="label"
+                  >Answer Option 4 Media File</label
+                >
+                <!-- formControlName="answerOption4MediaUrl" -->
+                <input
+                  id="answerOption4MediaUrl"
+                  type="file"
+                  (change)="onFileChange($event, 'answerOption4MediaUrl')"
+                  placeholder="Answer Option 4 Media File"
+                  nbInput
+                  fullWidth
+                />
+                <!-- <input
                 formControlName="answerOption4MediaUrl"
                 id="answerOption4MediaUrl"
                 type="url"
@@ -411,8 +419,8 @@
                 nbInput
                 fullWidth
               /> -->
-            </div>
-            <!-- <div class="form-group col-3 text-end">
+              </div>
+              <!-- <div class="form-group col-3 text-end">
               <label for="answerOption4MediaType" class="label"
                 >Media Type</label
               >
@@ -426,68 +434,70 @@
                 <nb-option value="2">Video</nb-option>
               </nb-select>
             </div> -->
-          </div>
-          <div
-            class="row"
-            *ngIf="
-              isMultipleChoice &&
-              questionForm.controls.numberOfOptionsVisible.value > 3
-            "
-          >
-            <div class="col-12">
-              <div *ngIf="isMultipleChoice">
-                <nb-checkbox status="primary" formControlName="isAnswer4Correct"
-                  >Correct Answer</nb-checkbox
-                >
+            </div>
+            <div
+              class="row"
+              *ngIf="
+                isMultipleChoice &&
+                questionForm.controls.numberOfOptionsVisible.value > 3
+              "
+            >
+              <div class="col-12">
+                <div *ngIf="isMultipleChoice">
+                  <nb-checkbox
+                    status="primary"
+                    formControlName="isAnswer4Correct"
+                    >Correct Answer</nb-checkbox
+                  >
+                </div>
               </div>
             </div>
-          </div>
 
-          <div
-            class="row mt-3"
-            *ngIf="
-              isMultipleChoice &&
-              questionForm.controls.numberOfOptionsVisible.value > 4
-            "
-          >
-            <div class="form-group col-12">
-              <label for="answerOption5Text" class="label">
-                Answer Option 5 Text
-              </label>
-              <input
-                formControlName="answerOption5Text"
-                id="answerOption5Text"
-                type="text"
-                placeholder="Answer Option 5 Text"
-                nbInput
-                fullWidth
-                required
-              />
+            <div
+              class="row mt-3"
+              *ngIf="
+                isMultipleChoice &&
+                questionForm.controls.numberOfOptionsVisible.value > 4
+              "
+            >
+              <div class="form-group col-12">
+                <label for="answerOption5Text" class="label">
+                  Answer Option 5 Text
+                </label>
+                <input
+                  formControlName="answerOption5Text"
+                  id="answerOption5Text"
+                  type="text"
+                  placeholder="Answer Option 5 Text"
+                  nbInput
+                  fullWidth
+                  required
+                />
+              </div>
             </div>
-          </div>
-          <div
-            class="row"
-            *ngIf="
-              isMultipleChoice &&
-              hasAnswerWithMedia &&
-              questionForm.controls.numberOfOptionsVisible.value > 4
-            "
-          >
-            <div class="form-group col-9">
-              <label for="answerOption5MediaUrl" class="label"
-                >Answer Option 5 Media File</label
-              >
-              <!-- formControlName="answerOption5MediaUrl" -->
-              <input
-                id="answerOption5MediaUrl"
-                type="file"
-                (change)="onFileChange($event, 'answerOption5MediaUrl')"
-                placeholder="Answer Option 5 Media File"
-                nbInput
-                fullWidth
-              />
-            </div>
-            <!-- <div class="form-group col-3 text-end">
+            <div
+              class="row"
+              *ngIf="
+                isMultipleChoice &&
+                hasAnswerWithMedia &&
+                questionForm.controls.numberOfOptionsVisible.value > 4
+              "
+            >
+              <div class="form-group col-9">
+                <label for="answerOption5MediaUrl" class="label"
+                  >Answer Option 5 Media File</label
+                >
+                <!-- formControlName="answerOption5MediaUrl" -->
+                <input
+                  id="answerOption5MediaUrl"
+                  type="file"
+                  (change)="onFileChange($event, 'answerOption5MediaUrl')"
+                  placeholder="Answer Option 5 Media File"
+                  nbInput
+                  fullWidth
+                />
+              </div>
+              <!-- <div class="form-group col-3 text-end">
               <label for="answerOption5MediaType" class="label"
                 >Media Type</label
               >
@@ -501,68 +511,70 @@
                 <nb-option value="2">Video</nb-option>
               </nb-select>
             </div> -->
-          </div>
-          <div
-            class="row"
-            *ngIf="
-              isMultipleChoice &&
-              questionForm.controls.numberOfOptionsVisible.value > 4
-            "
-          >
-            <div class="col-12">
-              <div *ngIf="isMultipleChoice">
-                <nb-checkbox status="primary" formControlName="isAnswer5Correct"
-                  >Correct Answer</nb-checkbox
-                >
+            </div>
+            <div
+              class="row"
+              *ngIf="
+                isMultipleChoice &&
+                questionForm.controls.numberOfOptionsVisible.value > 4
+              "
+            >
+              <div class="col-12">
+                <div *ngIf="isMultipleChoice">
+                  <nb-checkbox
+                    status="primary"
+                    formControlName="isAnswer5Correct"
+                    >Correct Answer</nb-checkbox
+                  >
+                </div>
               </div>
             </div>
-          </div>
 
-          <div
-            class="row mt-3"
-            *ngIf="
-              isMultipleChoice &&
-              questionForm.controls.numberOfOptionsVisible.value > 5
-            "
-          >
-            <div class="form-group col-12">
-              <label for="answerOption6Text" class="label">
-                Answer Option 6 Text
-              </label>
-              <input
-                formControlName="answerOption6Text"
-                id="answerOption6Text"
-                type="text"
-                placeholder="Answer Option 6 Text"
-                nbInput
-                fullWidth
-                required
-              />
+            <div
+              class="row mt-3"
+              *ngIf="
+                isMultipleChoice &&
+                questionForm.controls.numberOfOptionsVisible.value > 5
+              "
+            >
+              <div class="form-group col-12">
+                <label for="answerOption6Text" class="label">
+                  Answer Option 6 Text
+                </label>
+                <input
+                  formControlName="answerOption6Text"
+                  id="answerOption6Text"
+                  type="text"
+                  placeholder="Answer Option 6 Text"
+                  nbInput
+                  fullWidth
+                  required
+                />
+              </div>
             </div>
-          </div>
-          <div
-            class="row"
-            *ngIf="
-              isMultipleChoice &&
-              hasAnswerWithMedia &&
-              questionForm.controls.numberOfOptionsVisible.value > 5
-            "
-          >
-            <div class="form-group col-9">
-              <label for="answerOption6MediaUrl" class="label"
-                >Answer Option 6 Media File</label
-              >
-              <!-- formControlName="answerOption6MediaUrl" -->
-              <input
-                id="answerOption6MediaUrl"
-                type="file"
-                (change)="onFileChange($event, 'answerOption6MediaUrl')"
-                placeholder="Answer Option 6 Media File"
-                nbInput
-                fullWidth
-              />
-            </div>
-            <!-- <div class="form-group col-3 text-end">
+            <div
+              class="row"
+              *ngIf="
+                isMultipleChoice &&
+                hasAnswerWithMedia &&
+                questionForm.controls.numberOfOptionsVisible.value > 5
+              "
+            >
+              <div class="form-group col-9">
+                <label for="answerOption6MediaUrl" class="label"
+                  >Answer Option 6 Media File</label
+                >
+                <!-- formControlName="answerOption6MediaUrl" -->
+                <input
+                  id="answerOption6MediaUrl"
+                  type="file"
+                  (change)="onFileChange($event, 'answerOption6MediaUrl')"
+                  placeholder="Answer Option 6 Media File"
+                  nbInput
+                  fullWidth
+                />
+              </div>
+              <!-- <div class="form-group col-3 text-end">
               <label for="answerOption6MediaType" class="label"
                 >Media Type</label
               >
@@ -576,19 +588,22 @@
                 <nb-option value="2">Video</nb-option>
               </nb-select>
             </div> -->
-          </div>
-          <div
-            class="row"
-            *ngIf="
-              isMultipleChoice &&
-              questionForm.controls.numberOfOptionsVisible.value > 5
-            "
-          >
-            <div class="col-12">
-              <div *ngIf="isMultipleChoice">
-                <nb-checkbox status="primary" formControlName="isAnswer6Correct"
-                  >Correct Answer</nb-checkbox
-                >
+            </div>
+            <div
+              class="row"
+              *ngIf="
+                isMultipleChoice &&
+                questionForm.controls.numberOfOptionsVisible.value > 5
+              "
+            >
+              <div class="col-12">
+                <div *ngIf="isMultipleChoice">
+                  <nb-checkbox
+                    status="primary"
+                    formControlName="isAnswer6Correct"
+                    >Correct Answer</nb-checkbox
+                  >
+                </div>
               </div>
             </div>
           </div>
