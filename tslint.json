@@ -93,7 +93,6 @@
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
-    "directive-class-suffix": true,
-    "@angular-eslint/template/eqeqeq": "off"
+    "directive-class-suffix": true
   }
 }
