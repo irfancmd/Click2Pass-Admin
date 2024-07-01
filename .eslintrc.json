@@ -3,7 +3,7 @@
   "ignorePatterns": ["projects/**/*"],
   "overrides": [
     {
-      "files": ["*.ts", "*.html"],
+      "files": ["*.ts"],
       "parserOptions": {
         "project": ["tsconfig.json", "e2e/tsconfig.json"],
         "createDefaultProgram": true
@@ -34,14 +34,15 @@
             "style": "camelCase",
             "type": "attribute"
           }
-        ],
-        "@angular-eslint/template/eqeqeq": "off"
+        ]
       }
     },
     {
       "files": ["*.html"],
       "extends": ["plugin:@angular-eslint/template/recommended"],
-      "rules": {}
+      "rules": {
+        "@angular-eslint/template/eqeqeq": "off"
+      }
     }
   ]
 }
