@@ -19,6 +19,7 @@ export class QuestionSetFormComponent implements OnInit {
     curriculumId: new FormControl(
       window.localStorage.getItem("qsf-selectedCurriculumId") ?? "0"
     ),
+    drivingSetType: new FormControl(0)
   });
 
   public questionSearch = new FormGroup({
@@ -66,6 +67,7 @@ export class QuestionSetFormComponent implements OnInit {
             name: this.questionSetToBeUpdated.name,
             description: this.questionSetToBeUpdated.description,
             curriculumId: this.questionSetToBeUpdated.curriculumId,
+            drivingSetType: this.questionSetToBeUpdated.drivingSetType,
             numOfQuestions: this.selectedQuestionIds.length,
           });
         });
@@ -122,6 +124,11 @@ export class QuestionSetFormComponent implements OnInit {
 
           this.questions = questionList.filter(q => q.curriculumId == curriculumId);
         });
+
+        // Reset driving type non driving curriculumns
+        if(curriculumId != '5') {
+          this.questionSetForm.controls.drivingSetType.setValue(0);
+        }
       }
     );
 

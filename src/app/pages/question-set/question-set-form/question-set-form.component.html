@@ -40,7 +40,7 @@
           </div>
 
           <div class="row">
-            <div class="col-12 form-group">
+            <div class="col-4 form-group">
               <label for="curriculumId" class="label"
                 >Curriculum&nbsp;&nbsp;&nbsp;&nbsp;</label
               >
@@ -56,6 +56,23 @@
                   [value]="selectItem.value"
                   >{{ selectItem.text }}</nb-option
                 >
+              </nb-select>
+            </div>
+            <div class="col-4 form-group"
+              *ngIf="questionSetForm.controls.curriculumId.value == '5'"
+            >
+              <label for="drivingSetType" class="label"
+                >Driving Set Type&nbsp;&nbsp;&nbsp;&nbsp;</label
+              >
+              <nb-select
+                id="drivingSetType"
+                name="drivingSetType"
+                formControlName="drivingSetType"
+                style="width: 100% !important"
+              >
+                <nb-option [value]="0">None</nb-option>
+                <nb-option [value]="1">Questions of Road Signs</nb-option>
+                <nb-option [value]="2">Questions of Rules of the Road</nb-option>
               </nb-select>
             </div>
           </div>
@@ -130,7 +147,7 @@
                 </div>
               </form>
 
-              <div class="table-responsive">
+              <div class="table-container">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
